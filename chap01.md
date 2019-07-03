@@ -28,5 +28,8 @@ Chapter Topics:
 * Separate Assembly
 
 ## Review Question:
-> Q: Do all processor chips have the same architecture?
->! A: No. Each family of processor chip (MIPS, PIC, SPARC, Alpha, Motorola, Intel, et al.) has its own architecture.
+<details>
+  <summary>Q: Do all processor chips have the same architecture? </summary>
+  A: No. Each family of processor chip (MIPS, PIC, SPARC, Alpha, Motorola, Intel, et al.) has its own architecture
+</details>
+
