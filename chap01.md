@@ -92,7 +92,7 @@ Some of the bits in the instruction specify the operation (adding two registers)
   A: No.  It would be very helpful (to us humans) to have a reference document to help us understand what a bit pattern corresponded to in a high level language.
 </details>
 
-## Assembly Language Statement
+## 1.5 Assembly Language Statement
 The layout of a machine instruction is part of the architecture of a processor chip. Without knowing the layout you can't tell what the instruction means. Even if you know the layout, it is hard to remember what the patterns mean and hard to write machine instructions.  Chip manufacturers such as Intel and AMD publish reference documents which detail a chip's **instruction set architecture (ISA)**.  You can take a look at [some of the ARM ISA documents](https://developer.arm.com/architectures/instruction-sets) or [some of the Intel ISA documents](https://software.intel.com/en-us/articles/intel-sdm), but be warned, they are very complex and overwhelming for novices.
 
 A statement in pure assembly language corresponds to one machine instruction. Assembly language is much easier to understand and write than machine language. Here is the previous machine instruction and the assembly language that it corresponds to:
@@ -118,7 +118,7 @@ Humans find assembly language much easier to use than machine language for many 
   A: No, but you will probably have to use documenation to understand the assembly language features, just like you do when you write a program in a high level language.
 </details>
 
-## Program Translation
+## 1.6 Program Translation
 The assembly language statement says the same thing as the machine language instruction, but must be translated into a bit pattern before it can be executed. An assembly language program consists of a series of assembly language statements, statements that define data, and some additional information that helps in the translation. Here is a fragment of an assembly language program and its translation into bit patterns.
 
 | Machine Instructions | Assembly Statements |
@@ -141,7 +141,7 @@ FORTRAN is a high level language. It is intended to run on all types of computer
   A: Yes.  All high level languages must be transformed to machine language before they can be executed.  There are some differences in how this translation occurs (eg. interpretting vs. compiling), but the fact remains that a processor can **ONLY** understand machine language.
 </details>
 
-## Several Translations
+## 1.7 Several Translations
 All programming languages other than machine language must be translated into machine language before they can be executed. A high level language is independent of architecture. It requires a specific translator (compiler or interpretter) for each architecture. The more modern the language, the more distant the source code is from the machine language. FORTRAN is 50 years old and is closer to machine language than modern languages. Here is a statement in FORTRAN:
 
 result = 6*alpha+beta
@@ -167,7 +167,7 @@ ADDL3   R5,BETA,RESULT
   A: No. They are separate languages for different processors.
 </details>
 
-## Machine Language
+## 1.8 Machine Language
 There is not just one language called "assembly language." Each processor family (such as Intel, VAX, MIPS, Alpha, ...) has its own machine instructions and a corresponding assembly language. ARM assembly language is only for ARM processors. The VAX assembly language is only for VAX processors. There is a different assembly language for IBM mainframe computers, and others for Intel-based PCs.
 <!-- image -->
 
@@ -184,7 +184,7 @@ It is much easier to program a computer in a high level language than in assembl
   A: Problems that involve the very computer/processor the program is running on.  In other words, ARM assembly is particularly suited if you need a finely-tuned, performance-oriented program to run on an ARM processor. 
 </details>
 
-## Main Storage
+## 1.9 Main Storage
 <!-- image? -->
 Assembly language does match the problem when the problem is the operation of the computer system. Assembly language is used for operating systems, compilers, communications, low-level graphics, and other programs where the architecture of the processor must be visible. Often with these program the crucial parts are written in assembly and the rest in a high level language (usually C). The most common use of assembly language is in programming **embedded systems**. Here a processor chip is part of a machine built for a specific purpose. Examples are aviation electronics, communication satellites, DVD players, robots, automobile electronics, cell phones, and game consoles. 
 
@@ -200,7 +200,7 @@ In the MIPS, as in most computers, each byte of main memory has an address. An a
   A: No. Both processors have the same range of logical addresses, but there need not be actual RAM behind each address.
 </details>
 
-## Architecture vs. Implementation
+## 1.10 Architecture vs. Implementation
 The architecture of a computer is a logical description of its components and its basic operations.
 
 The ARM family of computers all have very similar assembly-level architecture. This means that all ARM machines can be programmed using (almost) the same assembly language. The actual electronics that implement the architecture may differ greatly between versions of the chip. This is analogous to "car architecture". Two Jaguars may appear the same to a driver (same styling, same user controls, same operation) but have different components under the hood (having either a V-6 or a V-8 engine, for example). The architecture is the same, but the implementation (and performance) is different. Keep this in mind as you visit the used car lots in Silicon Valley.
