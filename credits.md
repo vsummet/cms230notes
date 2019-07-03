@@ -1,4 +1,4 @@
-These notes are based upon Dr. Bradley Kjell's interative tutorial on MIPS assembly: https://chortle.ccsu.edu/AssemblyTutorial/index.html
+These notes are based upon Dr. Bradley Kjell's [https://chortle.ccsu.edu/AssemblyTutorial/index.html](interative tutorial) and notes on MIPS assembly.
 
 They have been updated for a subset of the ARM assembly language in conjunction with the usage of a Raspberry Pi.
 
