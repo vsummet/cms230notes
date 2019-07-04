@@ -20,7 +20,7 @@ Remember that 8 contiguous bits are called a byte. A bit holds a zero or a one, 
 How many patterns can be formed with a single bit? (Hint: click on the arrow!)
 </summary>
 2.  "0" is one pattern and "1" is the other. (Or "off" and "on".  Or "true" and "false".)
-<details>
+</details>
 ## 3.2 - Patterns of Bits
 A bit can be 0 or 1. With one bit there are two possible patterns. How many patterns can be formed with two bits? Here is a complete list:
 ```
