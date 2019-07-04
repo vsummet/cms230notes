@@ -3,7 +3,7 @@
 ## Module 1 - Prelude
 * [Chapter 1](chap01.md) - Computer Architecture and Assembly Language
 * [Chapter 2](chap02.md) - Analog and Binary Signals
-* Chapter 3 - Bits and Bit Patterns
+* [Chapter 3](chap03.md) - Bits and Bit Patterns
 * Chapter 4 - Computer Organization
 ## Module 2 -  Data Representation: Characters and Integers
 ## Module 3 - Raspberry Pi; Bitwise Logic
