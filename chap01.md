@@ -40,6 +40,8 @@ Each processor family has its own architecture. Assembly language is a programmi
 
 When you study an assembly language, you study the architecture of a particular processor. The study of any assembly language increases your professional understanding of computers. These notes are about the MIPS processor, which is a nice processor to study. The concepts in MIPS assembly are universal.
 
+<img align="right" alt="levels of computer science" src="./images/ch01-levels.jpg">
+
 These notes discuss assembly language from a computer science perspective. They explain what is going on in a computer system at the **assembly language level**. This is a view that is above the electronic view of computer architecture (found somewhat in our MAT310 course), but is below the operating systems view of the computer system (found in CMS 330). Computer scientists understand computers at many levels. They understand how the many levels are built one on top of another. Each of these levels corresponds to one or more courses in a computer science degree program.
 
 ## 1.2 Fundamentals
@@ -55,6 +57,8 @@ These notes are about fundamental assembly-level computer architecture. To do th
 Most processors endlessly repeat three basic steps. Each **machine cycle** results in the execution of one *machine instruction*.  However, a modern processor performs millions of machine cycles per second.
 
 A **machine instruction** is a pattern of bits that corresponds to a fundamental operation of the processor such as adding two 32-bit integers together or testing if a value is zero. The details of the machine cycle differ between processor families. The machine cycle of most processor chips looks like the following:
+
+<img align="right" alt="levels of computer science" src="./images/ch01-machinecycle.gif">
 
 1. **Fetch the Instruction**: The instruction (pattern of bits) is fetched from memory. The **program counter (PC)** is part of the processor. It contains the address of the instruction to fetch in memory.  After the instruction is fetched from memory, the program counter is incremented and now points to the next instruction to be fetched.
 2. **Decode the Instruction**: The processor must now make sense of the instruction it just fetched.
