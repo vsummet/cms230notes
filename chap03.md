@@ -284,7 +284,7 @@ Keep in mind that hexadecimal pattern names are used by humans for talking about
 0011 0110 1100 0000    <br>
 0000 0000 0000 0000    <br>
     </summary>
-    0x0A11 <br>
+    <br>0x0A11 <br>
     0x129A <br>
     0xFADE <br>
     0x36C0 <br>
@@ -320,12 +320,12 @@ When the number of bits is not a multiple of three it is conventional to add zer
 Programmers have lost an unfortunate number of hours with buggy programs, only to discover a constant buried deep in the code that started with a "0" when it should not have.
 
 ### Question
-<detail>
+<details>
     <summary>
      111 010 001    <br>
-100 011 010    <br>
-011011110    <br>
-11000000    <br>
+    100 011 010    <br>
+    011011110    <br>
+    11000000    <br>
     </summary>
     <br> 0721 <br>
     0432 <br>
