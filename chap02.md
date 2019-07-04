@@ -120,7 +120,7 @@ The computation is done by moving beads into definite positions. A bead is eithe
 ## 2.6 An Analog Signal
 An analog signal may continuously change in value. Its values can be anything within a range of values, and its exact value at any time is important. The graph below represents an analog signal. The exact value at each time is part of the information it contains. For example, the value at time "T2" must be measured exactly.
 
-<!-- image: ch02-analog.gif -->
+![analog signal](./images/ch02-analog.gif)
 
 Now say that you are observing the voltage of a wire. It has been agreed that any voltage below a threshold will be counted as an "off" signal, and that any value above the threshold will be counted as an "on" signal.
 
@@ -135,7 +135,7 @@ On.  The analog signal (continuously changing voltage signal) moves up and down,
 ## 2.6 - A Binary Signal
 Analog signals continuously change in value. By using a threshold, analog signals can represent binary data ("on/off" data). It is easy and fast (for electronics, as well as for humans) to determine if a voltage is above or below a threshold. The figure shows a signal that transmits "off" then "on". (The signal is examined at times T1 and T2.)
 
-<!-- image ch02-binary.gif -->
+[digital signal](./images/ch02-digital.gif)
 
 ### Question
 <details>
@@ -145,13 +145,12 @@ Is is clear that the signal is "off" at time T1 and "on" at time T2?
 Yes.
 </details>
 
-## 2.7 
-
+## 2.7 - Imperfect Transmission
 The "ons" and "offs" of the previous signal are clear. But what if the signal is sent down a long wire and someone nearby turns on a vacuum cleaner? The whirling and sparking electric motor creates a great deal of electrical noise. The graph shows the signal at the other end of the wire.
 
 Even though the signal is noisy (at the analog level), the binary values are transmitted perfectly. You (and the electronics) can still tell that at time T1 the signal represents "off" and that at time T2 the signal represents "on". The receiving end just needs to get the binary values.
 
-<!-- img ch02-noise.gif -->
+[noisy signal](./images/ch02-noise.gif)
 
 Since only the "on" "off" information matters, the analog noise is irrelevant, and the original signal is received perfectly (so far as the binary information goes.)
 
@@ -173,7 +172,7 @@ Review the advantages of binary:
 
 Flawless copies can be made: The receiving end of the signal is only interested in the binary values. All it has to do it check if the signal is above or below the threshold. This can be done perfectly (as long as the noise is not too great.) For example, here is the noisy signal with the "on"/"off" values recovered from it:
 
-<!-- img ch02-nonoise.gif -->
+[noisy signal recovered](./images/ch02-nonoise.gif)
 
 The original signal has been recovered flawlessly. This process can occur as many times as needed with a perfect copy made each time. This is essential in a computer system, where bit patterns (patterns of one and zero, or on and off) are copied back and forth between the processor and memory millions of times a second. The copies have to be perfect.
 
@@ -185,7 +184,8 @@ Something might be wrong here. Is the signal "on" or "off" at the time "x"? This
 The system is built so that the signal is tested only at particular times, and that changes in the signal occur between these times.
 </details>
 
-## 2.9 - Digital systems are built so that the "on" "off" (binary) value is only tested at certain times, giving the wire (or transistor, or...) a chance to change its state between these times. This is why computer systems have a "clock" — to keep all these times synchronized. So faster clocks mean wires can be tested more times per second, and the whole system runs faster.
+## 2.9 - Clocks
+Digital systems are built so that the "on" "off" (binary) value is only tested at certain times, giving the wire (or transistor, or...) a chance to change its state between these times. This is why computer systems have a "clock" — to keep all these times synchronized. So faster clocks mean wires can be tested more times per second, and the whole system runs faster.
 
 Processor chips (and the computers that contain them) are often described in terms of their clock speed. Clock speed is measured in **Hertz**, where one Hertz is one clock tick per second.
 
@@ -236,9 +236,11 @@ Can printed music be represented using binary?
 Sure — any symbols can. There are "music processor" programs for printed music that work like word processor programs for printed text.
 </details>
 
-## 2.12 - Recall that last advantage of binary:
+## 2.12 - Symbols and Patterns
+Recall that last advantage of binary:
 
 * Anything that can be represented with patterns can be represented with patterns of bits.
+
 What about representing things other than the written characters of a language? This is a deep topic, and entire books have been written on it. Here is a very sloppy discussion: Pick some subject. Use English sentences to describe it. Represent those sentences in ASCII (characters encoded as bit patterns.) Now the subject is represented in binary. If something can be represented in English, then it can be represented in binary.
 
 Notice that this says nothing about "meaning" or "understanding." Printed books don't understand their own contents. A digital version of the book (say on CD ROM) doesn't understand the book, either. It merely holds the information, waiting for a human mind to do the understanding. However the book has been represented as bit patterns.
