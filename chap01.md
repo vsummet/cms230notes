@@ -56,12 +56,9 @@ Most processors endlessly repeat three basic steps. Each **machine cycle** resul
 
 A **machine instruction** is a pattern of bits that corresponds to a fundamental operation of the processor such as adding two 32-bit integers together or testing if a value is zero. The details of the machine cycle differ between processor families. The machine cycle of most processor chips looks like the following:
 
-1. **Fetch the Instruction**: The instruction (pattern of bits) is fetched from memory. The **program counter (PC)** is part of the processor. It contains the address of the instruction to fetch in memory.
+1. **Fetch the Instruction**: The instruction (pattern of bits) is fetched from memory. The **program counter (PC)** is part of the processor. It contains the address of the instruction to fetch in memory.  After the instruction is fetched from memory, the program counter is incremented and now points to the next instruction to be fetched.
 2. **Decode the Instruction**: The processor must now make sense of the instruction it just fetched.
-The CPU is designed to understand a specific set of commands. These are called the 'instruction set' of the CPU. Each make of CPU has a different instruction set.
-
-The CPU decodes the instruction and prepares various areas within the chip in readiness of the next step.
-2. **Increment the Program Counter:** The program counter now points to the next instruction to be fetched.
+As we have seen, the processor is designed to understand a specific set of commands called the instruction set of the processor. The processor decodes the instruction and prepares various areas within the chip for the next step.
 3. **Execute the Instruction**: The operation asked for by the current machine instruction is performed -- eg adding two numbers or testing if a number is equal to 0.
 
 On a 32-bit processor, memory addresses are 32 bits wide and so the program counter (PC) holds a 32 bit address.
@@ -213,3 +210,20 @@ The architecture of an ARM is different from the architecture of a Pentium. Both
   <summary>(Hard Thought Question:) Must a machine language program be run on an actual processor chip (i.e., on hardware)? Hint: Think about Java.</summary>
   No. Sometimes machine instructions (such as Java `.class files)` are interpreted by software.
 </details>
+
+## Key Terms to Review
+* architecture
+* high level language
+* assembly language
+* machine language/code
+* instruction set
+* machine cycle
+* program counter
+* register
+* assembler
+* compiler
+* embedded system
+* bit
+* byte
+* main memory
+* Von Neumann machine
