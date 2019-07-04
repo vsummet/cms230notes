@@ -36,7 +36,7 @@ Looks like 4 patterns.
 ### Question
 <details>
 <summary>
-    Is the pattern <pre>01</pre> different from the pattern <pre>10</pre>?
+    Is the pattern 01 different from the pattern 10<?
 </summary>
 Yes.  The order (or position) of the bits matters.
 </details>
@@ -146,7 +146,7 @@ Of course, the trick can be repeated as many times as you like. Adding one more 
 
 How many patterns with 5 bits? Make two copies of the 4-bit patterns (16 patterns per copy). Make the patterns unique by prefixing "0" to the first 16 patterns and "1" to the second 16. You now have 16×2 = 2<sup>5</sup> unique patterns. This demonstrates the following:
 
-**Number of possible patterns with N bits  =  2<sup>N</sup>**
+**Number of possible patterns with N bits  =  2**<sup>N</sup>
 
 Memorize this fact. Better yet, make lists of patterns (as above) and play around until you understand. Do this now. This is an essential fact. If you allow yourself to get muddled on it, you will waste much time in this and future courses.
 
@@ -164,6 +164,7 @@ This number occurs often in computer science. 1024 bytes is called a kilobyte, a
 </details>
 
 ## 3.6 More About Patterns
+
 | Number of Bits |	Number of Patterns | Number of Patterns as power of two |
 |------------|------------|---------|
 | 1 |	2 |	2<sup>1</sup>|
@@ -179,7 +180,7 @@ This number occurs often in computer science. 1024 bytes is called a kilobyte, a
 
 Many calculations involving bit patterns use the following familiar fact of arithmetic. (Although the fact is familiar, confusion is even more familiar. Be sure you know this factoid.)
 
-**    2<sup>(N+M)</sup>   =   2<sup>N</sup> × 2<sup>M<sup>    **
+2<sup>(N+M)</sup>   =   2<sup>N</sup> × 2<sup>M<sup> 
 
 It is not too much work to extend the table, as shown at right. You can always make this table from scratch, but memorizing a few key values does not hurt.
 
@@ -203,15 +204,17 @@ Some audio cards use 12 bits to represent the sound level at an instant in time 
 ## 3.7 - Pattern Names
 Consider the following pattern:
 
-0010100010101010
+`0010100010101010`
+
 It is not easy to work with. It is convenient to break bit patterns into 4-bit groups (called nibbles) (Haha!  Get it?  Half of a byte is called a nibble):
 
-0010 1000 1010 1100
+`0010 1000 1010 1100` 
 There are 16 ( = 2<sup>4</sup> ) possible patterns in a nibble. Each pattern has a name, as seen in this table.
 
 Hexadecimal Names 
 
 | nibble	| pattern name |	nibble	| pattern name |
+|----------|-----------|-------------|-----------|
 | 0000	| 0 | 1000 |	8 |
 | 0001	| 1	| 1001 |	9 |
 | 0010	| 2	| 1010 |	A |
@@ -225,8 +228,9 @@ You might be tempted to call those 4-bit patterns "binary numbers". Resist that 
 
 The above bit pattern can be written using the pattern names:
 
-0010 1000 1010 1100 = 28AC
-Bits are grouped into nibbles starting at the right. Then each nibble is named. This method of giving names to patterns is called ** hexadecimal**.
+`0010 1000 1010 1100 = 28AC`
+
+Bits are grouped into nibbles starting at the right. Then each nibble is named. This method of giving names to patterns is called **hexadecimal**.
 
 ### Question
 <details>
@@ -239,11 +243,11 @@ Bits are grouped into nibbles starting at the right. Then each nibble is named. 
             <br>0000 0000
     </summary>
     <br><br>
-    0001 0001     11 <br>
-    0011 1001     39 <br>
-    1011 1111     BF <br>
-    0100 0110     46 <br>
-    0000 0000     00 (be sure to show both zeros)
+    11 <br>
+    39 <br>
+    BF <br>
+    46 <br>
+    00 (be sure to show both zeros)
     
 ## 3.8 - More Hex Practice
 If there are not enough bits at the left to form a complete group of four, add zero bits to the left, (but be sure that it is clear by context how many bits you are describing). For example:
@@ -270,6 +274,7 @@ Adding zeros to the left of a pattern creates a new pattern. The new pattern has
 
 Keep in mind that hexadecimal pattern names are used by humans for talking about bit patterns. Inside the computer there are only bits and their patterns. Hexadecimal is used in books and documents (outside the computer) to describe these bit patterns.
 
+### Question
 <details>
     <summary>
         Name the following patterns; include 0x in the name:<br>
@@ -285,12 +290,14 @@ Keep in mind that hexadecimal pattern names are used by humans for talking about
     0x36C0 <br>
     0x0000 (be sure to show all zeros)
 </details>
+
  ## 3.9 - Octal
 Sometimes documentation describes bit patterns in groups of three. Three-bit groups are named using the first eight pattern names of hexadecimal. This method is called octal notation. A bit pattern can be named using hexadecimal names, octal names, or many other notations.
 
 Octal Names:
 
-group |	pattern name | group | pattern name
+| group |	pattern name | group | pattern name |
+|-------|----------|--------|-----------|
 | 000 |	0 |	100 |	4 |
 | 001 |	1 |	101 |	5 |
 | 010 |	2 |	110 |	6 |
