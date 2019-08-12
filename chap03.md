@@ -22,7 +22,7 @@ How many patterns can be formed with a single bit? (Hint: click on the arrow!)
 2.  "0" is one pattern and "1" is the other. (Or "off" and "on".  Or "true" and "false".)
 </details>
 
-## 3.2 - Patterns of Bits
+## 3.1 - Patterns of Bits
 A bit can be 0 or 1. With one bit there are two possible patterns. How many patterns can be formed with two bits? Here is a complete list:
 
 ```
@@ -187,6 +187,7 @@ It is not too much work to extend the table, as shown at right. You can always m
 The numbers of patterns that can be formed with 10 or more bits are usually expressed as multiples of 1024 (= 2<sup>10</sup>) or in "Megs" (= 2<sup>20</sup>). For example, how many patterns can be formed from 24 bits?
 
 224   =   2<sup>4</sup> × 2<sup>20</sup>   =   16 Meg
+
 The power of two (24) splits into a small part (2<sup>4</sup>) and a part that has a name (2<sup>20</sup> = Meg). This is a useful trick you can use to amaze your friends and impress employers.
 
 Some audio cards use 12 bits to represent the sound level at an instant in time (12 bits per sample). How many signal levels are represented?
