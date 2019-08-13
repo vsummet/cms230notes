@@ -140,8 +140,11 @@ Phew!  That's confusing!  How do we distinguish between 421 representing the qua
 You may wish to change the representation of a number from base 5 notation into base 10 notation. Do this by symbol replacement. Change the base 5 symbols into the base 10 symbol equivalents. Then do the arithmetic in base 10.
 
 421<sub>5</sub>	  =  	4 × five<sup>2</sup> + 2 × five<sup>1</sup> + 1 × five<sup>0</sup>
+
 the number in base 10	  =  	4 × 5<sup>2</sup> + 2 × 5<sup>1</sup> + 1 × 5<sup>0</sup>
+
 the number in base 10	  =  	4 × 25 + 2 × 5 + 1 × 1
+
 the number in base 10	  =  	100 + 10 + 1 = 111
 
 The above process is often called "converting a number from base 5 to base 10". But in fact, the number is not being converted, its representation is being converted. The characters "421 (base five)" and "111 (base ten)" represent the *same quantity.*
@@ -153,3 +156,87 @@ The above process is often called "converting a number from base 5 to base 10". 
     </summary>
     1025<sub>5</sub>   =   1 × 5<sup>2</sup> + 0 × 5<sup>1</sup> + 2 × 5<sup>0</sup>   =   2510 + 210   =   2710<sub>10</sub>
 </details>
+
+## 6.6 - Base Seven
+
+Here is another example: 326<sub>7</sub>. This means:
+
+3 × seven<sup>2</sup> + 2 × seven<sup>1</sup> + 6 × seven<sup>0</sup>
+
+To write the number in decimal, write the powers of seven in decimal and perform the arithmetic:
+
+3 ×  7<sup>2</sup> + 2 × 7<sup>1</sup> + 6 × 7<sup>0</sup> =
+
+3 × 49  + 2 × 7 + 6 × 1 =
+
+147 + 14 + 6    =    167<sub>10</sub>
+
+### Question
+<details>
+    <summary>
+    What is 682<sub>7</sub> in base-10 notation?
+    </summary>
+    Haha!  Trick question!  Remember the rules of positional representation? 8 is not a valid digit for the base-7 numbering system.  The only valid digits for a base-7 system are 0-6. 
+</details>
+
+## 6.7 - Bit Patterns
+Bit patterns like 10110110110 are sloppily called "binary numbers" even when they represent other things (such as characters or machine instructions).
+
+But, of course, bit patterns can be used to represent numbers. Base two positional notation is used for this.
+
+### Question
+<details>
+    <summary>
+    Here are the rules for positional notation. Fill in the blanks to work with base two:<br>
+    The base is _____.<br>
+    There are "digits": ___, ___ <br>
+    Positions correspond to integer powers of ____ starting with power ____ at the rightmost digit, and increasing right to left.<br>
+  The digit placed at a position shows how many times that power of ____ included in the number.
+    </summary>
+    <br>The base is two.<br>
+There are two "digits": 0,1 .<br>
+Positions correspond to integer powers of two, starting with power 0 at the rightmost digit, and increasing right to left.<br>
+The digit placed at a position shows how many times that power of two is included in the number.<br>
+</details>
+
+## 6.8 - Representing Numbers using Base Two
+From the rules for positional notation there are two digits. Usually "0" and "1" are chosen, and usually the word bit is used. "Bit" is an abbreviation of "binary digit".
+
+In this system the base, the quantity two is written "10", the first power of two plus zero times the zeroth power of two. Each place in a representation stands for a power of two. Often this is called the binary system. Here is an example:
+
+1011	=	1 × 2<sup>3</sup>	+	0 × 2<sup>2</sup>	+	1 × 2<sup>1</sup>	+	1 × 2<sup>0</sup>
+ 	    =	1 × 8	+	0 × 4	+	1 × 2	+	1 × 1
+ 	    =	8	+	0	+	2	+	1
+ 	    =	11<sub>10<sub>
+    
+The first line above uses decimal notation for the base and its powers. The remaining lines use base ten arithmetic until finally the integer is expressed in base ten positional notation.
+
+
+### Question
+<details>
+    <summary>
+        What is 0110<sub>2</sub> (binary representation) in base ten?
+    </summary>
+    0110 = 0 × 2<sup>3</sup>  + 1 × 2<sup>2</sup> + 1 × 2<sup>1</sup> + 0 × 2<sup>0</sup><br>
+     = 0 + 4 + 2 + 0<br>
+    = 6<sub>10</sub>
+</details>
+
+## 6.9 - Powers of Two
+While not strictly required as a computer science student, it's often VERY useful to memorize some of the powers of two.  Since computers are digital and thus based on 0s and 1's (bits), powers of 2 crop up in many places.  I recomend memorizing up through 2<sup>10</sup> for convenience.
+
+| Power of 2	| 10 |	9 |	8 |	7 |	6 |	5 |	4 |	3 |	2 |	1 |	0 |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| Decimal |	1024 |	512 | 256 |	128 |  64 | 32 | 16 |	8 |	4 |	2 |	1 |
+
+
+
+
+
+
+
+
+
+        
+        
+        
