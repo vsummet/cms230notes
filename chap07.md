@@ -148,8 +148,7 @@ The same trick works in any base: if a number is represented by (say) XYZ in bas
 The following chart summarizes equivalent patterns in the three most common (for computer scientists) number systems.
 
 
-| Rep. in hex| Rep. in decmial | Rep.  in binary |
-| (base 16) | (base 10) | (base 2)|
+| Rep. in hex<br>(base 16)| Rep. in decmial<br>(base 10) | Rep.  in binary<br>(base 2) |
 |-----------------|------------|-----------------|
 |0|0|0000|
 |1|1|0001| 
@@ -171,35 +170,29 @@ The following chart summarizes equivalent patterns in the three most common (for
 ## 7.7 - Converting Hex Representation into Binary Representation
 It is easy to convert between base sixteen and base two representation:
 
-(In base two) Shifting left by four bits is equivalent to multiplication by sixteen.
-(In base hex) Shifting left by one digit is equivalent to multiplication by sixteen.
-To see how this works, look at this integer represented in base two and in base sixteen:
+Groups of four bits (starting from the right) match powers of sixteen, so each group of four bits matches a digit of the hexadecimal representation. 
 
-base two           base sixteen
+Each digit of hex can be converted into a 4-bit binary number because each place of a hex number stands for a power of 2<sup>4</sup>. (Technically, it stands for a number of 4-bit left shifts, but I think this needlessly complicates things.) So you can convert a hexadecimal representation of a number into an unsigned binary representation directly by replacing each hex digit with its 4-bit binary equivalent. For example:
 
-1010        =      A
-Now multiply each by sixteen:
+```
+   1    A    4    4    D        (Hex    Representation) 
 
-base two           base sixteen
+  0001 1010 0100 0100 1101      (Binary Representation)  
+```
 
-1010 0000   =      A0
-Groups of four bits (starting from the right) match powers of sixteen, so each group of four bits matches a digit of the hexadecimal representation. Let us rewrite the integer C6D in binary:
+At this point, it's worth noting some communication standards in the field of CS.  Computer scientists and programmars often use *prefixes* rather than subscripts to communicate about base numbering, particularly in programs.  You can specify both binary and hexadecimal patterns in programming.  Programmers sometimes use `0b` to represent a binary (base 2) number (eg `0b000100011100`) and a `0x` prefix to represent hexadecimal (base 16) pattern (eg `0x11C`).  This is particularly common for hex.
 
-C6D  =    C × sixteen2 +    6 × sixteen1   +    D × sixteen0  
+### Question
+<details>
+    <summary>
+        What is the representation of the binary pattern   `0001 1010 0100 0100 1101` in hex?
+    </summary>
+        1A44D
+</details>
 
-     =    C × (24)2    +    6 × (24)1      +    D × (24)0  
+## 7.8 Octal
+Converting between base 16 representation and base 2 representation is easy because 16 is a power of 2. Another base where this is true is base 8 (called **octal**), since 8 is 2<sup>3</sup>. In base 8, the digits are 0, 1, 2, 3, 4, 5, 6, and 7. The binary equivalents of the digits are 000, 001, 010, 011, 100, 101, 110, 111.
 
-     = 1100 × (24)2    + 0110 × (24)1      + 1101 × (24)0   
+Each place in a base 8 representation corresponds to a left shift of 3 places in the bit pattern of its binary representation.
 
-     = 1100 ×  28      + 0110 ×  24        + 1101 × 1  
-Using the idea that each multiplication by two is equivalent to appending a zero to the right, this is:
-
-     = 1100 0000 0000  + 0110 0000         + 1101  
-
-C6D  = 1100 0110 1101
-Each digit of hex can be converted into a 4-bit binary number, each place of a hex number stands for a power of 24. It stands for a number of 4-bit left shifts. So you can convert a hexadecimal representation of a number into an unsigned binary representation directly by replacing each hex digit with its 4-bit binary equivalent. For example:
-
-   1    A    4    4    D      (Hex    Representation) 
-
-0001 1010 0100 0100 1101      (Binary Representation)  
-
+Be careful: in some computer languages (Java and C, for instance) a number written with a leading zero signifies octal. So 01000 means base eight, and 1000 means base ten, 0x1000 means base sixteen, and 0b1000 means base 2.  (Phew.  As always, programming is a detail oriented exercise.)
