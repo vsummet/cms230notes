@@ -1,4 +1,4 @@
-# CHAPTER 4 — Computer Systems
+# Chapter 4 — Computer Systems
 This chapter discusses how computer systems are organized, with special attention paid to main memory. You may know some of this material already, but look it over anyway.
 
 ## Chapter Topics:
@@ -102,6 +102,44 @@ The MIPS has an address space of 232 bytes. A Gigabyte is 230, so the MIPS has 4
 On modern computers, the full address space is present no matter how much RAM has been installed. This is done by keeping some parts of the full address space on disk and some parts in RAM. The RAM, the hard disk, some special electronics, and the operating system work together to provide the full 32 bit address space. To a user or an applications programmer it looks as if all 232 bytes of main memory are present.
 
 This method of providing the full address space by using a combination of RAM memory and the hard disk is called virtual memory. The word virtual means "appearing to exist, but not really there." Some computer geeks have a virtual social life.
+
+<details>
+    <summary>
+    Which is faster: access to physical (RAM) memory or access to the hard disk?
+    </summary>
+    Physical memory.
+</details>
+
+
+## 4.6 - Cache Memory
+Disk access is slow compared to RAM access. Potentially, using a combination of real memory and disk memory to implement the address space could greatly slow down program execution. However, with clever electronics and a good operating system, virtual memory is only slightly slower than physical memory.
+
+Computer systems also have cache memory. Cache memory is very fast RAM that is inside (or close to) the processor. It duplicates sections of main storage that are heavily used by the currently running programs. The processor does not have to use the system bus to get or store data in cache memory. Access to cache memory is much faster than to normal main memory.
+
+Like virtual memory, cache memory is invisible to most programs. It is an electronic detail below the level of abstraction provided by assembly language. Hardware keeps cache up to date and in synch with main storage. Your programs are unaware that there is cache memory and virtual memory. They just see "main memory". Application programs don't contain instructions that say "store this in cache memory", or say "get this from virtual memory". They only refer to the contents of main memory at a particular address. The hardware makes sure that the program gets or stores the correct byte, no matter where it really is.  You'll learn more about operating systems software in future classes.
+
+<details>
+    <summary>
+        Since memory looks like an array of bytes, is it necessary for each item of data in memory to be one byte long?
+    </summary>
+    No. Most data and instructions are several bytes long and occupy several consecutive memory addresses.
+</details>
+
+## 4.7 - Contents of Memory
+The memory system merely stores bit patterns. The electronics don't care whether these patterns represent integers, characters, instructions, or something else entirely.  How these patterns are used depends on the programs that use them. A word processor program, for example, is written to process patterns as characters. A spreadsheet program processes patterns as numbers.
+
+Of course, most programs process several types of data and must keep track of how each is used. Often programs keep the various uses of memory in separate sections, but that is a programming convention rather than a requirement of electronics.
+
+Any byte in main storage can contain any 8-bit pattern. No byte of main storage can contain anything but an 8-bit pattern. There is nothing in the memory system of a computer that says what a pattern represents.
+
+QUESTION 8:
+
+<details>
+    <summary>
+        When first turned on, many computer systems test their RAM for a hardware failure by writing various patterns to various locations and then reading the patterns back. Do you think this is a good test?
+    </summary>
+        It is a good test. The job of memory is to hold bit patterns and to return them when requested, and so this test will ensure that functionality.
+</details>
 
 
 
