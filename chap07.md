@@ -303,7 +303,7 @@ It's important to remember that the remainders are appended to the LEFT hand sid
 ## 7.10 - Another Example
 This algorithm works for any base.  Here is another example, but converting to base 5.  In this example, I just show the mathematics without applying a code-based solution.  Converting 1033<sub>10</sub> to base 5:
 
-![base 5 math](ch07-base5.gif)
+![base 5 math](./images/ch07-base5.gif)
 
 Remember that the first digit produced by our repeated divisions is the RIGHTMOST digit in the result.  Thus, 1033<sub>10</sub> == 13113<sub>5</sub>
 
