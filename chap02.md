@@ -135,7 +135,7 @@ On.  The analog signal (continuously changing voltage signal) moves up and down,
 ## 2.6 - A Binary Signal
 Analog signals continuously change in value. By using a threshold, analog signals can represent binary data ("on/off" data). It is easy and fast (for electronics, as well as for humans) to determine if a voltage is above or below a threshold. The figure shows a signal that transmits "off" then "on". (The signal is examined at times T1 and T2.)
 
-[digital signal](./images/ch02-digital.gif)
+![digital signal](./images/ch02-binary.gif)
 
 ### Question
 <details>
@@ -150,7 +150,7 @@ The "ons" and "offs" of the previous signal are clear. But what if the signal is
 
 Even though the signal is noisy (at the analog level), the binary values are transmitted perfectly. You (and the electronics) can still tell that at time T1 the signal represents "off" and that at time T2 the signal represents "on". The receiving end just needs to get the binary values.
 
-[noisy signal](./images/ch02-noise.gif)
+![noisy signal](./images/ch02-noise.gif)
 
 Since only the "on" "off" information matters, the analog noise is irrelevant, and the original signal is received perfectly (so far as the binary information goes.)
 
@@ -172,7 +172,7 @@ Review the advantages of binary:
 
 Flawless copies can be made: The receiving end of the signal is only interested in the binary values. All it has to do it check if the signal is above or below the threshold. This can be done perfectly (as long as the noise is not too great.) For example, here is the noisy signal with the "on"/"off" values recovered from it:
 
-[noisy signal recovered](./images/ch02-nonoise.gif)
+![noisy signal recovered](./images/ch02-nonoise.gif)
 
 The original signal has been recovered flawlessly. This process can occur as many times as needed with a perfect copy made each time. This is essential in a computer system, where bit patterns (patterns of one and zero, or on and off) are copied back and forth between the processor and memory millions of times a second. The copies have to be perfect.
 
