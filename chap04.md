@@ -22,8 +22,7 @@ This chapter discusses how computer systems are organized, with special attentio
 ## 4.1 - Computer System Components
 The diagram shows a general view of how desktop and workstation computers are organized. Different systems have different details, but in general all computers consist of components (processor, memory, controllers, video) connected together with a bus. Physically, a **bus** consists of many parallel wires, usually printed (in copper) on the main circuit board of the computer. Data signals, clock signals, and control signals are sent on the bus back and forth between components. A particular type of bus follows a carefully written standard that describes the signals that are carried on the wires and what the signals mean. The PCI standard (for example) describes the PCI bus used on most current PCs.
 
-![Image of a typical computer system](https://github.com/vsummet/experimental230notes/images/ch04-compsystem.gif)
-
+![Image of a typical computer system](./images/ch04-compsystem.gif)
 
 The processor continuously executes the machine cycle, executing machine instructions one by one. Most instructions are for an arithmetical, a logical, or a control operation. A machine operation often involves access to main storage or involves an i/o controller. If so, the machine operation puts data and control signals on the bus, and (may) wait for data and control signals to return. Some machine operations take place entirely inside the processor (the bus is not involved). These operations are very fast.
 
@@ -78,7 +77,7 @@ terabyte:	240 = 1024 gigabytes
  cells of memory
 Each byte of main storage has an **address**. 32-bit addresses are common (and that's what we'll use in this class) so there are 232 possible addresses. Think of main storage as if it were an array.
 
-<ch04-memory01.gif>
+![memory diagram](./images/ch04-memory01.gif)
 
 A main storage address is an index into memory. A 32-bit address is the address of a single byte. Thirty-two wires of the bus contain an address (there are many more bus wires for timing and control).
 
@@ -101,6 +100,8 @@ The assembly language of this course is for the Raspberry Pi 3/3+ which are buil
 The MIPS has an address space of 232 bytes. A Gigabyte is 230, so the MIPS has 4 gigabytes of address space. Ideally, all of these memory locations would be implemented using memory chips (usually called RAM).
 
 On modern computers, the full address space is present no matter how much RAM has been installed. This is done by keeping some parts of the full address space on disk and some parts in RAM. The RAM, the hard disk, some special electronics, and the operating system work together to provide the full 32 bit address space. To a user or an applications programmer it looks as if all 232 bytes of main memory are present.
+
+![virtual memory](./images/ch04-virtualmem.gif)
 
 This method of providing the full address space by using a combination of RAM memory and the hard disk is called virtual memory. The word virtual means "appearing to exist, but not really there." Some computer geeks have a virtual social life.
 
