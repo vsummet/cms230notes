@@ -127,7 +127,7 @@ The `.asciiz` part of the source code asked the assembler to assemble the charac
 ## 5.5 - Files
 Files consist of blocks of bytes holding bit patterns. Pften the patterns are recorded on magnetic media such as hard disks. Although the actual physical arrangement varies, you can think of a file as a contiguous block of bytes. The `ls` command of Linux lists the number of bytes in each file (along with other information).
 
-Ignoring implementation details (which vary from one operating system to the next), a file is a sequence of bytes on magnetic media or solid state drive. What can each byte contain? A byte on a magnetic disk can hold one of 2<sup>8<sup> (256) possible patterns, the same as a byte in main storage. Reading a byte from disk into a byte of main storage copies the pattern from one byte to another.
+Ignoring implementation details (which vary from one operating system to the next), a file is a sequence of bytes on magnetic media or solid state drive. What can each byte contain? A byte on a magnetic disk can hold one of 2<sup>8</sup> (256) possible patterns, the same as a byte in main storage. Reading a byte from disk into a byte of main storage copies the pattern from one byte to another.
 
 (Actually, for efficiency, disk reads and writes are always done in blocks of 128 bytes or more at a time).
 
@@ -138,7 +138,7 @@ So a file contains only bit patterns, as does main memory. What is represented b
     <summary>
 You (acting as an "English Language Application") find a battered old book in a stall outside a bookshop. You open the book to a random page and see:<br>
 <pre>      Non sum qualis eram bonae sub regno Cynarae.
-<pre>
+</pre>
 Is this book suitable for you (in your role as an English application)?
     </summary>
     No. The individual letters are the same as used in your expected context (English) but in the book their context is different.
@@ -156,7 +156,7 @@ Files containing bytes that encode printable characters according to the ASCII c
 ### Question
 <details>
     <summary>
-      A file compressor is a program that inputs a file and outputs a smaller file that uses bit patterns more efficiently that in the original file. A decompressor restores the compressed file to the original version.
+        A <b>file compressor</b> is a program that inputs a file and outputs a smaller file that uses bit patterns more efficiently that in the original file. A decompressor restores the compressed file to the original version.
 
 (Thought Question: ) When an ASCII file is compressed, does the resulting file contain ASCII characters?
     </summary>
