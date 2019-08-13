@@ -38,7 +38,7 @@ As we just said, the **architecture** of a processor chip is a description of it
 
 Each processor family has its own architecture. Assembly language is a programming view of the architecture of a particular processor. Each type of processor has its own assembly language.
 
-When you study an assembly language, you study the architecture of a particular processor. The study of any assembly language increases your professional understanding of computers. These notes are about the MIPS processor, which is a nice processor to study. The concepts in MIPS assembly are universal.
+When you study an assembly language, you study the architecture of a particular processor. The study of any assembly language increases your professional understanding of computers. These notes are about the ARM processor, which is a nice processor to study. The concepts in ARM assembly are universal.
 
 <img align="right" alt="levels of computer science" src="./images/ch01-levels.jpg">
 
@@ -78,10 +78,9 @@ Instructions are normally executed in sequence. The program counter advances for
 
 Operations like "add two integers" and "compare two integers" are operations that a processor does in one machine cycle. Loops and branches require machine instructions that alter the normal sequence.
 
-A machine instruction is a pattern of bits that directs the processor to perform one machine operation. Here is the machine instruction that directs the ARM processor to add two 32-bit registers together (a **register** is a part of the processor that stores a bit pattern).
+A machine instruction is a pattern of bits that directs the processor to perform one machine operation. Here is the machine instruction that directs the ARM processor to subtract two 32-bit registers (a **register** is a part of the processor that stores a bit pattern).
 
-<!-- update this for ARM -->
-`0000 0001 0010 1011 1000 0000 0010 0000`
+`1110 0000 0100 0011 0011 0000 0000 0000` 
 
 The instruction is 32 bits long. Each bit is 0 or 1. When bit patterns are displayed in a book they are usually shown in groups of four (as here). Of course, the spaces between groups are a convention of printing and are not actually part of the bit pattern.
 
@@ -100,11 +99,9 @@ A statement in pure assembly language corresponds to one machine instruction. As
 
 | Machine Instruction | assembly language statement           
 | ------------- |-------------|
-|`0000 0001 0010 1011 1000 0000 0010 0000` | `add $t0,$t1,$t2`|
+|`1110 0000 0100 0011 0011 0000 0000 0000` |`sub r3, r3, r0`|
 
-<!-- update this -->
-
-The instruction means: add the integers in registers $t1 and $t2 and put the result in register $t0. To create the machine instruction from the assembly language statement a translation program called an **assembler** is used.
+The instruction means: subtract the integer in registers `r0` from the integer in `r3` and store the result back into `r3`. To create the machine instruction from the assembly language statement a translation program called an **assembler** is used.
 
 Humans find assembly language much easier to use than machine language for many reasons:
 * It is hard for humans to keep track of those ones and zeros.
@@ -124,11 +121,10 @@ The assembly language statement says the same thing as the machine language inst
 
 | Machine Instructions | Assembly Statements |
 |----------------------|-------------------- |
-| `0011 0100 0000 0001 0000 0000 0000 1001` | `ori  $1, $0, 9` |
-| `0000 0000 0100 0001 0000 0000 0001 1000` | `mult $2, $1` |
-| `0000 0000 0000 0000 0100 0000 0001 0010` | `mflo $8`|
-| `0011 0100 0000 0001 0000 0000 0000 1001` | `ori  $1, $0, 5`|
-| `0000 0000 0100 0000 0000 0000 0100 1000` | `div  $8, $1`|
+| `1110 0010 0100 0011 0011 0000 0000 0101` | `sub r3, r3, #5` |
+| `1110 0000 1000 0010 0011 0000 0000 0011` | `add r3, r2, r3`| 
+| `1110 0001 1010 0000 0001 0000 0000 1000` | `mov r1, r8`|
+| `1110 0001 0101 0110 0000 0000 0000 0100` | `cmp r6, r4`|
 
 Years ago, to run a program written in FORTRAN you used a compiler to translate the program into assembly language. Then you used an assembler to translate the assembly language into machine language. Finally, you loaded the machine language into the computer's memory and executed your program.
 
@@ -145,8 +141,30 @@ FORTRAN is a high level language. It is intended to run on all types of computer
 ## 1.7 Several Translations
 All programming languages other than machine language must be translated into machine language before they can be executed. A high level language is independent of architecture. It requires a specific translator (compiler or interpretter) for each architecture. The more modern the language, the more distant the source code is from the machine language. FORTRAN is 50 years old and is closer to machine language than modern languages. Here is a statement in FORTRAN:
 
-result = 6*alpha+beta
-Here is a translation of that statement into MIPS assembly language:
+`     result = 6*alpha+beta`
+
+Here is a translation of that statement into ARM assembly language:
+
+```
+ldr r0, =alpha
+ldr r0, [r0]      ; load value of alpha into r1
+ldr r1, =beta
+ldr r1, [r1]      ; load value of beta into r1
+mul r2, r0, r1    ; multiply alpha and beta and put result in r2
+mul r0, r2, #6    ; multiply value in r2 by 6 and store in r0
+ldr r1, =result   
+str r0, [r1]      ; store value in r0 to variable result
+```
+
+
+Here is a translation of that statement into Digital Equipment Corporation VAX assembly language:
+
+```
+MULL3   #6,ALPHA,R5
+ADDL3   R5,BETA,RESULT
+```
+
+And here is a translation of that statement into MIPS assembly language (a language used in many embedded applications):
 
 ```
 lw  $t0,alpha           # copy alpha to register $t0
@@ -156,12 +174,6 @@ add $t2,$t2,$t1         # add $t2 and $t1; result in $t2
 sw  $t2,result          # copy answer to result
 ```
 
-Here is a translation of that statement into Digital Equipment Corporation VAX assembly language:
-
-```
-MULL3   #6,ALPHA,R5
-ADDL3   R5,BETA,RESULT
-```
 ### Question
 <details>
   <summary>Q: Is the ISA for the VAX similar to that of ARM?</summary>
@@ -169,7 +181,7 @@ ADDL3   R5,BETA,RESULT
 </details>
 
 ## 1.8 Machine Language
-There is not just one language called "assembly language." Each processor family (such as Intel, VAX, MIPS, Alpha, ...) has its own machine instructions and a corresponding assembly language. ARM assembly language is only for ARM processors. The VAX assembly language is only for VAX processors. There is a different assembly language for IBM mainframe computers, and others for Intel-based PCs.
+There is not just one language called "assembly language." Each processor family (such as Intel, VAX, MIPS, ARM, ...) has its own machine instructions and a corresponding assembly language. ARM assembly language is only for ARM processors. The VAX assembly language is only for VAX processors. There is a different assembly language for IBM mainframe computers and others for Intel-based PCs.
 <!-- image -->
 
 All processors follow the same basic machine cycle. (See above). The differences between processors are in the details of what operations are done in the "execute" phase of the basic machine cycle.
@@ -193,7 +205,7 @@ Now let us move on to the memory of a computer system. A **bit** is a single on/
 
 Eight bits make up a **byte**. The bytes that make up the machine instructions of a program are stored in **main memory** and fetched into the processor as needed. Data is also kept in main memory. Keeping both data and instructions in main memory is one of the characteristics of a **Von Neumann machine**, the name for the basic design of most modern computers.
 
-In the MIPS, as in most computers, each byte of main memory has an address. An address is an number that uniquely identifies the byte in main memory. The addresses run from 0 up to about four billion. However, user programs and data (such as you will write) are restricted from using all of those addresses.
+In the ARM, as in most computers, each byte of main memory has an address. An address is an number that uniquely identifies the byte in main memory. The addresses run from 0 up to about four billion. However, user programs and data (such as you will write) are restricted from using all of those addresses.
 
 
 <details>
@@ -212,7 +224,7 @@ The architecture of an ARM is different from the architecture of a Pentium. Both
 ### Question:
 <details>
   <summary>(Hard Thought Question:) Must a machine language program be run on an actual processor chip (i.e., on hardware)? Hint: Think about Java.</summary>
-  No. Sometimes machine instructions (such as Java `.class files)` are interpreted by software.
+  No. Sometimes machine instructions (such as Java `.class` files) are interpreted by software.
 </details>
 
 ## Key Terms to Review
