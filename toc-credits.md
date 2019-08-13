@@ -4,8 +4,12 @@
 * [Chapter 1](chap01.md) - Computer Architecture and Assembly Language
 * [Chapter 2](chap02.md) - Analog and Binary Signals
 * [Chapter 3](chap03.md) - Bits and Bit Patterns
-* Chapter 4 - Computer Organization
+* [Chapter 4](chap04.md) - Computer Organization
 ## Module 2 -  Data Representation: Characters and Integers
+* [Chapter 5](chap05.md) - Character Representation
+* Chapter 6 - Number representation
+* Chapter 7 - Binary and Hex Representation
+* Chapter 8 - Binary Addition and Two's Complement Representation
 ## Module 3 - Raspberry Pi; Bitwise Logic
 ## Module 4 - Integer Arithmetic and Memory Access
 ## Module 5 - Branches, Decisions, and Loops
