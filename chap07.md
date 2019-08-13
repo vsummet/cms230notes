@@ -196,3 +196,123 @@ Converting between base 16 representation and base 2 representation is easy beca
 Each place in a base 8 representation corresponds to a left shift of 3 places in the bit pattern of its binary representation.
 
 Be careful: in some computer languages (Java and C, for instance) a number written with a leading zero signifies octal. So 01000 means base eight, and 1000 means base ten, 0x1000 means base sixteen, and 0b1000 means base 2.  (Phew.  As always, programming is a detail oriented exercise.)
+
+### Question
+<details>
+    <summary>
+        What is the binary equivalent of 4733 octal?
+    </summary>
+        100 111 011 011
+</details>
+
+## 7.9 Converting between Representations
+With effort, you could directly translate between octal and hex notation. But it is much easier to use binary as an intermediate:
+
+octal  →  binary  →  hexadecimal
+
+You can convert a representation of a number in base B directly to a representation in base Y. But it is usually more convenient (for paper and pencil calculations) to use decimal or binary as an intermediate:
+
+Base B  →  Decimal  →  Base Y
+
+Base B  →  Binary   →  Base Y
+
+### Question
+<details>
+    <summary>
+        Change the representation of 0x1A4 from hexadecimal to octal (base 8):
+    </summary>
+        0x1A4 → 0b 0001 1010 0100<br>
+        regrouped into groups of 3: 000 110 100 100 → 0644 octal
+</details>
+
+## 7.10 - Decimal to base B
+
+You already know how to convert from base `B` to decimal (base 10). Here is a pseudocode algorithm to convert a decimal number to an arbitrary base, `B`.
+
+```
+digits = large array initialized to 0s;
+place  = 0;
+number = number to be converted;
+         
+while (number > 0 ) {
+  digit[place] = number mod B ; 
+  number       = number div B ;
+  place        = place + 1 ;
+}  
+```
+
+For this algorithm:
+`div` means integer division and `mod` means modulo.
+
+`number div B` is how many times B goes into number.
+
+`number mod B` is the left-over amount (the remainder).
+
+For example, `15 div 6` is 2 and `15 mod 6` is 3.
+
+Here is an in-depth example: convert decimal 5410 to hex representation. The base is 16. The first execution of the loop body calculates `digit[0]`, the right-most digit of the hex number.
+
+After one iteration of the loop, `digit[0]` is 2, `number` is 338, and `place` is now 1.  So, graphically, `digits` is:
+```
+---------
+|...| 2 |
+---------
+      0
+```
+
+After the second iteration, `digits` is now:
+```
+-------------
+|...| 2 | 2 |
+-------------
+      1   0
+```
+`number` is 21 and `place` is 2.
+
+After the third iteration, `digits` is:
+```
+-----------------
+|...| 5 | 2 | 2 |
+-----------------
+      2   1   0
+```
+`number` 1 and `place` is 3.
+
+Finally, after the fourth iteration, digits is:
+```
+---------------------
+|...| 1 | 5 | 2 | 2 |
+---------------------
+      3   2   1   0
+```
+
+`number` is now 0 which will end our loop (and the algorithm).
+
+Looking at `digits`, we can see that the hex representation of 5410<sub>10</sub> is 0x1522.
+    
+It's important to remember that the remainders are appended to the LEFT hand side of the number as it builds up over successive iterations.  The most common mistake that students make in applying this algorithm is appending the number to the right-hand side instead of the left.
+
+### Question
+<details>
+    <summary>
+        Convert 247<sub>10</sub> to hex.
+    </summary>
+        0xF7
+</details>
+
+## 7.10 - Another Example
+This algorithm works for any base.  Here is another example, but converting to base 5.  In this example, I just show the mathematics without applying a code-based solution.  Converting 1033<sub>10</sub> to base 5:
+
+![base 5 math](ch07-base5.gif)
+
+Remember that the first digit produced by our repeated divisions is the RIGHTMOST digit in the result.  Thus, 1033<sub>10</sub> == 13113<sub>5</sub>
+
+You can always check your work by converting your answer BACK to decimal:
+
+13113<sub>5</sub> = 1 * 5<sup>4</sup> + 3 * 5<sup>3</sup> + 1 * 5<sup>2</sup> + 1 * 5<sup>1</sup> + 3 * 5<sup>1</sup>
+
+= 625     + 375     + 25      + 5       + 3
+
+= 1033  
+
+Success!
