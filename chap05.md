@@ -44,7 +44,7 @@ Some ASCII patterns do not correspond to a printable character. For example, the
 ### Question
 <details>
     <summary>
-      Could a computer terminal be a *mechanical* device???
+        Could a computer terminal be a <b>mechanical</b> device???
     </summary>
       Yes. The better ones smelled of fresh machine oil and chattered pleasantly as they worked.
 </details>
@@ -77,6 +77,8 @@ The web sites of the [North American Communications Museum](http://www.nadcomm.c
 </details>
 
 ## 5.3 - ASCII Chart
+The below shows some patterns (in hex) used in ASCII to represent characters. (See the appendix for a complete chart.) The first printable character is SP (space) and corresponds to the bit pattern 0010 0000.
+
 | Hex  Char	| Hex   Char	| Hex   Char |	Hex    Char |
 |------------|-----------|-----------|--------------|
 | 00   nul	| 20   sp	| 40   @	| 60   \` |
@@ -87,8 +89,6 @@ The web sites of the [North American Communications Museum](http://www.nadcomm.c
 | . . .	| . . . | . . .|	. . . |
 | 1E   rs	| 3E   > |	5E   ^ |	7E   ~ |
 | 1F   us |	3F   ?	| 5F   _	|7F   del |
-
-The chart shows some patterns used in ASCII to represent characters. (See the appendix for a complete chart.) The first printable character is SP (space) and corresponds to the bit pattern 0010 0000.
 
 Space is a character, just like any other. Although not visible in the shortened chart, the upper case alphabetical characters appear in order A,B,C, ..., X, Y, Z with no gaps. There is a gap between upper case and lower case letters. The lower-case characters also appear in order a,b,c,...x, y, z.
 
@@ -107,19 +107,19 @@ The chart for ASCII shows all possible 7-bit patterns. There are twice as many 8
 
 Part of what an assembler does is to assemble the ASCII bit patterns that you have asked to be placed in memory. Here is a section of an assembly language program:
 ```
-  .asciiz      "ABC abc"
+  .asciz      "ABC abc"
 ```
 Here are the bit patterns that the assembler will produce in the object module:
 ```
   41 42 43 20 61 62 63 00
 ```
-The `.asciiz` part of the source code asked the assembler to assemble the characters between the quote marks into ASCII bit patterns. The first character, "A", corresponds to the bit pattern 0x41. The second character, "B", corresponds to the bit pattern 0x42. The fourth character, " " (space), corresponds to the bit pattern 0x20. The final bit pattern 0x00 (NUL) is used by the assembler to show the end of the string of characters.
+The `.asciz` part of the source code asked the assembler to assemble the characters between the quote marks into ASCII bit patterns. The first character, "A", corresponds to the bit pattern 0x41. The second character, "B", corresponds to the bit pattern 0x42. The fourth character, " " (space), corresponds to the bit pattern 0x20. The final bit pattern 0x00 (NUL) is used by the assembler to show the end of the string of characters.
 
 ### Question:
 <details>
     <summary>
   What will be the assembled patterns for this assembly code:  
-  .asciiz   "A B"
+        <pre>.asciz   "A B"</pre>
     </summary>
     (Answer in hex) 41 20 42 00
 </details>
