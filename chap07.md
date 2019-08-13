@@ -26,7 +26,7 @@ This is called "shifting left" by one bit. It is often used in hardware to multi
       With 8 bits, there are 2<sup>8</sup> patterns. What is the largest positive integer that can be represented in 8 bits using base two?
     </summary>
     2<sup>8</sup> - 1  =  256 - 1  =  255.<br> 
-  There are 256 patterns possible with 8 bits. But when these patterns represent integers, One of the patterns (0000 0000) is used for zero.  You could also figure this out by noting that 11111111<sub>2</sub> is 255.
+  There are 256 patterns possible with 8 bits. But when these patterns represent integers, one of the patterns (0000 0000) is used for zero.  You could also figure this out by noting that 11111111<sub>2</sub> is 255.
 </details>
 
 ## 7.2 - Largest Positive Integer in N Bits
@@ -69,6 +69,7 @@ Recall the Rules for Positional Notation:
 4. The digit placed at a position shows how many times that power of B is included in the number. 
 
 Rule 1 says any positive integer can be used as a base. Let's use sixteen as a base. Rule 2 says we need sixteen symbols to use as digits. The usual choices are the digits 0-9 and the letters A-F.
+
 | Decimal | Hex Digit |
 |----------|----------|
 | 0 | 0 | 
@@ -91,4 +92,114 @@ Rule 1 says any positive integer can be used as a base. Let's use sixteen as a b
 Since there are only ten of the usual digits, letters are used for the remaining six hex "digits".
 
 Base sixteen representation is called the **hexadecimal system**, or just **hex** for short.
+
+### Question
+<details>
+    <summary>
+        Fill in the blanks with BASE TEN digits:<br>
+31A<sub>16</sub>  = ____ × sixteen<sup>2</sup> + ____ × sixteen<sup>1</sup> + ____ * sixteen<sup>0</sup>
+    </summary>
+    31A<sub>16</sub>  = 3 × sixteen<sup>2</sup> + 1 × sixteen<sup>1</sup> + 10 * sixteen<sup>0</sup>
+</details>
+    
+## 7.4 - Converting a Hex Representation to Decimal
+To convert a hexadecimal representation of an integer to base 10, write the integer as a sum of hex digits times the power of 16 that corresponds to each digit's position. Then, write the digits and the powers of 16 in base ten, and do the arithmetic.
+
+31A<sub>16</sub> = 3 × sixteen<sup>2</sup> + 1 × sixteen<sup>1</sup> + A × sixteen<sup>0</sup>
+
+                   = 3 × 16<sup>2<sup> + 1 × 16<sup>1<sup> +  10 × 16<sup>0</sup>
+
+                   = 3 × 256 + 1 × 16 +  10 × 1  =  79410<sub>10<sub>
+                   
+You don't have to remember powers of 16 to do this conversion. All you need is powers of 2. For example, 16<sup>2</sup>  =  2<sup>4</sup> × 2<sup>4</sup>  =  2<sup>8</sup>  =  256.
+
+As another example:   16<sup>3</sup>  =  2<sup>4</sup> × 2<sup>4</sup> × 2<sup>4</sup>  =  2<sup>12</sup>  =  2<sup>2</sup> × 2<sup>10</sup>  =  4K
+
+### Question
+<details>
+    <summary>
+        What integer is represented by 1B2<sub>16</sub>?
+    </summary>
+    434<sub>10</sub>
+</details>
+
+## 7.5 - Shifting by one Place
+You already know how in base ten to multiply a number by 10: add a zero to the end. So 83 × 10   =   830. This works because:
+
+83       =     8 × 10<sup>1</sup> + 3 × 10<sup>0</sup>
+
+83  × 10 =  (  8 × 10<sup>1</sup> + 3 × 10<sup>0</sup> ) × 10
+
+         =     8 × 10<sup>2</sup> + 3 × 10<sup>1</sup>
+
+         =     830
+         
+The same trick works in any base: if a number is represented by (say) XYZ in base B, then XYZ0 represents that number times B.
+
+### Question
+<details>
+    <summary>
+        What is sixteen times 8B3<sub>16</sub>?
+    </summary>
+    8B30<sub>16</sub>
+</details>
+
+## 7.6 - Putting it all Together
+The following chart summarizes equivalent patterns in the three most common (for computer scientists) number systems.
+
+
+| Rep. in hex| Rep. in decmial | Rep.  in binary |
+| (base 16) | (base 10) | (base 2)|
+|-----------------|------------|-----------------|
+|0|0|0000|
+|1|1|0001| 
+|2|2|0010| 
+|3|3|0011| 
+|4|4|0100| 
+|5|5|0101| 
+|6|6|0110| 
+|7|7|0111| 
+|8|8|1000|
+|9|9|1001|
+|A|10|1010|
+|B|11|1011|
+|C|12|1100|
+|D|13|1101|
+|E|14|1110|
+|F|15|1111|
+
+## 7.7 - Converting Hex Representation into Binary Representation
+It is easy to convert between base sixteen and base two representation:
+
+(In base two) Shifting left by four bits is equivalent to multiplication by sixteen.
+(In base hex) Shifting left by one digit is equivalent to multiplication by sixteen.
+To see how this works, look at this integer represented in base two and in base sixteen:
+
+base two           base sixteen
+
+1010        =      A
+Now multiply each by sixteen:
+
+base two           base sixteen
+
+1010 0000   =      A0
+Groups of four bits (starting from the right) match powers of sixteen, so each group of four bits matches a digit of the hexadecimal representation. Let us rewrite the integer C6D in binary:
+
+C6D  =    C × sixteen2 +    6 × sixteen1   +    D × sixteen0  
+
+     =    C × (24)2    +    6 × (24)1      +    D × (24)0  
+
+     = 1100 × (24)2    + 0110 × (24)1      + 1101 × (24)0   
+
+     = 1100 ×  28      + 0110 ×  24        + 1101 × 1  
+Using the idea that each multiplication by two is equivalent to appending a zero to the right, this is:
+
+     = 1100 0000 0000  + 0110 0000         + 1101  
+
+C6D  = 1100 0110 1101
+Each digit of hex can be converted into a 4-bit binary number, each place of a hex number stands for a power of 24. It stands for a number of 4-bit left shifts. So you can convert a hexadecimal representation of a number into an unsigned binary representation directly by replacing each hex digit with its 4-bit binary equivalent. For example:
+
+   1    A    4    4    D      (Hex    Representation) 
+
+0001 1010 0100 0100 1101      (Binary Representation)  
 
