@@ -74,7 +74,6 @@ terabyte:	240 = 1024 gigabytes
 </details>
 
 ## 4.4 - Addresses
- cells of memory
 Each byte of main storage has an **address**. 32-bit addresses are common (and that's what we'll use in this class) so there are 232 possible addresses. Think of main storage as if it were an array.
 
 ![memory diagram](./images/ch04-memory01.gif)
@@ -97,7 +96,7 @@ The assembly language of this course is for the Raspberry Pi 3/3+ which are buil
 
 ## 4.5 - Virtual Memory
 
-The MIPS has an address space of 232 bytes. A Gigabyte is 230, so the MIPS has 4 gigabytes of address space. Ideally, all of these memory locations would be implemented using memory chips (usually called RAM).
+A 32-bit ARM chip has an address space of 2<sup>32</sup> bytes. A Gigabyte is 2<sup>30</sup>, so the ARM has 4 gigabytes of address space. Ideally, all of these memory locations would be implemented using memory chips (usually called RAM).
 
 On modern computers, the full address space is present no matter how much RAM has been installed. This is done by keeping some parts of the full address space on disk and some parts in RAM. The RAM, the hard disk, some special electronics, and the operating system work together to provide the full 32 bit address space. To a user or an applications programmer it looks as if all 232 bytes of main memory are present.
 
