@@ -175,7 +175,7 @@ The next line: `mov r0, #2` translates into a 32-bit machine instruction. The ma
 
 How do we know that the instruction should be `mov r0, #2` and not `mov #2, r0`?  Well, if we were to read the ISA we would see something like this:
 
-~[screenshot of ARM ISA documentation](./images/ch09-mov.gif)
+![screenshot of ARM ISA documentation](./images/ch09-mov.GIF)
 
 This is complex, but the takeaway is that the instruction takes the form
 
