@@ -7,6 +7,7 @@ This chapter discusses how to write and run a small assembly program for ARM.
 * Writing an assembly source program
 * Assembling and loading a program
 * Running a program
+* Exploring a small program
 
 
 ## 9.1 - Big Picture 
@@ -151,15 +152,10 @@ There are various ways for a program executing on a real machine to return contr
 main:
     push {ip, lr}
 
-    // Load immediate values into r0 and r1
     mov r0, #2
     mov r1, #3
-
-    // r0 <- r0 + r1
-    // dest reg <- src reg 1 + src reg 2
     add r0, r0, r1
 
-    // Return
     pop {ip, pc}
 ```
 
