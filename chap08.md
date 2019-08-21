@@ -298,7 +298,7 @@ Since there are 256 possible bit patterns with 8 bits, there could be 128 positi
 You may have thought of the sign-magnitude method, discussed next.
 </details>
 
-## Sign-Magnitude Representation
+## 8.7 Sign-Magnitude Representation
 There are many schemes for representing negative integers with patterns of bits. One scheme is sign-magnitude. It uses one bit (usually the leftmost) to indicate the sign. "0" indicates a positive integer, and "1" indicates a negative integer. The rest of the bits are used for the magnitude of the number. So -24<sub>10<sub> is represented as:
 
 ```    1001 1000```
@@ -314,7 +314,6 @@ The magnitude is 24 (in 7-bit binary)
     -127<sub>10</sub> ... 0 ... +127<sub>10</sub>
 </details>
 
-## Problems with Sign-Magnitude
 There are problems with sign-magnitude representation of integers. Let us use 8-bit sign-magnitude for examples.
 
 The leftmost bit is used for the sign, which leaves seven bits for the magnitude. The magnitude uses 7-bit unsigned binary, which can represent 0<sub>10</sub> (as `000 0000`) up to 127<sub>10</sub> (as `111 1111`). The eighth bit makes these positive or negative, resulting in   -127<sub>10</sub>, ... -0, 0, ... 127<sub>10</sub>.
@@ -343,7 +342,7 @@ This is what is wrong with Roman Numerals: they can represent positive integers,
     </pre>
     </details>
 
-## Patterns that Add Up to Zero
+## 8.8 Patterns that Add Up to Zero
 The "binary addition algorithm" does NOT work with sign-magnitude. There are algorithms that do work with sign-magnitude, and some early computers were built to use them. (And other computers were built using other not-ready-for-prime-time algorithms). It took several years of experience for computer science to decide that a better way had to be found.
 
 There is a better way. Recall a question and its answer from several pages ago:
@@ -397,7 +396,7 @@ For every bit pattern of N bits there is a corresponding bit pattern of N bits w
     </pre>
     </details>
     
-## Two's Complement
+## 8.9 Two's Complement
 This representation scheme is called **two's complement**. It is one of many ways to represent negative integers with bit patterns. But it is now the nearly universal way of doing this. Integers are represented in a fixed number of bits. Both positive and negative integers can be represented. When the pattern that represents a positive integer is added to the pattern that represents the negative of that integer (using the "binary addition algorithm"), the result is zero. The carry out of the left column is discarded.
 
 Here is how to figure out which bit-pattern gives zero when added (using the "binary addition algorithm") to another pattern.
@@ -432,7 +431,7 @@ Add one:              1111 1010     <br>
 The result is the same representation for minus six as we figured out before.
     </details>
     
-## Two's Complement Integers
+## 8.10 Two's Complement Integers
 What is the two's complement of zero?
 ```
       zero =  0000 0000
@@ -465,7 +464,6 @@ What integers can be represented in 8-bit two's complement? Two's complement rep
     </pre>
     </details>
     
-## Range of Integers with 2's Complement
 It looks like +128 and -128 are represented by the same pattern. This is not good. A non-zero integer and its negative can't both be represented by the same pattern. So +128 can not be represented in eight bits. The maximum positive integer that can be represented in eight bits is 127<sub>10</sub>.
 
 What number is represented by 1000 0000? Add the representation of 127<sub>10</sub> to it:
@@ -477,7 +475,8 @@ What number is represented by 1000 0000? Add the representation of 127<sub>10</s
 ```
 A good choice for ? is -128<sub>10</sub>. Therefore `1000 0000` represents -128<sub>10</sub>. Eight bits can be used to represent the numbers  -128<sub>10</sub> ... 0 ... +127<sub>10</sub>.
 
-**Range of N Bit 2's Complement**
+**Range of N Bit 2's Complement:**
+
 -( 2<sup>(n-1)</sup> )  ... 0 ... 2<sup>(n-1)</sup> - 1
 
 For example, the range of integers that can be represented in eight bits using two's complement is:
@@ -494,7 +493,7 @@ Notice that one more negative integer can be represented than positive integers.
     256 and 256.  Every pattern of the 256 patterns has been assigned an integer to represent.  This is good!
     </details>
     
-## The "Sign Bit"
+## 8.11 The "Sign Bit"
 The algorithm that creates the representation of the negative of an integer works with both positive and negative integers. Start with N and form its two's complement: you get -N. Now complement -N and you get the original N.
 
 ```
@@ -540,7 +539,7 @@ Convert the result to decimal:  0111 = 7<sub>10</sub>.  Add a negative sign:   -
  put sign in front    →  -97
     </details>
     
-## Overflow Detection in 2's Complement
+## 8.12 Overflow Detection in 2's Complement
 The binary addition algorithm can be applied to any pair of bit patterns. The electronics inside the microprocessor performs this operation with any two bit patterns you send it. You send it bit patterns. It does its job. It is up to you (as the writer of the program) to be sure that the operation makes sense.
 
 Overflow is detected in a different way for each representation scheme. Consider the following two operands which are added using the binary addition algorithm:
@@ -572,7 +571,7 @@ If we interpret the 8 bit patterns as 2's complement, the problem in base 10 wou
  
 Here's the takeaway: When adding two 2's complement numbers, you can look at the high order bits (leftmost bits) of your two operands and the result and determine whether or not an overflow occured.  If the "sign bit" of the result differs from *both* the sign bits of the operands, then there was an overflow.  Logically, this makes sense.  If we add two positive numbers and get a negative number, something has gone wrong.  Likewise, if we were to add two negative numbers and get a postivie number, there's a problem.  
 
-## Subtraction in Two's Complement
+## 8.13 Subtraction in Two's Complement
 The binary addition algorithm is used for subtraction **and** addition. To subtract two numbers represented in two's complement, form the two's complement of the number to be subtracted and then add. Overflow is detected as usual.  In other words, adding a negative number is the same thing as subtracting a positive number just as `24 - 13` is the same thing as `24 + (-13)`.
 
 An example: 49 - 27
