@@ -441,7 +441,7 @@ What is the two's complement of zero?
 ```
 Using the algorithm with the representation for zero results in the representation for zero. This is good. Usually "negative zero" is regarded as the same thing as "zero". Recall that with the sign-magnitude method of representing integers there where both "positive" and "negative" zero.
 
-What integers can be represented in 8-bit two's complement? Two's complement represents both positive and negative integers. So one way to answer this question is to start with zero, check that it can be represented, then check one, then check minus one, then check two, then check minus two ... Let's skip most of those steps and check 127(sub>10</sub>:
+What integers can be represented in 8-bit two's complement? Two's complement represents both positive and negative integers. So one way to answer this question is to start with zero, check that it can be represented, then check one, then check minus one, then check two, then check minus two ... Let's skip most of those steps and check 127<sub>10</sub>:
 ```
        127 =  0111 1111            check:   0111 1111
    reflect =  1000 0000                     1000 0001 
@@ -536,6 +536,59 @@ Convert the result to decimal:  0111 = 7<sub>10</sub>.  Add a negative sign:   -
  <pre>
  1001 1111    reflect →   0110 0000    add one →  0110 0001
 </pre>
- convert to decimal   →  26 + 25 + 1  =  97 <br>
+ convert to decimal   →  2^6 + 2^5 + 1  =  97 <br>
  put sign in front    →  -97
     </details>
+    
+## Overflow Detection in 2's Complement
+The binary addition algorithm can be applied to any pair of bit patterns. The electronics inside the microprocessor performs this operation with any two bit patterns you send it. You send it bit patterns. It does its job. It is up to you (as the writer of the program) to be sure that the operation makes sense.
+
+Overflow is detected in a different way for each representation scheme. Consider the following two operands which are added using the binary addition algorithm:
+
+```
+11110 011
+ 0111 0011
+ 1101 0001
+ ---------
+ 1100 0100
+```
+If we interpret the 8 bit patterns as unsigned binary, the problem in base 10 would be:
+```
+115
+209
+----
+68  (wrong!)
+```
+If we interpret the 8 bit patterns as 2's complement, the problem in base 10 would be:
+```
+115
+-47
+----
+ 68  (correct!)
+ ```
+ The "binary addition algorithm" was performed on the operands. The result is either correct or incorrect depending on how the bit patterns are interpreted. If the bit patterns are regarded as unsigned binary integers, then overflow happened. If the bit patterns are regarded as two's comp integers, then the result is correct and the overflow/carry out bit can be disregarded.
+ 
+ So how can we check for overflow in a 2's complement context?
+ 
+Here's the takeaway: When adding two 2's complement numbers, you can look at the high order bits (leftmost bits) of your two operands and the result and determine whether or not an overflow occured.  If the "sign bit" of the result differs from *both* the sign bits of the operands, then there was an overflow.  Logically, this makes sense.  If we add two positive numbers and get a negative number, something has gone wrong.  Likewise, if we were to add two negative numbers and get a postivie number, there's a problem.  
+
+## Subtraction in Two's Complement
+The binary addition algorithm is used for subtraction **and** addition. To subtract two numbers represented in two's complement, form the two's complement of the number to be subtracted and then add. Overflow is detected as usual.  In other words, adding a negative number is the same thing as subtracting a positive number just as `24 - 13` is the same thing as `24 + (-13)`.
+
+An example: 49 - 27
+
+The number to be subtracted is negated by the usual means (reflect the bits, add one):
+
+```
+0001 1011 →  1110 0101
+```
+Then the "binary addition algorithm" is used:
+```
+11100 001
+ 0011 0001    =  49
+ 1110 0101    = -27
+ —————————      ————
+ 0001 0110       22
+```
+
+Number representation in 2's complement format is industry standard and computer science students are expected to be familiar with it.  It comes in handy in unexpected places.  Moreover, the concept that data types (such as `int` and `long`) have a finite capacity is exceedingly important.  Understanding how binary patterns represent data you use when programming gives you insight and helps you understand the limitations of your program.
