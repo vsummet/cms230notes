@@ -71,7 +71,6 @@ Command | Observations
 Command | Observations
 --------|--------------
 ``` cd ~/cms230/ ``` | move into your ```cms230``` for this exercise
-``` 
 ``` touch mydir/file1.txt ``` | make an empty file in the ```mydir``` directory
 ``` ls ``` | list the contents of your ```cms230``` directory
 ``` ls -l ``` | list, long format.  Notice the output and how it differs from the previous command.  What do you think it means if a line of output starts with a 'd'?
@@ -126,16 +125,17 @@ Command | Observations
 4. Switching Gears - At this point, you'll do a very short exercise using git.  This exercise is designed to be like homework assignments in miniature.  This is the procedure you'll follow for all (most?) homework assignments this semester.  This exercise will show you how to: 
 
    - accept an assignment which will create a repo on GitHub.com with some starter code
-   - clone that repo to codeanywhere
-   - edit a file on codeanywhere
-   - compile and run your program on codeanywhere
+   - clone that repo to Mimir
+   - edit a file on Mimir
+   - compile and run your program on Mimir
+   - run testcases on Mimir to check your work
    - stage your changes and commit them to your local repo
    - push your changes back to github and submit your work
 
 5. git Exercise
 
-   0. Begin by navigating to your ```/workspace/cms230``` directory on codeanywhere. 
-   1. Open a web browser, visit Blackboard, and find the Lab0 announcement.  This announcement has a link in it.  Click on it.  You may have to grant the CMS230 organization permissions as this is the first time you've accepted the assignment.  You'll get a message that GitHub is setting up your repo.  Once that message is finished, your repo full of "starter code" for this lab has been created on GitHub.  But we've got to get that code over to codeanywhere!
+   0. Begin by navigating to your ```cms230``` directory on Mimir. 
+   1. Open a web browser, visit Canvas, and find the Lab1 announcement.  This announcement has a link in it.  Click on it.  You may have to grant the CMS230 organization permissions as this is the first time you've accepted the assignment.  You'll get a message that GitHub is setting up your repo.  Once that message is finished, your repo full of "starter code" for this lab has been created on GitHub.  But we've got to get that code over to codeanywhere!
    2. In your GitHub window, find the big green button which says "Clone or download".  Click it and copy the link.
    3. Switch tabs in your web browser to codeanywhere.  Make sure you're in your ```/workspace/cms230``` directory.  In this directory type the command ```git clone link-to-repo-you-just-copied-in-the-previous-step```  Note: Typing Ctl-V to paste **will not work**.  You will need to right-click and select Paste or use Shift-Ctl-V. You may have to enter your GitHub user name and password, depending on how you set up your codeanywhere account.  If you need to enter your password, *you will not see the password being typed*.  
    4. You will see a confirmation message as the repo is successfully cloned.  Type ```ls``` at the prompt, and you will see a directory that is a combination of the assignment name and your GitHub userid.  Move into that directory (```cd directory-name```) and type ```ls``` again.  You should see a file named ```Lab0.c``` which is the starter code I've provided for this lab. 
