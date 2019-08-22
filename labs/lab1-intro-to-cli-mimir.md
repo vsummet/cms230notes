@@ -8,13 +8,11 @@ Along the way, you'll get some practice with several important Linux sysadmin co
   - experience with the fundamental Linux commands
   - understanding of directory hierarchies and file system organization
   - understanding of relative and absolute paths
-  - understanding of git repos and organization
-  - experience with basic git commands
 
 
 ### Pre-lab prep
 Let's get the boring lecture out of the way before lab, so you can spend this entire lab period 
-playing around with the basics of the Linux CLI and git.  To begin, watch these videos (in order or they won't make sense).  All of them are on YouTube and range from 7-10 minutes each and total about 1 hour and 15 minutes.
+playing around with the basics of the Linux CLI.  To begin, watch these videos (in order or they won't make sense).  All of them are on YouTube and range from 7-10 minutes each and total about 1 hour and 15 minutes.
 
 1. [Command Line Interfaces](https://www.youtube.com/watch?v=3WddgzyhHk8)
 2. [Directory Hierarchies](https://www.youtube.com/watch?v=MdMCWKpWbjc)
@@ -25,9 +23,8 @@ playing around with the basics of the Linux CLI and git.  To begin, watch these 
 7. [Creating and Deleting Directories](https://www.youtube.com/watch?v=AVzqquRi_-g)
 8. [Copying Files](https://www.youtube.com/watch?v=MYe58LbbfVU)
 9. [Moving/renaming Files and Directories](https://www.youtube.com/watch?v=GKEGNdNIQrw)
-10. [git Basics](https://www.youtube.com/watch?v=uR6G2v_WsRA) (only the first 6:35)
 
-You may also want to refer to [Notes on Linux and the Terminal Environment](https://github.com/vsummet/IntroductionToComputerSystems/blob/master/Notes/01b-Linux_and_the_Shell.md) which you already read during the first week of class.
+You may also want to refer to [Notes on Linux and the Terminal Environment](../c-programming/c-chap02.md) which you already read during the first week of class.
 
 ### Lab Activities
 0. All the following steps assume you've already created your accounts and the connection as specified in the software setup discussed on the first day of class.  If you haven't done this, you need to follow the instructions on the software setup page before beginning.  See the link on the class calendar.
@@ -122,38 +119,84 @@ Command | Observations
 ```ls exer2``` | What happened in the previous step?  What was the effect of using ```*.txt```?
 ```rmdir exer2``` | finish cleanup
 
-4. Switching Gears - At this point, you'll do a very short exercise using git.  This exercise is designed to be like homework assignments in miniature.  This is the procedure you'll follow for all (most?) homework assignments this semester.  This exercise will show you how to: 
+4. Switching Gears - At this point, you'll do a short exercise using Mimir.  This exercise is designed to be like C homework assignments in miniature.  This is the procedure you'll follow for all the C homework assignments this semester.  This exercise will show you how to: 
 
-   - accept an assignment which will create a repo on GitHub.com with some starter code
-   - clone that repo to Mimir
-   - edit a file on Mimir
+   - create and edit a source code file on Mimir
    - compile and run your program on Mimir
-   - run testcases on Mimir to check your work
-   - stage your changes and commit them to your local repo
-   - push your changes back to github and submit your work
+   - submit your work which triggers a set of testcases on Mimir
+   - interpret the output of the testcases
+   - locate and interpret instructor feedback in Mimir (after the lab is completed)
 
-5. git Exercise
+5. Mimir Exercise
 
-   0. Begin by navigating to your ```cms230``` directory on Mimir. 
-   1. Open a web browser, visit Canvas, and find the Lab1 announcement.  This announcement has a link in it.  Click on it.  You may have to grant the CMS230 organization permissions as this is the first time you've accepted the assignment.  You'll get a message that GitHub is setting up your repo.  Once that message is finished, your repo full of "starter code" for this lab has been created on GitHub.  But we've got to get that code over to codeanywhere!
-   2. In your GitHub window, find the big green button which says "Clone or download".  Click it and copy the link.
-   3. Switch tabs in your web browser to codeanywhere.  Make sure you're in your ```/workspace/cms230``` directory.  In this directory type the command ```git clone link-to-repo-you-just-copied-in-the-previous-step```  Note: Typing Ctl-V to paste **will not work**.  You will need to right-click and select Paste or use Shift-Ctl-V. You may have to enter your GitHub user name and password, depending on how you set up your codeanywhere account.  If you need to enter your password, *you will not see the password being typed*.  
-   4. You will see a confirmation message as the repo is successfully cloned.  Type ```ls``` at the prompt, and you will see a directory that is a combination of the assignment name and your GitHub userid.  Move into that directory (```cd directory-name```) and type ```ls``` again.  You should see a file named ```Lab0.c``` which is the starter code I've provided for this lab. 
-   5. There is a small bug (feature?) in codeanywhere.  In order to be able to see your newly created directories and files in the graphical file browser (left hand sidebar), you'll need to refresh by right clicking on the Fall2018 connection and selecting Refresh.
-   6.  In the graphical file browser, navigate (by using your mouse and clicking, isn't that easy?!) to the Lab0.c file.  Click on it.  It will open in a tab.  You should now have two tabs open: "Fall2018" (the command line interface connection to the Linux computer) and "Lab0.c" (your C program ready for editing).
-   5.  Switch to the CLI tab and make sure you're in the directory for your repo.  At a prompt, compile the code by typing ```gcc -Wall -Werror Lab0.c```
-   6. You will see an error.  (Actually, it's a warning, but we're forcing gcc to treat warnings like errors.)  See if you can figure out how to fix the error.  Save your work and recompile (use the up arrow to repeat the previous command!). 
-   6. Remember that an absence of errors means success!  At the prompt, list the contents of the directory.  You should see a file named ```a.out```.  This is the compiled executable.  Execute it by typing ```./a.out```.  You should see the output ```Hello CMS230```.  
-   7.  Switch to your editor tab containing Lab0.c.  Modify the .c file to print out your name on a new line after the "Hello" greeting.  Save your changes. Switch back to the CLI tab, compile, and execute your program.  If you get any errors at the compilation stage, fix them!
-   8.  Yay!  You've completed your assignment.  Now you need to get your changes back to GitHub so that I can grade your work.  You will need to do 3 things to make this happen: add the (changed) file to your local repo, commit the changes to your local repo, push your local repo to your remote repo (on GitHub) so they are in sync.
+   0. Open the IDE in Mimir if you haven't already.  At the prompt, use `cd`, `pwd`, and/or `ls` to determine your location and navigate to the `lab1` directory.
+   1. Create a new file: `touch lab1.c`  If you open the appropriate folders on the left-hand file browser tree, you should see `lab1` in your `~/cms230f19/lab1` folder.  (You may have to right click and choose refresh on the file viewer tree before it appears.)  You can then click on this file to open it in a pane for editing.  You should now have two tabs open: one with your empty `lab1.c` file and one with your terminal.
+   2. Your goal is to write a function named `sumTo` which takes an `int` as an argument and returns an `int`.  This code should sum up all the even numbers between 0 and the argument (not including the value of the argument itself).  So a call to `sumTo(10)` would add up 2, 4, 6, and 8 and return the value 20.  `sumTo(9)` would return the same value of 20 using the same logic.  Add the following code to your `lab1.c` file.  (If you're reading the code you're pasting, you might realize this code is logically incorrect.  Leave it alone for now.)
 
-      - Type the command ```git add .```  This stages all the changed files in the current directory/repo.
-      - Type the command ```git commit -m "message here"```.  You should change the message between the quotes to indicate how your code has changed since your last commit.  For this assignment, an appropriate message might be: "Added code to print my name".
-      -  ```git push origin master```.  This command pushes (copies/syncs) your local repo to GitHub.  Your work is **NOT** submitted until this step successfully finishes.
-   
-   That's all you need to do to submit your work.  I will have access to your repo and can check/download your work to grade it if I need to.  GitHub automatically timestamps files, and I use this timestamp to verify deadlines.
+```
+#include <stdio.h>
 
-   ### A Few Notes About Good git Practices
-   - In general, you should have many commits for a homework.  A rule of thumb is to commit once you have a small "logical chunk" working.  In practice, this might mean committing whenever you finish a function or other "chunk" of code.  Remember that by committing and pushing your work, you're creating a backup of your code.  If codeanywhere were to disappear tomorrow (please, no), your code would still be on GitHub and you could be up and working on it again as soon as you found a computer with git and other software installed.
-   - In this class, we will not be working in teams.  In the real world working in teams requires the use of git branching.  We won't be covering branching in this course.
-   - While you can change files at GitHub.com via a web browser, I don't recommend this.  It is easy to create conflicts (code versions which cannot be combined) between your local repo and the repo on GitHub.  This takes some effort to sort out and can become ugly.  It's easier not to do it in the first place.
+int sumTo(int n) {
+    int sum = 0;
+    for(int i = 0; i < n; i++) {
+        sum += i
+    }
+    return sum;
+}
+
+
+int main(void) {
+    printf("%d\n", sumTo(9));
+}
+
+```
+   3. Save your source code and change to your terminal window. Compile your source code by typing: `gcc -Wall -Werror -o lab1 lab1.c`
+   4. You should see an error which looks something like:
+
+   ```
+user@mimir: ~/cms230f19/lab1 > gcc -Wall -Werror -o lab1 lab1.c
+lab1.c: In function ‘sumTo’:
+lab1.c:6:17: error: expected ‘;’ before ‘}’ token
+         sum += i
+                 ^
+                 ;
+     }
+     ~            
+user@mimir: ~/cms230f19/lab1 > 
+   ```
+
+   5. This error is easy to diagnose, but note that the C compiler tells you what line the error occurs on: 
+   `lab1.c:6:17: error: expected ‘;’ before ‘}’ token`.  The first number in that output line, 6, is the line you need to fix in `lab1.c`.  The second number, 17, relates to something else.  Go ahead and fix the error and recompile.  *Protip: You can easily recall your previous compiler command by pushing the up arrow.  This will scroll through your previous commands.  When you find the one you want to execute, simply press [Enter] to execute the command again.*
+   6. When all the errors are gone, run your program using the command: `./lab1`  "Great," you think, "My program returns the correct output for `sumTo(9)` and I think I'm ready to turn in my work."
+   7. Mimir will run your code against some testcases that I write.  This is a hallmark of *test driven development* which is common in industry.  You (as a developer) write code, but that code must pass testcases written by other departments (often QA or Testing) before it can be incorporated into the larger code base.
+   8.  Click the green Submit button at the top your Mimir window.  Choose the assignment you wish to submit your work to (in this case "Lab1").  Then select the `lab1.c` file to submit.  You should see a popup which says "Submission Successful" and an option to view your submission.  Click View.  You'll then be taken to a window which shows your submission and the results of the testcase run. In this case, your file should **FAIL** the testcase (shown in red on the right hand side of the window).  Click on the name of the failing testcase (`sumTo(10)`)to receive more information.
+   9.  There are two crucial pieces of information.  In the "testcase input" box, you should see:
+```
+int num = sumTo(10);
+munit_assert_int(num, ==, 20);
+```
+
+Then in the "Your code's output" box, you should see
+```
+Running test suite with seed 0x6c01edcb...
+mimir/test                           
+-----------
+[ ERROR ]
+Error: c_unit_test:2: assertion failed: num == 20 (55 == 20)
+Error: child killed by signal 6 (Aborted)
+0 of 1 (0%) tests successful, 0 (0%) test skipped.
+```
+
+The first is the actual code I wrote for the testcase.  You can see that I call the function you wrote, store the output in a variable, `num` and then feed that value into the `munit_assert_int` function.  This function tests to see if a comparison holds true or not.  In this case, it checks whether the result of your function (stored in `num`) is equal to (the operator that is the middle argument) to the value 20 (the correct answer).  The second set of output shows what your code returned instead of the correct answer.  In particular, the line `Error: c_unit_test:2: assertion failed: num == 20 (55 == 20)` is very useful.  This says that your code returned 55 instead of 20.
+   11.  Head back to the IDE and fix the logical error.  You can change the code in `main` to help you debug and make sure your code is working correctly.  These testcases don't test the output of your program; they test what your function returns.  Once you have compiled and tested your code in the IDE, resubmit to Mimir and check the testcases.  Continue this cycle until all the `sumTo` testcases pass.
+
+6.  So what's this "Code formatting" testcase about?  You should have 3/4 testcases passing.  These are the ones that test the logic you've implemented; Based on the specifications, does your code spit out the correct answer?  However, there's more to writing good code than just logic. The code formatting checks on Mimir help you check if your code is well formatted.  What does "well formatted" mean and who says so?  Well, in this case, Google says so.  We're using a tool called `cpplint` which Google developed to make sure their developers adhered to certain standards when writing code.  The tool isn't perfect, but let's look at a few things that industry considers to be "well formatted" code:
+   * Lines no longer than 80 characters.  The reasons for this go back to the days of teletype machines as output devices but the principle still holds: long lines are hard to read.
+   * Spacing is important.  This means indentation is standardized, there aren't lots of blank lines in your code, and so forth.  There are other rules
+
+
+
+A few notes about grading:
+* The Mimir testcases are NOT guaranteed to cover all possible scenarios.  In some cases, they deliberately won't.  It is always your job to read the specifications contained in an assignment and make sure your code meets those specifications.  The testcases are there to help point you in the correct way, but you should never abdicate the responsibility of writing correct code.
+* It is always my intention to allow you to make unlimited submissions to Mimir.  If a project isn't setup that way and you get cut off after only a few submissions, let me know so I can fix that problem.
+* I always grade the last thing you submit.  Therefore, make sure your last submission has comments, is indented correctly, and generally follows good coding conventions even if it doesn't pass all the testcases.
