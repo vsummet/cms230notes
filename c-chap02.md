@@ -140,10 +140,11 @@ about each item. `-a` displays "hidden" files, which have filenames beginning wi
 
 ```
 prompt$ ls -l -a
-total 8
-drwxr-xr-x 2 ubuntu ubuntu 4096 May 18 01:53 ./
-drwxrwxr-x 4 ubuntu ubuntu 4096 May 15 19:11 ../
--rw-r--r-- 1 ubuntu ubuntu    0 May 18 01:53 hw1.c
+total 4
+drwxr-xr-x 2 root root 4096 May 18 01:53 ./
+drwxrwxr-x 4 root root 4096 May 15 19:11 ../
+-rw-r--r-- 1 root root    0 Aug 22 13:56 Readme.md
+drwxr-xr-x 2 root root 4096 Aug 22 13:56 stuff
 prompt$
 ```
 
@@ -154,8 +155,8 @@ It's possible to combine multiple basic flags into one argument, like`ls -la`.
 The first column in the listing shows the permissions for each file, specifying who is allowed to read, write, and execute it. 
 The second column specifies the number of "links" to the file. We'll defer discussion of these two items for now.
 
-The third and fourth columns specify the owner of the file and the owner's group. In the Cloud9 environment these will always be
-`ubuntu`.
+The third and fourth columns specify the owner of the file and the owner's group. In the Mimir environment these will always be
+`root`.
 
 The fifth column is the size of the file in bytes. The other columns list the last time the file was modified.
 
