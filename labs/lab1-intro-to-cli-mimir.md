@@ -36,7 +36,9 @@ Log into mimir.  You should see a project named Lab1; click on it. Open this pro
 
 Work through the following commands, one at a time, at the prompt. After each command (first column), the observations (second column) specify things to look for or notice. Observing these things will help you cement your understanding of the directory hierarchy and command line environment. 
 
-Command | Observations
+Go slow and pay attention to the details.  Spaces and capitalization are important!  If you get lost, ask for help.
+
+Command <img width="600px"> | Observations
 --------|--------------
 ``` LS ``` | case sensitivity is extremely important in CLIs.  If you get a "command not found" errors, check your capitalization and spacing
 ```pwd``` | print working (current) directory.  Notice the output: ```/home/cabox/workspace```.  This is your current location in the hierarchy.  codeanywhere has automatically created a directory called ```workspace```.  Sub-directories that you create will show in the graphical hierarchy in the left hand sidebar.
