@@ -38,7 +38,7 @@ Work through the following commands, one at a time, at the prompt. After each co
 
 Go slow and pay attention to the details.  Spaces and capitalization are important!  If you get lost, ask for help.
 
-Command <img width="600px"> | Observations
+Command <img width="600px"> | Observation
 --------|--------------
 ``` PWD ``` | case sensitivity is extremely important in CLIs.  If you get a "command not found" errors, check your capitalization and spacing
 ```pwd``` | print working (current) directory.  Notice the output: ```/home/userID/cms230f19/lab1```.  This is your current location in the directory hierarchy.  Mimir has automatically created a directory for this course, `cms230f19` and this lab, `lab1`.  Compare the path to the prompt.  What is the prompt telling you about your place in the directory heirarchy? 
@@ -50,20 +50,14 @@ Command <img width="600px"> | Observations
 ```cd mydir``` | change into your mydir directory (or, make mydir the current (working) directory).  Notice how the prompt changed too!
 ```ls``` | directory should be empty so nothing is printed to the display
 ```pwd``` | notice the output: ```/home/userID/cms230/lab1/mydir```
-&nbsp; | &nbsp;
-Command flags: | &nbsp;
 ```touch one.txt``` | this command creates an empty data file named ```one.txt``` in the current directory
 ```ls``` | Can you see the file you just created?
 ```touch two.txt``` | same but a file named ```two.txt``` 
 ```ls -l``` | Notice the different format. The ```-l``` flag makes the ```ls``` command give us more information (ie, the "long format").  Can you figure out which field gives information about the file size?
-&nbsp; | &nbsp;
-Home and parent directory shortcuts: | &nbsp;
 ```cd``` | Can you guess the current directory after this command executes?
 ```pwd``` | Check your guess. Did you guess correctly?  This is your *home directory*
-&nbsp; | &nbsp;
 ```cd /home``` | How did the prompt change? What is the prompt showing you at all times?
 ```ls /home``` | contains all the home directories for the users of the machine. So what you see depends on machine and authorized users.  On Mimir, you'll probably just see your home directory named with your userID.
-&nbsp; | &nbsp;
 ```cd``` | Where are you in the directory heirarchy? Check if you need to using `pwd`.
 ```cd ..``` | Now where are you? Check if you need to. What did the ```..``` do?
 ```cd ~/cms230f19/lab1``` | Where are you? What directory does the ```~``` represent?
@@ -81,16 +75,12 @@ Command | Observations
 ``` ls ``` | list the contents of your ```lab1``` directory
 ``` ls -l ``` | list, long format.  Notice the output and how it differs from the previous command.  What do you think it means if a line of output starts with a 'd'?
 ``` ls -L ``` | did you get the same result?
-&nbsp; | &nbsp;
-Files in directories: | &nbsp;
 ```mkdir mydir2``` | create another subdirectory for this exercise
 ```ls``` | you should now see the ```mydir``` and ```mydir2``` directories and files you created earlier during exercise 1
 ```touch mydir/file3.txt``` | make another file in the `mydir` directory
 ```touch mydir2/file1.txt``` |
 ```touch mydir2/file2.txt``` | make some files in the ```mydir2``` directory
 ```ls -l mydir2``` | what happens when you list a directory?
-&nbsp; | &nbsp;
-Learning about `mv`: | &nbsp;
 ```mv mydir2/file1.txt mydir2/file3.txt``` |
 ```ls mydir2``` | Where did ```file1.txt``` go?
 ```mv mydir2/file2.txt``` | What happened? What does this error mean?
@@ -98,14 +88,10 @@ Learning about `mv`: | &nbsp;
 ```ls```|
 ```ls mydir2 ``` | What happened to ```file2.txt```? Why?
 ```ls . ``` | What is . a shortcut for?
-&nbsp; | &nbsp;
-Learning about `ls` flags: | &nbsp;
 ```touch mydir2/file2.txt``` | make another file in the `mydir2` directory.
 ```ls -l mydir2``` | What order are the files in?
 ```ls -lt mydir2``` | What order are the files in now? What does the -t flag do?
 ```ls -lrt mydir2``` | What order are the files in now? What does the -r flag do?
-&nbsp; | &nbsp;
-Learning about `cp`: | &nbsp;
 ```cp mydir2/file1.txt boo.txt```|
 ```ls``` | Where did you copy the file to?
 ```cp mydir/file1.txt mydir2`` |
@@ -113,8 +99,6 @@ Learning about `cp`: | &nbsp;
 ```ls mydir2``` | What happened? Why?
 ```cp mydir2/file1.txt mydir/file4.txt```|
 ```ls -l mydir``` | What file(s) are in the directory ```mydir```?
-&nbsp; | &nbsp;
-Learning about `rm`: | &nbsp;
 ```rm mydir2/File1.txt``` | What does the error tell you?
 ```rm mydir2/file1.txt``` |
 ```rm mydir2/file2.txt``` |
@@ -126,8 +110,6 @@ Learning about `rm`: | &nbsp;
 ```rm boo.txt``` | remove file from this (current) directory
 ```rm one.txt``` | remove file from this (current) directory
 ```rm two.txt``` | remove file from this (current) directory
-&nbsp; | &nbsp;
-Cleanup and wildcards: | &nbsp;
 ```rmdir mydir``` | What happened? What can you infer about the rmdir command?
 ```mv mydir foo``` |
 ```ls``` | What is the effect of ```mv``` when invoked on a directory?
@@ -135,6 +117,8 @@ Cleanup and wildcards: | &nbsp;
 `rm foo/*.txt` | 
 ```ls foo``` | What happened in the previous step?  What was the effect of using `*.txt`?
 ```rmdir foo``` | finish cleanup
+
+At this point, you should have an empty `lab1` directory.  If you don't, ask for help to get it cleaned up.
 
 ### Part II - Mimir
 
