@@ -34,38 +34,37 @@ Log into mimir.  You should see a project named Lab1; click on it. Open this pro
 
 ### Part I
 
-Work through the following commands, one at a time, at the prompt. After each command (first column), the observations (second column) specify things to look for or notice. Observing these things will help you cement your understanding of the directory hierarchy and command line environment. 
+Work through the following commands, one at a time, at the prompt. After each command (first column), the observations (second column) specify things to look for or notice. Observing these things will help you cement your understanding of the directory hierarchy and command line environment.
 
 Go slow and pay attention to the details.  Spaces and capitalization are important!  If you get lost, ask for help.
 
 Command <img width="600px"> | Observations
 --------|--------------
-``` LS ``` | case sensitivity is extremely important in CLIs.  If you get a "command not found" errors, check your capitalization and spacing
-```pwd``` | print working (current) directory.  Notice the output: ```/home/cabox/workspace```.  This is your current location in the hierarchy.  codeanywhere has automatically created a directory called ```workspace```.  Sub-directories that you create will show in the graphical hierarchy in the left hand sidebar.
-```ls``` | list the contents of the directory.  Notice the lack of output.  There are no files/directories in this directory.
+``` PWD ``` | case sensitivity is extremely important in CLIs.  If you get a "command not found" errors, check your capitalization and spacing
+```pwd``` | print working (current) directory.  Notice the output: ```/home/userID/cms230f19/lab1```.  This is your current location in the directory hierarchy.  Mimir has automatically created a directory for this course, `cms230f19` and this lab, `lab1`.  Compare the path to the prompt.  What is the prompt telling you about your place in the directory heirarchy? 
+```ls``` | list the contents of the directory.  Notice the lack of output.  There are no files/directories in this directory (yet).
 ```ls /``` | list the contents of the root directory.  Notice the output.
------------------|------------------------------------------------
+&nbsp; | &nbsp;
 ```mkdir mydir``` | create a subdirectory for this activity
-```cd mydir``` | change into your mydir directory (or, make cms230 the current (working) directory).  Notice how the prompt changed too!
+```cd mydir``` | change into your mydir directory (or, make mydir the current (working) directory).  Notice how the prompt changed too!
 ```ls``` | directory should be empty so nothing is printed to the display
 ```pwd``` | notice the output: ```/home/userID/cms230/lab1/mydir```
------------------|------------------------------------------------
+&nbsp; | &nbsp;
 ```touch one.txt``` | this command creates an empty data file named ```one.txt``` in the current directory
 ```ls``` | Can you see the file you just created?
 ```touch two.txt``` | same but a file named ```two.txt``` 
 ```ls -l``` | Notice the different format. The ```-l``` flag makes the ```ls``` command give us more information (ie, the "long format").  Can you figure out which field gives information about the file size?
------------------|------------------------------------------------
+&nbsp; | &nbsp;
 ```cd``` | Can you guess the current directory after this command executes?
-```pwd``` |Check your guess. Did you guess correctly?
------------------|------------------------------------------------
+```pwd``` | Check your guess. Did you guess correctly?  This is your *home directory*
+&nbsp; | &nbsp;
 ```cd /home``` | How did the prompt change? What is the prompt showing you at all times?
-```ls /home``` | contains all the home directories for the users of the machine. So what you see depends on machine and authorized users.
-```touch myfile.txt``` | This should fail for you. What error did you get? You will not have the proper permissions to write to this directory.
------------------|------------------------------------------------
-```cd``` | Where are you in the directory heirarchy? Check if you need to.
+```ls /home``` | contains all the home directories for the users of the machine. So what you see depends on machine and authorized users.  On Mimir, you'll probably just see your home directory named with your userID.
+&nbsp; | &nbsp;
+```cd``` | Where are you in the directory heirarchy? Check if you need to using `pwd`.
 ```cd ..``` | Now where are you? Check if you need to. What did the ```..``` do?
-```cd ~/cms230/lab1``` | Where are you? What directory does the ```~``` represent?
-```cd ~/cms230``` | What happened?  Why?
+```cd ~/cms230f19/lab1``` | Where are you? What directory does the ```~``` represent?
+```cd ~/cms230f19``` | What happened?  Why?
 ```cd ../..``` | Where are you? What happened when you used ```..``` twice?
 
 
