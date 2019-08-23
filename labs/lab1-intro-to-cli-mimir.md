@@ -45,16 +45,19 @@ Command <img width="600px"> | Observations
 ```ls``` | list the contents of the directory.  Notice the lack of output.  There are no files/directories in this directory (yet).
 ```ls /``` | list the contents of the root directory.  Notice the output.
 &nbsp; | &nbsp;
+`mkdir` and `cd`: | &nbsp;
 ```mkdir mydir``` | create a subdirectory for this activity
 ```cd mydir``` | change into your mydir directory (or, make mydir the current (working) directory).  Notice how the prompt changed too!
 ```ls``` | directory should be empty so nothing is printed to the display
 ```pwd``` | notice the output: ```/home/userID/cms230/lab1/mydir```
 &nbsp; | &nbsp;
+Command flags: | &nbsp;
 ```touch one.txt``` | this command creates an empty data file named ```one.txt``` in the current directory
 ```ls``` | Can you see the file you just created?
 ```touch two.txt``` | same but a file named ```two.txt``` 
 ```ls -l``` | Notice the different format. The ```-l``` flag makes the ```ls``` command give us more information (ie, the "long format").  Can you figure out which field gives information about the file size?
 &nbsp; | &nbsp;
+Home and parent directory shortcuts: | &nbsp;
 ```cd``` | Can you guess the current directory after this command executes?
 ```pwd``` | Check your guess. Did you guess correctly?  This is your *home directory*
 &nbsp; | &nbsp;
@@ -73,57 +76,65 @@ Now let's kick it up a notch.  We're going to add in lots of small details that 
 
 Command | Observations
 --------|--------------
-``` cd ~/cms230/ ``` | move into your ```cms230``` for this exercise
+``` cd ~/cms230f19/lab1 ``` | move into your ```cms230``` for this exercise
 ``` touch mydir/file1.txt ``` | make an empty file in the ```mydir``` directory
-``` ls ``` | list the contents of your ```cms230``` directory
+``` ls ``` | list the contents of your ```lab1``` directory
 ``` ls -l ``` | list, long format.  Notice the output and how it differs from the previous command.  What do you think it means if a line of output starts with a 'd'?
 ``` ls -L ``` | did you get the same result?
-------------------------------------------------------|------------------------------------------------
+&nbsp; | &nbsp;
+Files in directories: | &nbsp;
 ```mkdir mydir2``` | create another subdirectory for this exercise
 ```ls``` | you should now see the ```mydir``` and ```mydir2``` directories and files you created earlier during exercise 1
 ```touch mydir/file3.txt``` | make another file in the `mydir` directory
 ```touch mydir2/file1.txt``` |
 ```touch mydir2/file2.txt``` | make some files in the ```mydir2``` directory
 ```ls -l mydir2``` | what happens when you list a directory?
---------------------------------------------------------------------------------|------------------------------------------------
+&nbsp; | &nbsp;
+Learning about `mv`: | &nbsp;
 ```mv mydir2/file1.txt mydir2/file3.txt``` |
-```ls mydir2``` | Where did ```file1.txt```?
+```ls mydir2``` | Where did ```file1.txt``` go?
 ```mv mydir2/file2.txt``` | What happened? What does this error mean?
 ```mv mydir2/file2.txt .``` | What is the meaning of the ```.``` at the end of the command?
 ```ls```|
 ```ls mydir2 ``` | What happened to ```file2.txt```? Why?
 ```ls . ``` | What is . a shortcut for?
-------------------------------------------------------|---------HERE---------------------------------------
-```touch temp/file2.txt``` | make another file in the temporary directory.
-```ls -l temp``` | What order are the files in?
-```ls -lt temp``` | What order are the files in now? What does the -t flag do?
-```ls -lrt temp``` | What order are the files in now? What does the -r flag do?
-------------------------------------------------------|------------------------------------------------
-```cp temp/file1.txt boo.txt```|
-```ls``` | Where did you copy the file to? Why?
-```cp temp/file1.txt exercise2``` |
-```ls temp``` |
-```ls exercise2``` | What happened? Why?
-```cp temp/file1.txt exercise2/file4.txt```|
-```ls -l exercise2``` | What file(s) are in the directory ```exercise2```?
-------------------------------------------------------|------------------------------------------------
-```rm temp/File1.txt``` | What does the error tell you?
-```rm temp/file1.txt``` |
-```rm temp/file2.txt``` |
-```rm temp/file3.txt``` |
-```ls temp```| What is in the temp directory now?
-```rmdir temp``` |
-```ls temp``` | directory should be gone
+&nbsp; | &nbsp;
+Learning about `ls` flags: | &nbsp;
+```touch mydir2/file2.txt``` | make another file in the `mydir2` directory.
+```ls -l mydir2``` | What order are the files in?
+```ls -lt mydir2``` | What order are the files in now? What does the -t flag do?
+```ls -lrt mydir2``` | What order are the files in now? What does the -r flag do?
+&nbsp; | &nbsp;
+Learning about `cp`: | &nbsp;
+```cp mydir2/file1.txt boo.txt```|
+```ls``` | Where did you copy the file to?
+```cp mydir/file1.txt mydir2`` |
+```ls mydir``` |
+```ls mydir2``` | What happened? Why?
+```cp mydir2/file1.txt mydir/file4.txt```|
+```ls -l mydir``` | What file(s) are in the directory ```mydir```?
+&nbsp; | &nbsp;
+Learning about `rm`: | &nbsp;
+```rm mydir2/File1.txt``` | What does the error tell you?
+```rm mydir2/file1.txt``` |
+```rm mydir2/file2.txt``` |
+```rm mydir2/file3.txt``` |
+```ls mydir2```| What is in the mydir2 directory now?
+```rmdir mydir2``` |
+```ls``` | directory should be gone
 ```rm file2.txt``` | remove the file from this (current) directory
 ```rm boo.txt``` | remove file from this (current) directory
-------------------------------------------------------|------------------------------------------------
-```rmdir exercise2``` | What happened? What can you infer about the rmdir command?
-```mv exercise2 exer2``` |
+```rm one.txt``` | remove file from this (current) directory
+```rm two.txt``` | remove file from this (current) directory
+&nbsp; | &nbsp;
+Cleanup and wildcards: | &nbsp;
+```rmdir mydir``` | What happened? What can you infer about the rmdir command?
+```mv mydir foo``` |
 ```ls``` | What is the effect of ```mv``` when invoked on a directory?
-```ls exer2``` |  Note the files still in ```exer2```
-```rm exer2/*.txt``` | cleanup ```exer2``` directory
-```ls exer2``` | What happened in the previous step?  What was the effect of using ```*.txt```?
-```rmdir exer2``` | finish cleanup
+```ls foo``` |  Note the files still in ```foo```
+`rm foo/*.txt` | 
+```ls foo``` | What happened in the previous step?  What was the effect of using `*.txt`?
+```rmdir foo``` | finish cleanup
 
 ### Part II - Mimir
 
