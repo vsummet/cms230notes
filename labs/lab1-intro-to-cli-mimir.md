@@ -1,4 +1,4 @@
-# Lab 1: Linux and git Basics
+# Lab 1: Linux and Mimir Basics
 
 ### Goals
 
@@ -9,6 +9,7 @@ Along the way, you'll get some practice with several important Linux sysadmin co
   - understanding of directory hierarchies and file system organization
   - understanding of relative and absolute paths
 
+In the second part of the lab, you'll work with Mimir, the software platform we're using this semester.  You'll also write your first C program.
 
 ### Pre-lab prep
 Let's get the boring lecture out of the way before lab, so you can spend this entire lab period 
@@ -26,10 +27,14 @@ playing around with the basics of the Linux CLI.  To begin, watch these videos (
 
 You may also want to refer to [Notes on Linux and the Terminal Environment](../c-programming/c-chap02.md) which you already read during the first week of class.
 
-### Lab Activities
-0. All the following steps assume you've already created your accounts and the connection as specified in the software setup discussed on the first day of class.  If you haven't done this, you need to follow the instructions on the software setup page before beginning.  See the link on the class calendar.
-1. Log into mimir.  You should see a project named Lab1; click on it. Open this project in the Mimir IDE (button on the right hand side). You will probably see two windows.  One of these is for writing your source code and one of them will be a terminal as you've seen me use during class.  You can close the source code window for now.  You won't need it until part 2 of the lab.
-2.  Now work through the following commands, one at a time, at the prompt. After each command (first column), the observations (second column) specify things to look for or notice. Observing these things will help you cement your understanding of the directory hierarchy and command line environment. 
+### Getting Started
+All the following steps assume you've already created your accounts and the connection as specified in the software setup discussed on the first day of class.  If you haven't done this, you need to follow the instructions on the software setup page before beginning.  See the link on the class calendar.
+
+Log into mimir.  You should see a project named Lab1; click on it. Open this project in the Mimir IDE (button on the right hand side). You will probably see two windows.  One of these is for writing your source code and one of them will be a terminal as you've seen me use during class.  You can close the source code window for now.  You won't need it until part 2 of the lab.
+
+### Part I
+
+Work through the following commands, one at a time, at the prompt. After each command (first column), the observations (second column) specify things to look for or notice. Observing these things will help you cement your understanding of the directory hierarchy and command line environment. 
 
 Command | Observations
 --------|--------------
@@ -63,7 +68,7 @@ Command | Observations
 
 
 
-3. Now let's kick it up a notch.  We're going to add in lots of small details that really make a difference.  Pay close attention to each command (left column) and the observations (right column).  If you get confused, ask me or someone sitting near you.  It's important to not gloss over things you don't understand now as we'll be using these commands all semester.
+Now let's kick it up a notch.  We're going to add in lots of small details that really make a difference.  Pay close attention to each command (left column) and the observations (right column).  If you get confused, ask me or someone sitting near you.  It's important to not gloss over things you don't understand now as we'll be using these commands all semester.
 
 Command | Observations
 --------|--------------
@@ -119,7 +124,9 @@ Command | Observations
 ```ls exer2``` | What happened in the previous step?  What was the effect of using ```*.txt```?
 ```rmdir exer2``` | finish cleanup
 
-4. Switching Gears - At this point, you'll do a short exercise using Mimir.  This exercise is designed to be like C homework assignments in miniature.  This is the procedure you'll follow for all the C homework assignments this semester.  This exercise will show you how to: 
+### Part II - Mimir
+
+At this point, you'll do a short exercise using Mimir.  This exercise is designed to be like C homework assignments in miniature.  This is the procedure you'll follow for all the C homework assignments this semester.  This exercise will show you how to: 
 
    - create and edit a source code file on Mimir
    - compile and run your program on Mimir
@@ -127,11 +134,10 @@ Command | Observations
    - interpret the output of the testcases
    - locate and interpret instructor feedback in Mimir (after the lab is completed)
 
-5. Mimir Exercise
 
-   0. Open the IDE in Mimir if you haven't already.  At the prompt, use `cd`, `pwd`, and/or `ls` to determine your location and navigate to the `lab1` directory.
-   1. Create a new file: `touch lab1.c`  If you open the appropriate folders on the left-hand file browser tree, you should see `lab1` in your `~/cms230f19/lab1` folder.  (You may have to right click and choose refresh on the file viewer tree before it appears.)  You can then click on this file to open it in a pane for editing.  You should now have two tabs open: one with your empty `lab1.c` file and one with your terminal.
-   2. Your goal is to write a function named `sumTo` which takes an `int` as an argument and returns an `int`.  This code should sum up all the even numbers between 0 and the argument (not including the value of the argument itself).  So a call to `sumTo(10)` would add up 2, 4, 6, and 8 and return the value 20.  `sumTo(9)` would return the same value of 20 using the same logic.  Add the following code to your `lab1.c` file.  (If you're reading the code you're pasting, you might realize this code is logically incorrect.  Leave it alone for now.)
+1. Begin by opening the IDE in Mimir if you haven't already.  At the prompt, use `cd`, `pwd`, and/or `ls` to determine your location and navigate to the `lab1` directory.
+2. Create a new file: `touch lab1.c`  If you open the appropriate folders on the left-hand file browser tree, you should see `lab1.c` in your `~/cms230f19/lab1` folder.  (You may have to right click and choose refresh on the file viewer tree before it appears.)  You can then click on this file to open it in a pane for editing.  You should now have two tabs open: one with your empty `lab1.c` file and one with your terminal.
+3. Your goal is to write a function named `sumTo` which takes an `int` as an argument and returns an `int`.  This code should sum up all the even numbers between 0 and the argument (not including the value of the argument itself).  So a call to `sumTo(10)` would add up 2, 4, 6, and 8 and return the value 20.  `sumTo(9)` would return the same value of 20 using the same logic.  Add the following code to your `lab1.c` file.  (If you're reading the code you're pasting, you might realize this code is logically incorrect.  Leave it alone for now.)
 
 ```
 #include <stdio.h>
@@ -150,8 +156,12 @@ int main(void) {
 }
 
 ```
-   3. Save your source code and change to your terminal window. Compile your source code by typing: `gcc -Wall -Werror -o lab1 lab1.c`
-   4. You should see an error which looks something like:
+
+3. Save your source code and change to your terminal window. Compile your source code by typing: 
+
+`gcc -Wall -Werror -o lab1 lab1.c`
+
+You should see an error which looks something like:
 
    ```
 user@mimir: ~/cms230f19/lab1 > gcc -Wall -Werror -o lab1 lab1.c
@@ -165,18 +175,34 @@ lab1.c:6:17: error: expected ‘;’ before ‘}’ token
 user@mimir: ~/cms230f19/lab1 > 
    ```
 
-   5. This error is easy to diagnose, but note that the C compiler tells you what line the error occurs on: 
-   `lab1.c:6:17: error: expected ‘;’ before ‘}’ token`.  The first number in that output line, 6, is the line you need to fix in `lab1.c`.  The second number, 17, relates to something else.  Go ahead and fix the error and recompile.  *Protip: You can easily recall your previous compiler command by pushing the up arrow.  This will scroll through your previous commands.  When you find the one you want to execute, simply press [Enter] to execute the command again.*
-   6. When all the errors are gone, run your program using the command: `./lab1`  "Great," you think, "My program returns the correct output for `sumTo(9)` and I think I'm ready to turn in my work."
-   7. Mimir will run your code against some testcases that I write.  This is a hallmark of *test driven development* which is common in industry.  You (as a developer) write code, but that code must pass testcases written by other departments (often QA or Testing) before it can be incorporated into the larger code base.
-   8.  Click the green Submit button at the top your Mimir window.  Choose the assignment you wish to submit your work to (in this case "Lab1").  Then select the `lab1.c` file to submit.  You should see a popup which says "Submission Successful" and an option to view your submission.  Click View.  You'll then be taken to a window which shows your submission and the results of the testcase run. In this case, your file should **FAIL** the testcase (shown in red on the right hand side of the window).  Click on the name of the failing testcase (`sumTo(10)`)to receive more information.
-   9.  There are two crucial pieces of information.  In the "testcase input" box, you should see:
+This syntax error is easy to diagnose, but note that the C compiler tells you what line the error occurs on:
+
+   `lab1.c:6:17: error: expected ‘;’ before ‘}’ token`.  
+
+The first number in that output line, 6, is the line you need to fix in `lab1.c`.  The second number, 17, relates to something else.  Go ahead and fix the error and recompile.  *Protip: You can easily recall your previous compiler command by pushing the up arrow.  This will scroll through your previous commands.  When you find the one you want to execute, simply press [Enter] to execute the command again.*
+
+4. When all the syntax errors are gone (leave the logical errors alone for now!), run your program using the command: `./lab1`  "Great," you think, "My program runs and is obviously correct. I think I'm ready to turn in my work."
+
+5. When you submit your code, Mimir will run your code against some testcases that I write.  This is a hallmark of *test driven development* which is common in industry.  You (as a developer) write code, but that code must pass testcases written by other departments (often QA or Testing) before it can be incorporated into the larger code base.
+
+Click the green Submit button at the top your Mimir window.  Choose the assignment you wish to submit your work to (in this case "Lab1").  Then select the `lab1.c` file to submit.  You should see a popup which says "Submission Successful" and an option to view your submission.  Click View.  You'll then be taken to a window which shows your submission and the results of the testcase run. In this case, your file should **FAIL** the testcases (shown in red on the right hand side of the window).  Click on the name of a failing testcase (say, `sumTo(10)`) to receive more information.
+
+When you look at the output of a failing testcase, there are two crucial pieces of information.  
+
+In the "testcase input" box, you should see:
+
 ```
 int num = sumTo(10);
 munit_assert_int(num, ==, 20);
 ```
 
-Then in the "Your code's output" box, you should see
+This is the actual code I wrote for the testcase.  You can see that I call the function you wrote (`sumTo`), store the returned value in a variable (`num`) and then feed that value into the `munit_assert_int` function.  This function tests to see if a comparison holds true or not.  In this case, it checks whether the result of your function (stored in `num`) is equal to (the operator that is the middle argument) to the value 20 (the correct answer).  A one-line way to write this testcase would be:
+
+```
+munit_assert_int(sumTo(10), ==, 20);
+```
+
+Further down in the testcase window, you'll see the "Your code's output" box.  You should see something like:
 ```
 Running test suite with seed 0x6c01edcb...
 mimir/test                           
@@ -187,13 +213,23 @@ Error: child killed by signal 6 (Aborted)
 0 of 1 (0%) tests successful, 0 (0%) test skipped.
 ```
 
-The first is the actual code I wrote for the testcase.  You can see that I call the function you wrote, store the output in a variable, `num` and then feed that value into the `munit_assert_int` function.  This function tests to see if a comparison holds true or not.  In this case, it checks whether the result of your function (stored in `num`) is equal to (the operator that is the middle argument) to the value 20 (the correct answer).  The second set of output shows what your code returned instead of the correct answer.  In particular, the line `Error: c_unit_test:2: assertion failed: num == 20 (55 == 20)` is very useful.  This says that your code returned 55 instead of 20.
-   11.  Head back to the IDE and fix the logical error.  You can change the code in `main` to help you debug and make sure your code is working correctly.  These testcases don't test the output of your program; they test what your function returns.  Once you have compiled and tested your code in the IDE, resubmit to Mimir and check the testcases.  Continue this cycle until all the `sumTo` testcases pass.
+This set of output shows what your code returned instead of the correct answer.  In particular, the line `Error: c_unit_test:2: assertion failed: num == 20 (55 == 20)` is very useful.  This says that your code returned 55 instead of 20.
+ 
+Close the submission tab and head back to the IDE and fix the logical error.  You can change the code in `main` to help you debug and make sure your code is working correctly.  These testcases don't test the output of your program; they test what your function returns.  Once you have compiled and tested your code in the IDE, resubmit to Mimir and check the testcases.  Continue this cycle until all the `sumTo` testcases pass.
 
-6.  So what's this "Code formatting" testcase about?  You should have 3/4 testcases passing.  These are the ones that test the logic you've implemented; Based on the specifications, does your code spit out the correct answer?  However, there's more to writing good code than just logic. The code formatting checks on Mimir help you check if your code is well formatted.  What does "well formatted" mean and who says so?  Well, in this case, Google says so.  We're using a tool called `cpplint` which Google developed to make sure their developers adhered to certain standards when writing code.  The tool isn't perfect, but let's look at a few things that industry considers to be "well formatted" code:
+6.  So what's this "Code formatting" testcase about?  You should currently have 3/4 testcases passing.  These are the ones that test the logic you've implemented; Based on the specifications, does your code spit out the correct answer?  However, there's more to writing good code than just logic. The code formatting checks on Mimir help you check if your code is well formatted.  What does "well formatted" mean and who says so?  Well, in this case, Google says so.  We're using a tool called `cpplint` which Google developed to make sure their developers adhered their prefered [style guidelines](https://google.github.io/styleguide/cppguide.html) - certain standards when writing code.  The tool isn't perfect, but let's look at a few things that industry considers to be "well formatted" code:
    * Lines no longer than 80 characters.  The reasons for this go back to the days of teletype machines as output devices but the principle still holds: long lines are hard to read.
-   * Spacing is important.  This means indentation is standardized, there aren't lots of blank lines in your code, and so forth.  There are other rules
+   * Spacing is important.  This means indentation is standardized, there aren't lots of blank lines in your code, and so forth.  There are other rules you may not have seen before, such as "use spaces instead of tabs".  These most often get violated when you copy and paste code from something such as a lab writeup.  Rules such as these ensure your code looks the same regardless of which editor a programmer uses to view it.  Spacing around things like parentheses and braces also enhances overall readability.
+   * camelCase vs. snake_case for function and variable names.  This is left to the programmer's discretion.  Most C programmers today use snake_case - that is, an underscore between words when they name variables and functions.  However, it's not as rigorous as the Java community which has settled exclusively on camelCase - that is, lowercase first word with subsequent words capitalized.  For this class, I don't care which style you use as long as you are consistent.  Don't mix and match styles in a single project.  You can either:
+      - Use snake_case for everything: file_names, function_names, and variable_names.
+      - Use Java conventions: initial letter of all words capitalized in FileNames.  Then camelCase for function and variableNames.
+   * While not enforced by the tool, you are also expected to comment your code.  Remember that comments are at a high level and **DO NOT** restate the code.  They should explain the purpose of the function or chunk of code.  At a minimum, you should comment every function, just before the function signature and state 1) what inputs (arguments) are needed and what they represent; 2) what output or return value is generated by the function and 3) the overall purpose of a function.  Below is an example of an acceptable comment for this lab's function:
+   ```
+   //function returns an int derived by adding all numbers between 0 and the int argument supplied.  Returns 0 if arg is <= 0.
+   ```
+Copy this comment into your `lab1.c` file above the function `sumTo`.  Go ahead and submit.  What have you learned about the style guidelines for comments?
 
+Modify the style of your code until it is passing all the testcases.  Then you're finished with this lab!
 
 
 A few notes about grading:
