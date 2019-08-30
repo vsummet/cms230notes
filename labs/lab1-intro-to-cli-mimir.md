@@ -28,7 +28,7 @@ playing around with the basics of the Linux CLI.  To begin, watch these videos (
 You may also want to refer to [Notes on Linux and the Terminal Environment](../c-programming/c-chap02.md) which you already read during the first week of class.
 
 ### Getting Started
-All the following steps assume you've already created your accounts and the connection as specified in the software setup discussed on the first day of class.  If you haven't done this, you need to follow the instructions on the software setup page before beginning.  See the link on the class calendar.
+All the following steps assume you've already created your accounts and joined the course as specified in the software setup discussed on the first day of class.  If you haven't done this, you need to follow the instructions on the software setup page before beginning.  See the link on the class calendar.
 
 Log into mimir.  You should see a project named Lab1; click on it. Open this project in the Mimir IDE (button on the right hand side). You will probably see two windows.  One of these is for writing your source code and one of them will be a terminal as you've seen me use during class.  You can close the source code window for now.  You won't need it until part 2 of the lab.
 
@@ -125,7 +125,7 @@ At this point, you should have an empty `lab1` directory.  If you don't, ask for
 At this point, you'll do a short exercise using Mimir.  This exercise is designed to be like C homework assignments in miniature.  This is the procedure you'll follow for all the C homework assignments this semester.  This exercise will show you how to: 
 
    - create and edit a source code file on Mimir
-   - compile and run your program on Mimir
+   - compile and run your program on Mimir, debug, repeat...
    - submit your work which triggers a set of testcases on Mimir
    - interpret the output of the testcases
    - locate and interpret instructor feedback in Mimir (after the lab is completed)
@@ -133,12 +133,12 @@ At this point, you'll do a short exercise using Mimir.  This exercise is designe
 
 1. Begin by opening the IDE in Mimir if you haven't already.  At the prompt, use `cd`, `pwd`, and/or `ls` to determine your location and navigate to the `lab1` directory.
 2. Create a new file: `touch lab1.c`  If you open the appropriate folders on the left-hand file browser tree, you should see `lab1.c` in your `~/cms230f19/lab1` folder.  (You may have to right click and choose refresh on the file viewer tree before it appears.)  You can then click on this file to open it in a pane for editing.  You should now have two tabs open: one with your empty `lab1.c` file and one with your terminal.
-3. Your goal is to write a function named `sumTo` which takes an `int` as an argument and returns an `int`.  This code should sum up all the even numbers between 0 and the argument (not including the value of the argument itself).  So a call to `sumTo(10)` would add up 2, 4, 6, and 8 and return the value 20.  `sumTo(9)` would return the same value of 20 using the same logic.  Add the following code to your `lab1.c` file.  (If you're reading the code you're pasting, you might realize this code is logically incorrect.  Leave it alone for now.)
+3. Your goal is to write a function named `sum_to` which takes an `int` as an argument and returns an `int`.  This code should sum up all the even numbers between 0 and the argument (not including the value of the argument itself).  So a call to `sum_to(10)` would add up 2, 4, 6, and 8 and return the value 20.  `sum_to(9)` would return the same value of 20 using the same logic.  Add the following code to your `lab1.c` file.  (If you're reading the code you're pasting, you might realize this code is logically and syntactically incorrect.  Leave it alone for now.)
 
 ```
 #include <stdio.h>
 
-int sumTo(int n) {
+int sum_to(int n) {
     int sum = 0;
     for(int i = 0; i < n; i++) {
         sum += i
@@ -148,7 +148,7 @@ int sumTo(int n) {
 
 
 int main(void) {
-    printf("%d\n", sumTo(9));
+    printf("%d\n", sum_to(9));
 }
 
 ```
@@ -161,7 +161,7 @@ You should see an error which looks something like:
 
    ```
 user@mimir: ~/cms230f19/lab1 > gcc -Wall -Werror -o lab1 lab1.c
-lab1.c: In function ‘sumTo’:
+lab1.c: In function ‘sum_to’:
 lab1.c:6:17: error: expected ‘;’ before ‘}’ token
          sum += i
                  ^
@@ -181,21 +181,21 @@ The first number in that output line, 6, is the line you need to fix in `lab1.c`
 
 5. When you submit your code, Mimir will run your code against some testcases that I write.  This is a hallmark of *test driven development* which is common in industry.  You (as a developer) write code, but that code must pass testcases written by other departments (often QA or Testing) before it can be incorporated into the larger code base.
 
-Click the green Submit button at the top your Mimir window.  Choose the assignment you wish to submit your work to (in this case "Lab1").  Then select the `lab1.c` file to submit.  You should see a popup which says "Submission Successful" and an option to view your submission.  Click View.  You'll then be taken to a window which shows your submission and the results of the testcase run. In this case, your file should **FAIL** the testcases (shown in red on the right hand side of the window).  Click on the name of a failing testcase (say, `sumTo(10)`) to receive more information.
+Click the green Submit button at the top your Mimir window.  Choose the assignment you wish to submit your work to (in this case "Lab1").  Then select the `lab1.c` file to submit.  You should see a popup which says "Submission Successful" and an option to view your submission.  Click View.  You'll then be taken to a window which shows your submission and the results of the testcase run. In this case, your file should **FAIL** the testcases (shown in red on the right hand side of the window).  Click on the name of a failing testcase (say, `sum_to(10)`) to receive more information.
 
 When you look at the output of a failing testcase, there are two crucial pieces of information.  
 
 In the "testcase input" box, you should see:
 
 ```
-int num = sumTo(10);
+int num = sum_to(10);
 munit_assert_int(num, ==, 20);
 ```
 
-This is the actual code I wrote for the testcase.  You can see that I call the function you wrote (`sumTo`), store the returned value in a variable (`num`) and then feed that value into the `munit_assert_int` function.  This function tests to see if a comparison holds true or not.  In this case, it checks whether the result of your function (stored in `num`) is equal to (the operator that is the middle argument) to the value 20 (the correct answer).  A one-line way to write this testcase would be:
+This is the actual code I wrote for the testcase.  You can see that I call the function you wrote (`sum_to`), store the returned value in a variable (`num`) and then feed that value into the `munit_assert_int` function.  This function tests to see if a comparison holds true or not.  In this case, it checks whether the result of your function (stored in `num`) is equal to (the operator that is the middle argument) to the value 20 (the correct answer).  A one-line way to write this testcase would be:
 
 ```
-munit_assert_int(sumTo(10), ==, 20);
+munit_assert_int(sum_to(10), ==, 20);
 ```
 
 Further down in the testcase window, you'll see the "Your code's output" box.  You should see something like:
@@ -211,7 +211,7 @@ Error: child killed by signal 6 (Aborted)
 
 This set of output shows what your code returned instead of the correct answer.  In particular, the line `Error: c_unit_test:2: assertion failed: num == 20 (55 == 20)` is very useful.  This says that your code returned 55 instead of 20.
  
-Close the submission tab and head back to the IDE and fix the logical error.  You can change the code in `main` to help you debug and make sure your code is working correctly.  These testcases don't test the output of your program; they test what your function returns.  Once you have compiled and tested your code in the IDE, resubmit to Mimir and check the testcases.  Continue this cycle until all the `sumTo` testcases pass.
+Close the submission tab and head back to the IDE and fix the logical error.  You can change the code in `main` to help you debug and make sure your code is working correctly.  These testcases don't test the output of your program; they test what your function returns.  Once you have compiled and tested your code in the IDE, resubmit to Mimir and check the testcases.  Continue this cycle until all the `sum_to` testcases pass.  Read on for more info about the last "Code formatting" testcase.
 
 6.  So what's this "Code formatting" testcase about?  You should currently have 3/4 testcases passing.  These are the ones that test the logic you've implemented; Based on the specifications, does your code spit out the correct answer?  However, there's more to writing good code than just logic. The code formatting checks on Mimir help you check if your code is well formatted.  What does "well formatted" mean and who says so?  Well, in this case, Google says so.  We're using a tool called `cpplint` which Google developed to make sure their developers adhered their prefered [style guidelines](https://google.github.io/styleguide/cppguide.html) - certain standards when writing code.  The tool isn't perfect, but let's look at a few things that industry considers to be "well formatted" code:
    * Lines no longer than 80 characters.  The reasons for this go back to the days of teletype machines as output devices but the principle still holds: long lines are hard to read.
@@ -225,8 +225,9 @@ Close the submission tab and head back to the IDE and fix the logical error.  Yo
    ```
 Copy this comment into your `lab1.c` file above the function `sumTo`.  Go ahead and submit.  What have you learned about the style guidelines for comments?
 
-Modify the style of your code until it is passing all the testcases.  Then you're finished with this lab!
+Modify the style of your code until it is passing all the testcases.  
 
+You're finished with this lab!
 
 A few notes about grading:
 * The Mimir testcases are NOT guaranteed to cover all possible scenarios.  In some cases, they deliberately won't.  It is always your job to read the specifications contained in an assignment and make sure your code meets those specifications.  The testcases are there to help point you in the correct way, but you should never abdicate the responsibility of writing correct code.
