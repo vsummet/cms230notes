@@ -223,7 +223,7 @@ Close the submission tab and head back to the IDE and fix the logical error.  Yo
    ```
    //function returns an int derived by adding all numbers between 0 and the int argument supplied.  Returns 0 if arg is <= 0.
    ```
-Copy this comment into your `lab1.c` file above the function `sumTo`.  Go ahead and submit.  What have you learned about the style guidelines for comments?
+Copy this comment into your `lab1.c` file above the function `sum_to`.  Go ahead and submit.  What have you learned about the style guidelines for comments?
 
 Modify the style of your code until it is passing all the testcases.  
 
