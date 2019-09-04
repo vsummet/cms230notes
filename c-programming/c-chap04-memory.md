@@ -1,5 +1,7 @@
 # Memory and Addresses
 
+We've said before that the C programming language is "closer to the hardware."  Thus, it's crucial you understand some of the hardware so that you can understand some of the concepts in C (that aren't present in languages such as Java).  In this section, we'll discuss memory.  
+
 ## What is a Variable?
 
 Every variable in a program corresponds to **location in memory** where the value associated with that variable is stored.
@@ -128,10 +130,3 @@ The call to `scanf` takes two arguments.
   - A *memory location* where the value should be stored. In this case, this is the address associated with the variable `value`.
   
 You can think of `scanf`'s second argument as specifying the *target or destination* for the read operation.
-
-Take a look at the `scanf` handout for more examples.
-
-## Next
-
-Now that we've established that variables have addresses in memory, we'll introduce the concept of a *pointer*: a variable that stores the memory address of a variable.
- 
