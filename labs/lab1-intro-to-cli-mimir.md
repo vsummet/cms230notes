@@ -40,12 +40,11 @@ Go slow and pay attention to the details.  Spaces and capitalization are importa
 
 Command <img width="600px"> | Observation
 --------|--------------
-``` PWD ``` | case sensitivity is extremely important in CLIs.  If you get a "command not found" errors, check your capitalization and spacing
+```PWD ``` | case sensitivity is extremely important in CLIs.  If you get a "command not found" errors, check your capitalization and spacing
 ```pwd``` | print working (current) directory.  Notice the output: ```/home/userID/cms230f19/lab1```.  This is your current location in the directory hierarchy.  Mimir has automatically created a directory for this course, `cms230f19` and this lab, `lab1`.  Compare the path to the prompt.  What is the prompt telling you about your place in the directory heirarchy? 
 ```ls``` | list the contents of the directory.  Notice the lack of output.  There are no files/directories in this directory (yet).
 ```ls /``` | list the contents of the root directory.  Notice the output.
 &nbsp; | &nbsp;
-`mkdir` and `cd`: | &nbsp;
 ```mkdir mydir``` | create a subdirectory for this activity
 ```cd mydir``` | change into your mydir directory (or, make mydir the current (working) directory).  Notice how the prompt changed too!
 ```ls``` | directory should be empty so nothing is printed to the display
@@ -92,9 +91,9 @@ Command | Observations
 ```ls -l mydir2``` | What order are the files in?
 ```ls -lt mydir2``` | What order are the files in now? What does the -t flag do?
 ```ls -lrt mydir2``` | What order are the files in now? What does the -r flag do?
-```cp mydir2/file1.txt boo.txt```|
+```cp mydir2/file3.txt boo.txt```|
 ```ls``` | Where did you copy the file to?
-```cp mydir/file1.txt mydir2`` |
+```cp mydir/file1.txt mydir2``` |
 ```ls mydir``` |
 ```ls mydir2``` | What happened? Why?
 ```cp mydir2/file1.txt mydir/file4.txt```|
