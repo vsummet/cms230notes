@@ -1,4 +1,4 @@
-# Chapter 9 - Introduction to ARM and Assembly
+# Chapter 10 - Introduction to ARM and Assembly
 
 This chapter discusses how to write and run a small assembly program for ARM. 
 
@@ -10,7 +10,7 @@ This chapter discusses how to write and run a small assembly program for ARM.
 * Exploring a small program
 
 
-## 9.1 - Big Picture 
+## 10.1 - Big Picture 
 Computers do a pretty small number of things over and over again: 
 * move values from memory to CPU and vice versa
 * perform arithmetic & logical operations (add, compare, etc)
@@ -43,7 +43,7 @@ Our goals for this chapter:
 A register is a part of the processor that holds a bit pattern. Processors have many registers.
 </details>
 
-## 9.2 - Specifics
+## 10.2 - Specifics
 
 The ARM has 16 32-bit registers.  They are named `r0`, `r1`, and so on up to `r15`
 
@@ -66,7 +66,7 @@ store the pattern in register 3 to address C
 
 The practical consequence of this is that only load and store instructions can access memory.  Other instructions can only access registers.
 
-## 9.3 - Writing an Assembly Program
+## 10.3 - Writing an Assembly Program
 Now you're ready to assemble and load a program.
 
 A **source file** (in assembly language or in any programming language) is the text file containing programming language statements created (usually) by a human programmer. Any text editor will work. On Linux, the easiest text editor to use is `nano`.  If you become experienced in Linux, you will probably want to graduate to a better editor (I suggest `emacs` or `vim`, but as a common ground I'll use `nano`.
@@ -79,7 +79,7 @@ A **source file** (in assembly language or in any programming language) is the t
 	Text files — files of bytes that can be interpreted as ASCII characters.
 </details>
 
-## 9.4 - Two Plus Three
+## 10.4 - Two Plus Three
 Word processors usually create "binary" files and so are not suitable for creating source files. They can be forced to output a text file, but a real programming editor is much nicer. With your program (text) editor create a file called `addup.s`.  By convention, ARM assembly files have a `.s` extension.
 
 ```
@@ -115,7 +115,7 @@ Each of the three lines following main: corresponds to one machine instruction.
 	A machine instruction is a pattern of bits that asks for one machine operation to be executed.
 </details>
 
-## 9.5 - Assembling the Source File
+## 10.5 - Assembling the Source File
 We can use `gcc` to assemble our ARM source code files.  How convenient!  In reality, `gcc` is a collection of many different compilers.  (Fun fact: `gcc` stands for GNU Compiler Collection.)
 
 ```
@@ -140,7 +140,7 @@ When the program ends, you will see your prompt again.
 	Control is returned to the operating system.  In a terminal environment, the best visual indicator we have is the presence of our `$prompt>` again.
 </details>
 
-## 9.6 - Explanation of the Program
+## 10.6 - Explanation of the Program
 Explanation of the Program
 There are various ways for a program executing on a real machine to return control to the operating system. But we have no OS, so for now we will single step instructions. Hopefully you are wondering how the program works. Here it is again:
 
@@ -191,7 +191,7 @@ The last statement, `pop {ip, lr}`, is more magic for now.  However, it has to d
 
 Phew!  And we're done!
 
-## 9.7 Equivalent C program
+## 10.7 Equivalent C program
 Here is a C program which is (roughly) equivalent to the assembly program we just wrote:
 
 ```
