@@ -1,4 +1,4 @@
-# Pointers and Strings and Structs
+# Pointers and More Strings
 
 ## Strings
 Remember that strings are really just null terminated arrays of characters.  Since we now understand how arrays and pointers are related, we can take a look at some advanced string concepts.
@@ -153,5 +153,3 @@ int x;
 scanf("%d", &x);
 ```
 will automatically only read `sizeof(int)` bits from the user.
-
-## Structs
