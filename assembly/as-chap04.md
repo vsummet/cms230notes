@@ -60,10 +60,13 @@ Main memory (also called main storage, or just memory) holds the bit patterns of
 These days (Summer, 2019-ish) the amount of main memory in a new desktop computer ranges from about 4 gigabytes to 32 gigabytes. Hard disks and other secondary storage devices hold several terabytes.
 
 For reference:
-kilobyte:	210 = 1024 bytes
-megabyte:	220 = 1024 kilobytes
-gigabyte:	230 = 1024 megabytes
-terabyte:	240 = 1024 gigabytes
+
+|quantity|bytes and conversion|
+|------|----------|
+|kilobyte|	2<sup>10</sup> bytes = 1024 bytes|
+|megabyte|	2<sup>20</sup> bytes = 1024 kilobytes|
+|gigabyte|	2<sup>30</sup> bytes = 1024 megabytes|
+|terabyte|	2<sup>40</sup> bytes = 1024 gigabytes|
 
 ### Question (Review)
 <details>
