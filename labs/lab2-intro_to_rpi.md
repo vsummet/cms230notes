@@ -34,7 +34,7 @@ step is to burn a copy of the OS onto your SD card.  This year, I will be burnin
     **Perform these steps on a Windows computer**. Team up with someone who has a Windows laptop if you're a Mac user.
     
 * Download and install the [Etcher image burning software](https://etcher.io/).  
-* Download the latest version of the Raspian OS from [the Raspberry Pi foundation](https://www.raspberrypi.org/downloads) as a ZIP file.  Don't get the "Raspberry Pi Desktop" or NOOBS.  You want the "Raspbian Stretch Lite" version.  Not the "Raspbian Stretch with Desktop".  Don't extract the files from the ZIP format/folder after you've downloaded it.  (*Note: this took 30-45 minutes the day I did it.  I'm not sure whether to blame the campus network or the RPi.org servers, but allow ample time for this download to complete.*)
+* Download the latest version of the Raspian OS from [the Raspberry Pi foundation](https://www.raspberrypi.org/downloads) as a ZIP file.  Don't get the "Raspberry Pi Desktop" or NOOBS.  You want the "Raspbian Buster Lite" version ("Buster" may have changed after Sept. 2019).  Not the "Raspbian Stretch with Desktop".  Don't extract the files from the ZIP format/folder after you've downloaded it.  (*Note: this took 30-45 minutes the day I did it.  I'm not sure whether to blame the campus network or the RPi.org servers, but allow ample time for this download to complete.*)
 
 **Read these warnings before continuing.**
   - You are going to overwrite a destination drive with a new OS. **Make sure you overwrite the SD card and not your computer's regular hard drive**.
@@ -78,7 +78,7 @@ prompt$ ssh pi@raspberrypi.local
 ```
 `ssh` is a program that establishes an encrypted, authenticated connection to a remote computer using the SSH protocol. `pi` is the default user account and `raspberrypi.local` is the hostname, which is automatically established when you connect the Pi to a Mac via ethernet.
 
-You will see message saying "the authenticity of host 'raspberrypi.local' can't be established". This is because it's your first time establishing an encrypted connection to that host. You're not being hacked right now, so enter "yes" to continue connecting.
+You may see message saying "the authenticity of host 'raspberrypi.local' can't be established". This is because it's your first time establishing an encrypted connection to that host. You're not being hacked right now, so enter "yes" to continue connecting.
 
 The default password is `raspberry`. Note that the system does not display the password as you type it. Nor does the cursor move.  Rest assured that the password is being typed and press enter.
 
