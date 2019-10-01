@@ -104,7 +104,7 @@ Linux systems have the notion of privilege levels and access control. The top le
 
 The `wpa_supplicant.conf` file can only be edited by root, so you need to use `sudo` when you open it.
 
-Edit the file so that it looks like the following. There may be an additional country line in the header: that's okay. **Put your own
+Edit the file so that it looks like the one below. There may be an additional country line in the header: that's okay. **Put your own
 Rollins username and password in the `identity` and `password` fields.**
 
 **THE FILE HAS TO LOOK LIKE THE ONE SHOWN BELOW. CHECK THE SPACING AND SPELLING OF EVERY ITEM.  Make sure your username and password are also spelled correctly.**
@@ -133,11 +133,26 @@ Press `CTRL + o` to save ("write out") the file, and confirm the name of the fil
 
 Press `CTRL + x` to exit the nano editor.
 
-After you have saved the file, reboot your Pi to make the changes take effect.
+Next we need to edit another file (which again, needs special permissions to modify).  We'll use the nano text editor again too.  
+```
+sudo nano /etc/dhcpcd.conf
+```
+
+Using the cursor, scroll all the way to the bottom of the file and add the three lines below:
+```
+interface wlan0
+env ifwireless=1
+env wpa_supplicant_driver=wext,nl80211
+```
+
+Again, press `CTRL + o` to save the file and confirm the name of the file by pressing `Enter`.  Then press `CTRL-x` to exit the nano text editor.
+
+
+After you have edited and saved **BOTH** files, reboot your Pi to make the changes take effect.
 ```
 prompt$ sudo reboot
 ```
-It will take about a minute for your Pi to reboot. After that, repeat the log-in process with PuTTY or Terminal. The target server is `pi@raspberrypi.local` and the password is `raspberry`.
+This will cause the connection to your Raspberry Pi to close.  It will take about a minute for your Pi to reboot. After that, repeat the log-in process with PuTTY or Terminal. The target server is `pi@raspberrypi.local` and the password is `raspberry`.
 
 Test by pinging a remote server. `ping` is a command that sends small message packets to a server and measures the response times.
 ```
