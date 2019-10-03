@@ -37,7 +37,7 @@ Scientific notation provides a compact way of representing large and small numbe
 
 Binary numbers can also be written in scientific notation with a power of two as the exponential term.
 
-1.001 * 2<sup>-3</sup> = .001001
+1.001 * 2<sup>3</sup> = .001001
 
 The part of the number with fractional values is called the **significand** or **mantissa**. The general form for a binary scientific notation number is
 
@@ -71,9 +71,9 @@ We need 3 things to form our 32-bit pattern for a `float`: the sign bit, the 8 b
 
 1. To begin, note the sign.  If the sign of our decimal number is negative, the sign bit will be a 1.  Otherwise, it will be 0.  For this example, our sign bit is 1.
 2. Next, convert the decimal into a binary number, **ignoring the sign of the decimal number**.  Thus, for this step, both -10.75 and 10.75 would have the same representation: 1010.11. 
-3. **Normalize** the binary number by expressing it in scientific notation with only a single 1 to the left of the decimal point.  Thus, 1010.11 becomes 1.01011 * 2<sup>-3</sup>.  Patterns such as 10.111 or 0.111 are not considered normalized, because they do not have only a single 1 on the left hand side of the decimal point.  Recall that the series of bits to the right of the decimal is called the **significand** or **mantissa**.  
+3. **Normalize** the binary number by expressing it in scientific notation with only a single 1 to the left of the decimal point.  Thus, 1010.11 becomes 1.01011 * 2<sup>3</sup>.  Patterns such as 10.111 or 0.111 are not considered normalized, because they do not have only a single 1 on the left hand side of the decimal point.  Recall that the series of bits to the right of the decimal is called the **significand** or **mantissa**.  
 4. Since the significand needs to be 23 bits long, we extend the significand with 0's: `01011` + 18 `0`'s gives us `01011000000000000000000` for our significand.
-5. We now have our sign and significand.  However, we need to form the exponent portion of our floating point number.  To do this, we subtract our exponent (from the scientific notation form) from 127.  In this example: 127 - (-3) = 130.  We convert this to an 8-bit binary number: 10000010.  This is our exponent.  This is called **excess-127 encoding**.  This may seem like a convoluted process, but there's a good reason for it (this format allows the `float` to represent both large positive and large negative exponents with only 8 bits).
+5. We now have our sign and significand.  However, we need to form the exponent portion of our floating point number.  To do this, we add our exponent (from the scientific notation form) to 127.  In this example: 127 + 3 = 130.  We convert this to an 8-bit binary number: 10000010.  This is our exponent.  This is called **excess-127 encoding**.  This may seem like a convoluted process, but there's a good reason for it (this format allows the `float` to represent both large positive and large negative exponents with only 8 bits).
 6.  Now, we glue all of our bit patterns together:
 ```
 |sign| exponent |       significand       |
