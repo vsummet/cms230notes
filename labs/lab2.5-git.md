@@ -30,32 +30,40 @@ At this point, you'll do a very short exercise using git.  This exercise is desi
    - clone that repo to your Raspberry Pi
    - edit a file on the Raspberry Pi
    - compile and run your program on the Raspberry Pi
-   - run testcases to check your work
    - stage your changes and commit them to your local repo
    - push your changes back to github (and thus submit your work)
 
-To begin, make sure you're logged into github.com and your Raspberry Pi.  Also make sure your Raspberry Pi is connected to the internet.
+### Setup `git`
+To begin, make sure you're logged into github.com and your Raspberry Pi.  Also make sure your Raspberry Pi is connected to the internet.  To install `git` type:
+```
+$prompt> sudo apt-get install git
+```
+and type `y` to confirm you wish to install when prompted.  After this process finishes and you see your prompt, you can proceed.
 
+Then configure git with your name and email address.  These will show up on your commits and help identify your changes (not really necessary in this class, but useful if you are working in a team).
+```
+  git config --global user.email "you@example.com"
+  git config --global user.name "Your Name"
+```
 
-git Exercise
+### `git` Exercise
 
-1. Begin by creating a cms230 directory on your Raspberry Pi:
+1. Begin by creating a cms230 directory on your Raspberry Pi and then moving into it:
    ```
    cd
    mkdir cms230
+   cd cms230
    ```
 2. Open a web browser on your laptop, visit Canvas, and find the Lab2.5 assignment.  This assignment has a link to GitHub in it.  Click on it.  You may have to grant the Rollins-CMS organization permissions as this is the first time you've accepted the assignment.  You'll get a message that GitHub is setting up your repo.  Once that message is finished, your repo full of "starter code" for this lab has been created on GitHub.  You can look at the code on GitHub, but you can't compile it or test it.  So we've got to get that code over to your Raspberry Pi!
 3. In your GitHub window, find the big green button which says "Clone or download".  Click it and copy the link.
 4. Now go to your Putty/Terminal window on your laptop.  Make sure you're in the `cms230` directory you just created.  In this directory type the command ```git clone link-to-repo-you-just-copied-in-the-previous-step```  Note: Typing Ctl-V to paste **will probably not work**.  You will need to right-click. This command tells your Raspberry Pi to make a connection to a specific repo on GitHub and copy that code.  It will prompt you to enter your github user id and password. As you enter your password, *you will not see the password being typed*.  
 5. You will see a confirmation message as the repo is successfully cloned.  Type ```ls``` at the prompt, and you will see a directory that is a combination of the assignment name and your GitHub userid.  Move into that directory (```cd directory-name```) and type ```ls``` again.  You should see a file named ```lab.s``` which is the starter assembly code I've provided for this lab. 
 6.  At this point you may want to open another Putty/Terminal and establish a 2nd connection to your Raspberry Pi.  I find it easiest to have two windows open when working in a non-graphical environmrnt.  I open `nano` in one window and leave it open, remembering to save after I make changes to my source code, of course!  Then I compile and analyze the errors in the other window.  To me, this is easier than constantly closing and re-opening `nano`, but you do you.  
-7. Open the file in nano: `nano lab.s`.  The code will look strange because we haven't done any work with assembly programming yet.  However, the mechanics of compiling assembly on a Raspberry Pi are very similar to C.  Close nano (by typing Ctl-o).  At a prompt, compile the code by typing ```gcc -Wall -Werror lab.s```
-7. You will see an error.  (Actually, it's a warning, but we're forcing gcc to treat warnings like errors.)  Fix the error by XXXX.  Save your work and recompile (use the up arrow to repeat the previous command!). 
-8. Remember that an absence of errors means success!  At the prompt, test the output of your program by typing: XXXX.
-
+7. Open the file in nano: `nano lab.s`.  The code will look strange because we haven't done any work with assembly programming yet.  However, the mechanics of compiling assembly on a Raspberry Pi are very similar to C.  Close nano (by typing Ctl-o).  At a prompt, compile the code by typing ```gcc -Wall -Werror -o lab lab.s```
+8. Remember that an absence of errors means success!  At the prompt, test the output of your program by typing: `./lab`.  The code will print the value of the variable x in the program.  Open `lab.s` and look at the top of the file in the section marked "Data".  You will see the (assembly) declaration for the variable x and the initial value.  Change that initial value to 15.  Save your source code, recompile, and check to make sure your code prints the correct, new value of 15.
 9.  Yay!  You've completed your assignment.  Now you need to get your changes back to GitHub so that I can grade your work.  You will need to do 3 things to make this happen: add the (changed) file to your local repo, commit the changes to your local repo, push your local repo to your remote repo (on GitHub) so they are in sync.  From your assignment directory:
       - Type the command ```git add .```  This stages all the changed files in the current directory/repo.
-      - Type the command ```git commit -m "message here"```.  You should change the message between the quotes to indicate how your code has changed since your last commit.  For this assignment, an appropriate message might be: "Fixed error in previous version".
+      - Type the command ```git commit -m "message here"```.  You should change the message between the quotes to indicate how your code has changed since your last commit.  For this assignment, an appropriate message might be: "Changed initial value of x".
       -  ```git push origin master```.  This command pushes (copies/syncs) your local repo to GitHub.  Your work is **NOT** submitted until this step successfully finishes.
    
    That's all you need to do to submit your work.  I will have access to your repo and can check/download your work to grade it if I need to.  GitHub automatically timestamps files, and I use this timestamp to verify deadlines.
