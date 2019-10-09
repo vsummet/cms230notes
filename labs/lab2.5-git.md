@@ -17,6 +17,7 @@ All the following steps assume you've already created your accounts and the conn
 Since we're now working on the Raspberry Pi, developing code is a bit more primitive.  You no longer have access to an online IDE like Mimir or Codio.  This means that you'll be working entirely in a command line environment.
 
 Review the following Linux commands, and make sure you understand them:
+
   a. `ls` (to see what files are in your current working directory)
   b. `cd` (to change directories and navigate the directory heirarchy)
   c. `pwd` (to see where you are in the directory heirarchy)
@@ -62,6 +63,7 @@ Then configure git with your name and email address.  These will show up on your
 7. Open the file in nano: `nano lab.s`.  The code will look strange because we haven't done any work with assembly programming yet.  However, the mechanics of compiling assembly on a Raspberry Pi are very similar to C.  Close nano (by typing Ctl-o).  At a prompt, compile the code by typing ```gcc -Wall -Werror -o lab lab.s```
 8. Remember that an absence of errors means success!  At the prompt, test the output of your program by typing: `./lab`.  The code will print the value of the variable x in the program.  Open `lab.s` and look at the top of the file in the section marked "Data".  You will see the (assembly) declaration for the variable x and the initial value.  Change that initial value to 15.  Save your source code, recompile, and check to make sure your code prints the correct, new value of 15.
 9.  Yay!  You've completed your assignment.  Now you need to get your changes back to GitHub so that I can grade your work.  You will need to do 3 things to make this happen: add the (changed) file to your local repo, commit the changes to your local repo, push your local repo to your remote repo (on GitHub) so they are in sync.  From your assignment directory:
+
       - Type the command ```git add .```  This stages all the changed files in the current directory/repo.
       - Type the command ```git commit -m "message here"```.  You should change the message between the quotes to indicate how your code has changed since your last commit.  For this assignment, an appropriate message might be: "Changed initial value of x".
       -  ```git push origin master```.  This command pushes (copies/syncs) your local repo to GitHub.  Your work is **NOT** submitted until this step successfully finishes.
@@ -69,6 +71,7 @@ Then configure git with your name and email address.  These will show up on your
    That's all you need to do to submit your work.  I will have access to your repo and can check/download your work to grade it if I need to.  GitHub automatically timestamps files, and I use this timestamp to verify deadlines.
 
    ### A Few Notes About Good git Practices
+   
    - In general, you should have many commits for a homework.  A rule of thumb is to commit once you have a small "logical chunk" working.  In practice, this might mean committing whenever you finish a problem or other "chunk" of code.  Remember that by committing and pushing your work, you're creating a backup of your code.  If your Raspberry Pi were to disappear tomorrow (please, no), your code would still be on GitHub and you could be up and working on it again as soon as you found a computer with git and other software installed.
    - In this class, we will not be working in teams.  In the real world working in teams requires the use of git branching.  We won't be covering branching in this course, but you will continue to use git/GitHub in future courses.
    - While you can change files at GitHub.com via a web browser, I don't recommend this.  It is easy to create conflicts (code versions which cannot be combined) between your local repo and the repo on GitHub.  This takes some effort to sort out and can become ugly.  It's easier not to do it in the first place.
