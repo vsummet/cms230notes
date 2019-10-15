@@ -106,6 +106,10 @@ int main( ) {
 }
 ```
 
+## An Important Caveat
+Remember that C is a **pass-by-value** language.  This has implications when we pass a `struct` to a function.  Since C is pass-by-value, passing a `struct` to a function means that the entire struct -- and all its associated data members -- are copied to the parameter variable.  Thus, functions cannot modify `structs` which are passed to them; if you modify the function's `struct` you are only modifying the parameter variable which then goes out of scope at the end of the function.  Instead, you would need to pass a pointer to a `struct` which you could then de-reference and modify.  Note that in the function above, we do not modify the `struct`.  We are just accessing its data and displaying it via `printf`.  More on pointers to `struct`s and functions which modify `struct`s later. 
+
+
 ## Typedefs
 We commonly use `typedef`s to make for more readable code.  `typedef` allows us to **def**ine a **type**.  We wrap our struct in a `typedef` statement like:
 
