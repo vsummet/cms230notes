@@ -191,5 +191,43 @@ I know that my function named `fun` is crashing, so what I’ll do is set a **br
 Breakpoint 1 at 0x4005da: file gdb_demo.c, line 4.
 (gdb) 
 ```
+Now, I can restart the program with run (type `y` to confirm you really want to start the program over) and it'll run like last time, but it'll pause when we get into fun.
+```
+(gdb) run
+The program being debugged has been started already.
+Start it from the beginning? (y or n) y
+Starting program: /home/valerie/gdb_demo 
+Enter a number: 3
+
+Breakpoint 1, fun () at gdb_demo.c:4
+4           int a = 5;
+(gdb)
+```
+Okay: we've paused. It says we're on the `int a = 5;` line. This is the line that is **about to be executed**. Let's
+execute that line and go to the next one with the command `next` (or the shortcut `n`).
+```
+(gdb) next
+5           int b = 0;
+(gdb) 
+```
+Well, duh. We set b to 0.
+
+We can allow the program to resume execution with the `continue` command (shortcut `c`) and as we expect, it crashes:
+```
+(gdb) continue
+Continuing.
+
+Program received signal SIGFPE, Arithmetic exception.
+0x00000000004005ec in fun () at gdb_demo.c:9
+9           c = a / b;
+(gdb) 
+```
+We now know where to fix our program to avoid the crash.
 
 
+## Recap
+When we find a program with a bug, we can interactively debug it using a program like `gdb`. We needed to
+compile our executable specifically with the `-g` option to get the extra debug information included in the executable. Once we
+did that, we could run the program through `gdb`. `gdb` provides a variety of commands to help us determine the
+value of variables and the flow of execution. We examined only a few of the essential commands such as `print`,
+`break`, `run`, `next`, and `continue`.
