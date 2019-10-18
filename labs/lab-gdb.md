@@ -22,6 +22,9 @@ gcc -Wall -Werror -g -o executable_name source_code.c
 ```
 Now, when we run our program inside `gdb`, it’ll be much easier to debug as you will be able to map it to the source code you are working with.
 
+### Linked lists
+Linked lists are a fundamental data structure and show up on lots of technical interviews.  If you've forgotten the basics of linked lists, I recommend you watch (https://www.youtube.com/watch?v=VOpjAHCee7c)[this video].  It covers the conceptual idea of linked lists as well as an implementation in C.  After about 14:30 he covers implementation in Java, which isn't relevant for us in this course.  The video is fast paced, but make sure you understand the concept of linked list as well as the fact that the last node in the list points to `NULL`.
+
 ## Setup
 Open Mimir and begin the "Debugging Lab" project.  This should copy the starter code of `gdb_demo.c` into your directory.  Open this file and look at it.  You may see some errors, but don't fix them yet.  Go ahead and compile the file with the `-g` flag but don't use the -Wall -Werror flags!
 ```
@@ -37,12 +40,14 @@ Seg faults are something `gdb` can help us find and diagnose!
 
 ## Lab Activities
 Since `gdb` is a "supervisor," we have to tell it what executable to supervise:
+
 ```
 gdb executable_name
 ```
-### Running `gdb`
+
 `gdb` is an *interactive* program which has its own prompt.  You can tell whether `gdb` is currently running by looking for the prompt: `(gdb)`.
 
+### Part 1 - `gdb` with easy code
 Go ahead and run your executable file (**not** the source code!) with `gdb`:
 ```
 gdb gdb_demo
@@ -191,7 +196,9 @@ I know that my function named `fun` is crashing, so what I’ll do is set a **br
 Breakpoint 1 at 0x4005da: file gdb_demo.c, line 4.
 (gdb) 
 ```
-Now, I can restart the program with run (type `y` to confirm you really want to start the program over) and it'll run like last time, but it'll pause when we get into fun.
+You can also set breakpoints using the file name and line number if you have multiple files in your program: `break gdb_demo.c:4`.  Breakpoints are one of the most powerful concepts in any debugger.  You can read more about (http://www.unknownroad.com/rtfm/gdbtut/gdbbreak.html)[commands to manipulate breakpoints] (which will come in very handy on future projects.
+
+Now, I can restart the program with `run` (type `y` to confirm you really want to start the program over) and it'll run like last time, but it'll pause when we get into `fun`.
 ```
 (gdb) run
 The program being debugged has been started already.
@@ -212,7 +219,7 @@ execute that line and go to the next one with the command `next` (or the shortcu
 ```
 Well, duh. We set b to 0.
 
-We can allow the program to resume execution with the `continue` command (shortcut `c`) and as we expect, it crashes:
+We can allow the program to resume execution with the `continue` command (shortcut `c`).  Continue causes the program to run until it encounters another breakpoint or it ends (crashes).  As we expect, our program ends with a crash:
 ```
 (gdb) continue
 Continuing.
@@ -223,6 +230,9 @@ Program received signal SIGFPE, Arithmetic exception.
 (gdb) 
 ```
 We now know where to fix our program to avoid the crash.
+
+### Part 2 - `gdb` with pointers
+Now we're going to kick it up a notch.  Let's use `gdb` to investigate some pointer problems. Compile `gdb_pointers.c` for the debugger and run `gdb` with it as the executable.
 
 
 ## Recap
