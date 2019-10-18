@@ -232,7 +232,9 @@ Program received signal SIGFPE, Arithmetic exception.
 We now know where to fix our program to avoid the crash.
 
 ### Part 2 - `gdb` with pointers
-Now we're going to kick it up a notch.  Let's use `gdb` to investigate some pointer problems. Compile `gdb_pointers.c` for the debugger and run `gdb` with it as the executable.
+Now we're going to kick it up a notch.  Let's use `gdb` to investigate some pointer problems. Take a look at   `gdb_pointers.c`.  The program makes a short linked list of 5 nodes and then prints them out.  Compile `gdb_pointers.c` (remember to use the debugger flag!) and run it.  Notice it's not printing all the nodes in the linked list.  What's going on?  Let's use `gdb` to investigate.  Start `gdb` with with `gdb_pointers` as the executable.
+
+
 
 
 ## Recap
