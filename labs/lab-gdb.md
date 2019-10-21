@@ -232,14 +232,65 @@ Program received signal SIGFPE, Arithmetic exception.
 We now know where to fix our program to avoid the crash.
 
 ### Part 2 - `gdb` with pointers
-Now we're going to kick it up a notch.  Let's use `gdb` to investigate some pointer problems. Take a look at   `gdb_pointers.c`.  The program makes a short linked list of 5 nodes and then prints them out.  Compile `gdb_pointers.c` (remember to use the debugger flag!) and run it.  Notice it's not printing all the nodes in the linked list.  What's going on?  Let's use `gdb` to investigate.  Start `gdb` with with `gdb_pointers` as the executable.
+Now we're going to kick it up a notch.  Let's use `gdb` to investigate some pointer problems. Take a look at   `gdb_pointers.c`.  The program makes a short linked list of 5 nodes (with the values 5, 4, 3, 2, and 1) and then prints them out.  
 
+Compile `gdb_pointers.c` (remember to use the debugger flag!) and run it.  Notice that the program has a problem. What's going on?  Let's use `gdb` to investigate.  Start `gdb` with with `gdb_pointers` as the executable.
 
+The code is pretty messy, so let's set a breakpoint just before we try to print out the nodes with the call to `print_list` on line 34.`
 
+```
+(gdb) b 34
+Breakpoint 1 at 0x40062d: file gdb_pointers.c, line 34.
+(gdb) run
+Starting program: /home/valerie/gdb_pointers 
+
+Breakpoint 1, main () at gdb_pointers.c:34
+34      printlist(n1);
+
+```
+
+Great!  The program has now built the list (such as it is) and paused to await further instructions.  Let's take a look at the first node in the list.
+
+```
+(gdb) print n1
+$1 = (node *) 0x602010
+(gdb) 
+```
+At first glance, this doesn't appear to be too useful.  However, remember that `n1` is a `node*` -- in other words, it's a pointer.  We can tell it's value is `0x602010`.  In other words, the pointer isn't `NULL`.  This is a good thing because if we try to derefernece a NULL pointer, bad things happen.  But let's get some more information:
+```
+(gdb) print n1->value
+$2 = 1
+(gdb) print n1->next
+$3 = (struct node_t *) 0x602030
+(gdb) 
+```
+We can use our right arrow notation in `gdb` too!  Cool.  Even better, we can derefernce our pointers and receive information about all the fields in our struct:
+```
+(gdb) print *n1
+$4 = {value = 1, next = 0x602030}
+(gdb)
+```
+Repeat these steps to inspect `n2, n3, n4,` and `n5`
+```
+(gdb) print *n2
+$5 = {value = 0, next = 0x602050}
+(gdb) print *n3
+$6 = {value = 0, next = 0x3}
+(gdb) print *n4
+$7 = {value = 4, next = 0x602090}
+(gdb) print *n5
+$8 = {value = 5, next = 0x0}
+(gdb)
+```
+Take a look at the addresses for the `next` field.  It looks like we've got some problems with `n2` and `n3`.
+
+Add or modify code to fix `n2->value` and `n3->value`.  Take a look at `n3->next`.  Do you see the error?  Modify this code as well.  Recompile and re-run.  Continue until your program prints out:
+
+`1->2->3->4->5->NULL`
 
 ## Recap
 When we find a program with a bug, we can interactively debug it using a program like `gdb`. We needed to
 compile our executable specifically with the `-g` option to get the extra debug information included in the executable. Once we
 did that, we could run the program through `gdb`. `gdb` provides a variety of commands to help us determine the
 value of variables and the flow of execution. We examined only a few of the essential commands such as `print`,
-`break`, `run`, `next`, and `continue`.
+`break`, `run`, `next`, and `continue`.  We also learned a few tricks for examining structs and pointers.
