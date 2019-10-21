@@ -288,9 +288,21 @@ Add or modify code to fix `n2->value` and `n3->value`.  Take a look at `n3->next
 
 `1 -> 2 -> 3 -> 4 -> 5 -> NULL`
 
+## `valgrind`
+One last thing...  Since we're allocating memory with `malloc` in `gdb_pointers.c`, we need to be sure we've `free`d up all the memory before our program ends.  We can use `valgrind` to check our memory management.  `valgrind` is a heavyweight tool, and we're not scratching the surface of its capabilities in this course.  For now, run the command:
+
+```
+prompt$> valgrind --leak-check=full --error-exitcode=1 ./gdb_pointers
+```
+
+As we discussed in class, if this program exits with any errors, we need to check and make sure we're calling `free` to release any memory we allocated.  Modify the program until it passes the `valgrind` command above with no errors.
+
+## Submit
+Submit both `gdb_demo.c` and `gdb_pointers.c` and make sure they pass the three testcases.  Then you're done!
+
 ## Recap
 When we find a program with a bug, we can interactively debug it using a program like `gdb`. We needed to
 compile our executable specifically with the `-g` option to get the extra debug information included in the executable. Once we
 did that, we could run the program through `gdb`. `gdb` provides a variety of commands to help us determine the
 value of variables and the flow of execution. We examined only a few of the essential commands such as `print`,
-`break`, `run`, `next`, and `continue`.  We also learned a few tricks for examining structs and pointers.
+`break`, `run`, `next`, and `continue`.  We also learned a few tricks for examining structs and pointers and how to use `valgrind` to check for rudimentary memory leaks.
