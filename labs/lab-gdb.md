@@ -214,10 +214,10 @@ Okay: we've paused. It says we're on the `int a = 5;` line. This is the line tha
 execute that line and go to the next one with the command `next` (or the shortcut `n`).
 ```
 (gdb) next
-5           int b = 0;
+5           b = 0;
 (gdb) 
 ```
-Well, duh. We set b to 0.
+Well, duh. We set b to 0 and overwrote the parameter value we should have used.
 
 We can allow the program to resume execution with the `continue` command (shortcut `c`).  Continue causes the program to run until it encounters another breakpoint or it ends (crashes).  As we expect, our program ends with a crash:
 ```
@@ -229,7 +229,7 @@ Program received signal SIGFPE, Arithmetic exception.
 9           c = a / b;
 (gdb) 
 ```
-We now know where to fix our program to avoid the crash.
+We now know where to fix our program to avoid the crash.  Fix the error and make it so that the program divides by the parameter variable's value.
 
 ### Part 2 - `gdb` with pointers
 Now we're going to kick it up a notch.  Let's use `gdb` to investigate some pointer problems. Take a look at   `gdb_pointers.c`.  The program makes a short linked list of 5 nodes (with the values 5, 4, 3, 2, and 1) and then prints them out.  
@@ -286,7 +286,7 @@ Take a look at the addresses for the `next` field.  It looks like we've got some
 
 Add or modify code to fix `n2->value` and `n3->value`.  Take a look at `n3->next`.  Do you see the error?  Modify this code as well.  Recompile and re-run.  Continue until your program prints out:
 
-`1->2->3->4->5->NULL`
+`1 -> 2 -> 3 -> 4 -> 5 -> NULL`
 
 ## Recap
 When we find a program with a bug, we can interactively debug it using a program like `gdb`. We needed to
