@@ -87,6 +87,7 @@ Word processors usually create "binary" files and so are not suitable for creati
 
 .global main
 
+.text
 main:
     push {ip, lr}
 
@@ -146,6 +147,7 @@ There are various ways for a program executing on a real machine to return contr
 
 .global main
 
+.text
 main:
     push {ip, lr}
 
@@ -158,7 +160,9 @@ main:
 
 The first line of the program is a comment. It is ignored by the assembler and results in no machine instructions.
 
-.global main is a directive. A **directive** is a statement that tells the assembler something about what the programmer wants, but does not itself result in any machine instructions. This directive tells the assembler that the identifier `main` will be used outside of this source file (that is, used "globally") as the label of a particular location in main memory.  We will some some other directives when we work with variables. Blank lines are ignored. 
+`.global main` is a directive. A **directive** is a statement that tells the assembler something about what the programmer wants, but does not itself result in any machine instructions. This directive tells the assembler that the identifier `main` will be used outside of this source file (that is, used "globally") as the label of a particular location in main memory.  
+
+`.text` is also a directive.  This tells the assembler that what follows are actual instructions and source code.  We will some some other directives when we work with variables. Blank lines are ignored. 
 
 The line `main:` defines a **symbolic address** (often called a **statement label**). A symbolic address is a symbol (an identifier) that is the source code name for a location in memory. In this program, `main` stands for the address of the first machine instruction. Using a symbolic address is much easier than using a numerical address. With a symbolic address, the programmer refers to memory locations by name and lets the assembler figure out the numerical address.
 
