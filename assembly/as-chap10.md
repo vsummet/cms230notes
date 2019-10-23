@@ -213,11 +213,16 @@ $prompt>
 ```
 
 ## 10.8 Other ARM instructions
-There are several other basic instructions which we will use extensively in our assembly programming
+Sometimes instructions take multiple (related) formats.  For example, I might want to add a literal value to a register or I might want to add the values in two registers.  Here are some of the multiple forms of the instructions we've learned so far as well as the related `sub` instructions.
 
 | Instruction Format | Purpose | Notes |
 |--------------------| --------|--------|
 |`mov Rd, #imm`      | moves a literal value into a register | |
-|`add Rd, Rs1, Rs2   | adds the two binary patterns in two registers and places result in a register | uses binary addition |
+|`mov Rd, Rs`        | Copies the value in a register to another register | |
+|`add Rd, Rs1, Rs2`  | adds the two binary patterns in two registers and places result in a destination register | uses binary addition |
+|`add Rd, Rs, #imm`  | adds a literal value to a register and places result in destination register | uses binary addition |
+|`sub Rd, Rs1, Rs2`  | substracts the two values in two registers (`Rs1-Rs2`) and places result in a register| |
+|`sub Rd, Rs, #imm`  | subtracts a literal value from a register and places result in destination register |
+
 
 
