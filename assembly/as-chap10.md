@@ -105,8 +105,6 @@ The first thing you may notice is that we're using C-style comments: `//` and `/
 
 Each of the 5 non-comment lines after `main:` correspond to a single machine instruction.
 
-Each of the three lines following main: corresponds to one machine instruction.
-
 ### Question (Review)
 <details>
     <summary>
@@ -141,7 +139,6 @@ When the program ends, you will see your prompt again.
 </details>
 
 ## 10.6 - Explanation of the Program
-Explanation of the Program
 There are various ways for a program executing on a real machine to return control to the operating system. But we have no OS, so for now we will single step instructions. Hopefully you are wondering how the program works. Here it is again:
 
 ```
@@ -161,8 +158,6 @@ main:
 
 The first line of the program is a comment. It is ignored by the assembler and results in no machine instructions.
 
-.text is a directive.  that the following lines are ".text" -- source code for the program.
-
 .global main is a directive. A **directive** is a statement that tells the assembler something about what the programmer wants, but does not itself result in any machine instructions. This directive tells the assembler that the identifier `main` will be used outside of this source file (that is, used "globally") as the label of a particular location in main memory.  We will some some other directives when we work with variables. Blank lines are ignored. 
 
 The line `main:` defines a **symbolic address** (often called a **statement label**). A symbolic address is a symbol (an identifier) that is the source code name for a location in memory. In this program, `main` stands for the address of the first machine instruction. Using a symbolic address is much easier than using a numerical address. With a symbolic address, the programmer refers to memory locations by name and lets the assembler figure out the numerical address.
@@ -171,7 +166,7 @@ The symbol `main` is global. This means that several source files can use the sy
 
 The next line is `push {ip, lr}`.  For now, this statement is magic.  It has to do with beginning a new function, and we'll learn more about its usage when we write simple functions.
 
-The next line: `mov r0, #2` translates into a 32-bit machine instruction. The machine instruction, upon execution, puts a 32-bit two's complement positive two into register zero (details later).  We then see this same idea repeated with the next instruction, `mov r1, #3`.  Both of these instructions use **immediate addressing**.  The `#2` portion of the instruction means that we are using the literal value two.  
+The next line: `mov r0, #2` translates into a 32-bit machine instruction. The machine instruction, upon execution, puts a 32-bit two's complement format positive two into register zero.  We then see this same idea repeated with the next instruction, `mov r1, #3`.  Both of these instructions use **immediate addressing**.  The `#2` portion of the instruction means that we are using the literal value two, and the 32-bit pattern loaded into `r0` would be `0000 0000 0000 0000 0000 0000 0000 0010`.  
 
 How do we know that the instruction should be `mov r0, #2` and not `mov #2, r0`?  Well, if we were to read the ISA we would see something like this:
 
@@ -183,7 +178,7 @@ This is complex, but the takeaway is that the instruction takes the form
 mov Rd, #imm
 ```
 
-`Rd` stands for the **destination register** and signifies where the result of the operation ends up, and you will see that the instruction simply copies the second operand (in this case, the immediate value) to the specified destination register.
+`Rd` stands for the **destination register** and signifies where the result of the operation ends up, and you will see that the instruction simply copies the second operand (in this case, the immediate/literal value) to the specified destination register.
 
 The next instruction is `add r0, r0, r1`.  This instruction takes the values in `r0` and `r1`, adds them together, and puts the result back into `r0`.  This instruction has the form `add Rd, Rs1, Rs2`.  You will notice that having the destination register come first, before the operands, is the common ARM pattern.
 
@@ -215,4 +210,14 @@ $prompt> ./addup
 $prompt> echo $?
 5
 $prompt>
+```
+
+## 10.8 Other ARM instructions
+There are several other basic instructions which we will use extensively in our assembly programming
+
+| Instruction Format | Purpose | Notes |
+|--------------------| --------|--------|
+|`mov Rd, #imm`      | moves a literal value into a register | |
+|`add Rd, Rs1, Rs2   | adds the two binary patterns in two registers and places result in a register | uses binary addition |
+
 
