@@ -164,7 +164,7 @@ A few points to make about this program:
 ```
 mov rX, rY
 ```
-to copy the value of register `rY` into `rX`, where `Y` and `X` are the numbers of general-purpose registers.
+to copy the value of register `rY` into `rX`, where `Y` and `X` are the numbers of general-purpose registers.  Submit this work to Mimir, question 1.
 
 2. Write a program that calculates `50 - 5` and returns the result. Use 
 
@@ -172,7 +172,7 @@ to copy the value of register `rY` into `rX`, where `Y` and `X` are the numbers 
 sub rX, rY, rZ
 ```
 
-to perform the operation `rX <- rY - rZ`.
+to perform the operation `rX <- rY - rZ`.  Submit this work to Mimir, question 2.
 
 ## Variables
 
@@ -341,3 +341,4 @@ int main() {
   return z;
 }
 ```
+Submit this work to Mimir, question 3.
