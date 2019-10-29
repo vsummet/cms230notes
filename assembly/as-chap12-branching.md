@@ -64,7 +64,14 @@ We have written an infinite loop!  We load x's value from memory, increment that
 So we see that just a simple branch instruction isn't sufficienbt to allow us to write loops and if-then-else control statements.  To do that, we need **conditional branching** instructions.
 
 ## Conditional Branching Instructions
-
+A conditional branch instruction branches to a new address only if a certain condition is true. Usually the condition is about the values in two registers. Here is the  beq  (branch on equal) instruction:
+```
+beq  u,v,addr   # if register $u == register $v
+                #     PC  <— addr (after a delay of one machine cycle.)
+                # else
+                #     no effect.
+```
+The bit patterns in two registers are compared. If the bit patterns are the same, the PC is changed to the branch address. There is a branch delay slot that follows this instruction (just as for a jump instruction).
 
 
 
