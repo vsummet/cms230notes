@@ -168,16 +168,17 @@ done:
 Notice how we used the label `done` to bypass specific assembly instructions.
 
 ## More Branching Instructions
-There are more conditional branching instructions, but using the general problem strategy above will help you translate code to asssembly in a systematic way.  Below are other conditional branching instructions and what bits in the APSR they are based on.
+There are more conditional branching instructions, but using the general problem strategy above will help you translate code to asssembly in a systematic way.  Below are other conditional branching instructions and what bits in the APSR they are based on.  In practice, you don't need to work with the individual APSR bits.  The mnemonics of the assembly instructions mask this complexity and provide an easier way to think about our logic.
 
 | Instruction | Meaning | APSR bits |
 |-------------|---------|-----------|
 | `beq` | branch on equal | Z bit is 1 |
 | `bne` | branch on not equal | Z bit is 0 |
-| `blt` | branch on less than | N bit is 1 |
-| `bgt` | branch on greather than | N bit is 0 |
-| `ble` | branch on less than or equal to | N bit is 1 or Z bit is 1 |
-| `bge` | branch on greather than or equal to | N bit is 0 or Z bit is 1 |
+| `blt` | branch on less than | N bit is not the same as the V bit |
+| `bgt` | branch on greather than | Z bit is 0 and N bit is the same as the V bit|
+| `ble` | branch on less than or equal to | Z bit is 1 and N bit is not the same as the V bit |
+| `bge` | branch on greather than or equal to | N bit is the same as the V bit |
+
 ## Key Points
 There are some important things to remember while working with branching structures in ARM assembly:
 * `cmp` DOES NOT change the values in registers.  The result of the comparison subtraction is not stored.
