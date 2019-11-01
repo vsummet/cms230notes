@@ -124,7 +124,7 @@ int main() {
 }
 ```
 
-We need to add a label to our program which enables us to "skip" the body of the if statement (that is, the `x++;` statement) if our condition is false.
+We need to add a label to our program which enables us to "skip" the body of the if statement (that is, the `x++;` statement) if our condition is false.  In the program below, notice how we used the label `done` to bypass specific assembly instructions and move execution to the end of the program.
 
 
 ```
@@ -165,7 +165,7 @@ done:
     pop {ip, pc}
 ```
 
-Notice how we used the label `done` to bypass specific assembly instructions.
+
 
 ## More Branching Instructions
 There are more conditional branching instructions, but using the general problem strategy above will help you translate code to asssembly in a systematic way.  Below are other conditional branching instructions and what bits in the APSR they are based on.  In practice, you don't need to work with the individual APSR bits.  The mnemonics of the assembly instructions mask this complexity and provide an easier way to think about our logic.
@@ -179,6 +179,112 @@ There are more conditional branching instructions, but using the general problem
 | `ble` | branch on less than or equal to | Z bit is 1 and N bit is not the same as the V bit |
 | `bge` | branch on greather than or equal to | N bit is the same as the V bit |
 
+## Translating a C program
+Suppose you want to translate the following C program to assembly:
+
+```
+int main() {
+  //initialize ints a, b, c
+  if (a > b) {
+    c = a;
+  } else {
+    c = b;
+  }
+  return c;
+```
+
+This is a complex example!  
+
+We have to use 2 branching instructions to implement this program.  If the `if` portion doesn't execute (ie, `a` is NOT greater than `b`), we must use a `ble` instruction to move to the `else` portion.  However, if the condition is true and we execute the `if` portion, then we must use an unconditional branch instrucction, `b`, to avoid the `else` portion.  
+
+In this manner, we skip over portions of code we do not want to execute.
+
+```
+.global main
+
+
+/*** Data section ***/
+.data
+
+a: .word 4
+b: .word 14
+c: .word 0
+
+
+/*** Text section ***/
+.text
+
+main:
+    push {ip, lr}
+
+    // r0 <- a
+    ldr r2, =a
+    ldr r0, [r2]
+
+    // r1 <- b
+    ldr r3, =b
+    ldr r1, [r3]
+
+    // Pre-load c's address
+    ldr r4, =c
+
+    // Compare
+    cmp r0, r1
+
+    // Branch on opposite quality
+    // if a <= b, jump to else
+    ble else
+
+  if:
+    // c <- a
+    str r0, [r4]
+
+    // Done with if body, branch AROUND else
+   b done
+
+  else:
+    // c <- b
+    str r1, [r4]
+
+  done:
+    // return c;
+    ldr r0, [r4]
+
+    pop {ip, pc}
+```
+
+## Complex High-Level Language Structures
+
+We can also use conditional branching to implement logical, multi-part conditions.  The key to implementing statements like these in assembly is breaking them into pieces.  For example, in a high level language, we might write something like
+```
+if(a < b && b > c) {
+  stmt;
+}
+```
+Realize, that we could re-write this in our high level language as:
+
+```
+if(a < b) {
+  if(b > c) {
+    stmt;
+  }
+}
+```
+From this, we can see how we might use two sets of comparisons and conditional branches.  If `a` was in `r1`, `b` was in `r2` and `c` was in `r3` then we could write assembly code like this:
+
+```
+if1:
+  cmp r1, r2
+  bge done
+  cmp r2, r3
+  ble done
+  stmt
+done:
+  ...
+```
+In other words, if either `a < b` or `b > c` is false, we shouldn't execute `stmt` and should skip around it.
+
+
 ## Key Points
 There are some important things to remember while working with branching structures in ARM assembly:
 * `cmp` DOES NOT change the values in registers.  The result of the comparison subtraction is not stored.
@@ -187,3 +293,4 @@ There are some important things to remember while working with branching structu
 
 
 
+  
