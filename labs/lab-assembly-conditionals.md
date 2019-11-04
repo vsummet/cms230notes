@@ -101,9 +101,9 @@ Use this four-step procedure to convert C `if` statements into their assembly eq
   
   4. Fill in the body of the `if` statement.
 
-**Practice**
+**Practice #1**
 
-Convert this program to assembly language.
+Convert this program to assembly language.  Copy/Paste your program to Mimir.
 
 ```
 int x = 10;
@@ -194,9 +194,9 @@ main:
     pop {ip, pc}
 ```
 
-**Practice**
+**Practice #2**
 
-Convert this program to assembly language:
+Convert this program to assembly language. Copy/Paste your program to Mimir.
 
 ```
 int a = -5;
@@ -294,9 +294,9 @@ main:
 
 Try a few different initial assignments and verify that it works.
 
-**Practice**
+**Practice #3**
 
-Modify the multiplication program to write a program that performs integer division by repeated subtraction. The output of your program should be the integer quotient. For example,
+Modify the multiplication program to write a program that performs integer division by repeated subtraction. Copy/Paste your program to Mimir. The output of your program should be the integer quotient. For example,
 
 ```
 12 / 3 should yield 4
@@ -328,6 +328,8 @@ for (i = 0; i < b; i++) {
 This is almost the same as the `while` loop version. Think about how to implement the condition check for the loop in terms of `i` and `b` and how and where to implement `i++`.
 
 **Challenge Problems**
+You are not required to complete these programs for this lab.  They are just provided for you as interesting and more challenging examples.
+
 1. Translate the following C/Java code into assembly:
 ```
 int x = value of your choice;
