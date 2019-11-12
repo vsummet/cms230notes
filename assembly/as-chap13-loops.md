@@ -57,7 +57,7 @@ We know how to do this!  We have to load lot's of addresses and values from memo
   ldr r2, [r1]    //value of i in r2
   
   //if statement
-  cmp r2, r3      //compare i and x's values
+  cmp r2, r4      //compare i and x's values
   bge done        //if condition is false, don't execute body; branch around following statements
   
   //body of if statement
@@ -90,14 +90,13 @@ loopstart:
   ldr r2, [r1]    //value of i in r2
   
   //if statement
-  cmp r2, r3      //compare i and x's values
+  cmp r2, r4      //compare i and x's values
   bge loopend        //if condition is false, don't execute body; branch around following statements
   
   //body of if statement
   ldr r5, =prod
   ldr r6, [r5]    //value of prod in r6
-  ldr r7, =y
-  ldr r8, [r7]    //value of y in r8
+
   add r6, r6, r8  //add values of prod and y
   str r6, [r5]    //update prod's value in memory
   add r2, r2, #1  //add 1 to i's value
