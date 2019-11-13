@@ -25,6 +25,7 @@ Implement the program and add a main function that sets up two arguments, calls 
 /*** Data section ***/
 .data
 format: .asciz "%d x %d = %d\n"
+format2: .asciz "%d^%d = %d\n"
 
 /*** Text section ***/
 .text
@@ -59,3 +60,32 @@ multiply:
     // Return -- product is in r0
     pop {ip, pc}
 ```
+
+## Exercise 2: Power
+Modify your multiplication program by adding a `power` function. The function should take two arguments, `p` in `r0` and `q` in `r1`, and return `p` raised to the power `q` in `r0`. Use a loop that calls `multiply` to calculate the answer.  Change main so uses the `format2` string and prints out the result of the `power` function.
+
+For this problem, you will need to be careful with register management.  You can use the `push` and `pop` instructions to push temporary values onto the stack before the function call and `pop` to restore them after the call.
+
+For example, let's say you're calculating a value in `r1`, but you need to call a function and use `r1` for to pass an argument to that function.  What to do?  Well, let's push the value of `r1` onto the stack, setup `r1` with the new value needed for the argument value, call the function, then restore the previous value in `r1` after the function returns:
+
+```
+push {r1}   //pushes the value in r1 onto the stack
+mov r1, #100   //let's say we're passing the value 100 as the 2nd argument to our function
+
+bl function // call our function
+
+pop {r1}  //restore the value from the stack back into r1
+```
+
+You can use `push` and `pop` to push/pop multiple register's values on and off the stack.  For example: `push {r1, r5}` will cause both r1's and r5's values to be added to the stack.  
+
+You can also pop the values off the stack and put them into other registers just by changing the registers you specify when using `pop`.  For example:
+```
+mov r1, #100  //100 in r1
+mov r5, #30   //30 in r5
+push {r1, r5}  //100 and 30 added to the stack
+pop {r2, r6}   // 100 is now in r2 and 30 is now in r6
+```
+
+## Submission
+Copy/paste your entire program into Mimir.  If you could not get it to work, fill out question 2 and explain how your program does't work or what parts do work (for example, if you got multiplication working put not the power function).
