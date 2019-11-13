@@ -155,26 +155,21 @@ sub:
 ## Summary
 To sum up a stack based subroutine calling protocol:
 
-1. Subroutine Call (done by the caller):
-
-  a. Push onto the stack any registers `r0-r3` that contain values that must be saved. The subroutine might change these registers.
-  b. Put argument values into `r0-r3`.
-  c. Call the subroutine using `bl`.
-2. Subroutine Prolog (done by the subroutine at its beginning):
-
-  a. push `lr` onto the stack.
-  b. Push any registers `r4-r12` that this subroutine might alter.
-3. Subroutine Body:
-
-  a. The subroutine may alter any register, `r0-r3` and and register `r4-r12` that it saved in the prolog (step 2b).
-  b. If the subroutine calls another subroutine, then it does so by following these rules.
-4. Subroutine Epilog (done by the subroutine just before it returns to the caller):
-
-  a. Put returned value in `r0`
-  b. Pop from the stack (in reverse order) any registers `r4-r12` that were pushed in the prolog (step 2b).
-  c. pop the return address from the stack into `pc`.
-5. Regaining Control from a subroutine (done by the caller):
-
-  a. Pop from the stack (in reverse order) any registers `r0-r3` that were previously pushed (step 1a).
+1. Subroutine Call (done by the caller):  
+   a. Push onto the stack any registers `r0-r3` that contain values that must be saved. The subroutine might change these registers.  
+   b. Put argument values into `r0-r3`.  
+   c. Call the subroutine using `bl`.  
+2. Subroutine Prolog (done by the subroutine at its beginning):  
+   a. push `lr` onto the stack.  
+   b. Push any registers `r4-r12` that this subroutine might alter.  
+3. Subroutine Body:  
+   a. The subroutine may alter any register, `r0-r3` and and register `r4-r12` that it saved in the prolog (step 2b).  
+   b. If the subroutine calls another subroutine, then it does so by following these rules.  
+4. Subroutine Epilog (done by the subroutine just before it returns to the caller):  
+   a. Put returned value in `r0`  
+   b. Pop from the stack (in reverse order) any registers `r4-r12` that were pushed in the prolog (step 2b).  
+   c. pop the return address from the stack into `pc`.  
+5. Regaining Control from a subroutine (done by the caller):  
+   a. Pop from the stack (in reverse order) any registers `r0-r3` that were previously pushed (step 1a).    
   
-![prolog epiloge series](.images/ch14-prologEpilog.gif)
+![prolog epilog series](".images/ch14-prologEpilog.gif")
