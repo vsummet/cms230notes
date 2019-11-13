@@ -5,12 +5,14 @@ All high level languages have the concept of a **subroutine** (sometimes called 
 This chapter looks at a simple implementation in assembly language of this idea. The simple implementation is not adequate for the full power of subroutines (as implemented in high level languages), but is a good starting point. It corresponds to the type of subroutines implemented in the early days of programming.
 
 Chapter Topics:
-* Subroutine call
+
+* Subroutine calls
 * Caller and Callee routines
 * `bl` instruction
-* The $ra register
-* The simple linkage calling convention
+* The link register - `lr`
+* Calling conventions
 * Register use in subroutines
+* Pushing and popping data on the stack
 
 ## 14.1 - Passing Control with a Branch Instruction
 Below is a sketch of what you can do with the `b` instruction. If the main routine needs to start up ("to call") a subroutine named `sub` it can jump to it with a `b` instruction. At the end of the subroutine, control can be returned with another `b` instruction.
@@ -28,18 +30,18 @@ In the past, before the concept was completely understood, hardware support for 
 
 What is needed is a way to send a **return address** to the subroutine when it is called. Now when the subroutine finishes, it loads the PC (program counter) with the return address. The next instruction fetch of the machine cycle will get the instruction from that address.
 
+!(machine cycle)[./images/ch14-machineCycle.gif]
+
 ## The `bl` Instruction
 The register that is used for linkage is register `r14`, which is called `lr` by the extended assembler. It holds the return address for a subroutine. The instruction that puts the return address into `lr` is the `bl` instruction.
 
 Register `r14` is one of the three "general purpose registers" that behave differently from the others. (The others are `r13`, the stack pointer, and `r15`, the PC.) The `bl` instruction and register `lr` provide the hardware support necessary to elegantly implement subroutines.
 
-To understand how `bl` works, review the machine cycle. The ARM endlessly cycles through three basic steps. Each cycle executes one machine instruction. (This is a somewhat simplified view, but sufficient for now).
-
 The `bl` instruction does the following in the execute phase of the machine cycle:
 
 ```
 bl sub     // lr <― PC  (the address of the instruction after bl) 
-           // PC  <― sub   load the PC with the address of the first instruction of subroutine (called the entry point)
+           // PC  <― sub   load the PC w/ the address of the first instruction of sub 
 
 ```
 
@@ -98,22 +100,22 @@ You probably have some questions after looking at this program.  The biggest is 
 ## Stack-based Subroutine Calls
 To return to the caller a subroutine must have the correct return address in `lr` when the `bl` instruction is performed. But this address does not have to remain in `lr` all the time the subroutine is running. It works fine to save the value in `lr` stored somewhere temporarily. The value can be restored, later on, when it is time to return to the caller.
 
-![stack based calling](./images/ch14-mainCallingA.gif)
-
 In the picture, the operating system calls `main`. The return address to the operating system is in `lr`. As soon as it gets control, `main` pushes the return address onto the stack (step 1). The return address that `main` should use when it returns to the operating system is now on the top of the stack.
+
+![stack based calling](./images/ch14-mainCallingA-arm.gif)
 
 The `push` and `pop` instructions in the picture are psuedo-instructions which handle several things for us.  Specifically, they not only copy data to the stack, but they also manipulated the stack pointer, stored in `r13`, for us so that it remains as a reference to the top of the stack.
 
 After pushing the return address, `main` computes for a bit, and then calls `subC` using a `bl` instruction (step 2). This puts the return address to main in `lr`. Luckily, it does not matter that `lr` has been changed because the return address that main will use to return to the operating system is safely stored on the stack.
 
-`subC` receives control and computes for a while. Because it does not call another subroutine, `subC` does not alter `lr` and does not need to save it on the stack. When `subC` returns to main it uses a `pop` instruction (step 3) to place the stored return address into the PC.  This means that the instruction at the return address will be the next instruction to execute.
+`subC` receives control immediately pushes the return address for main onto the stack and computes for a while. When `subC` returns to main it uses a `pop` instruction (step 3) to place the stored return address into the PC.  This means that the instruction at the return address will be the next instruction to execute.
 
 Control returns to `main`, which computes for a while longer. It returns to the OS by popping the stack into `pc`.  This last address of instruction indicates to the OS that our program has finished (step 4).
 
 ## Subroutines Calling Subroutines
 Now let us look at an example where subroutines call other subroutines. A subroutine that might call another subroutine must push the return address it gets onto the stack. When it returns to its caller, it pops the stack to get the return address.
 
-![subroutines calling subroutines](./images/ch14-pushPopCall.gif)
+![subroutines calling subroutines](./images/ch14-pushPopCall-arm.gif)
 
 In the picture, `main` is called by the OS. As soon as `main` gets control it pushes `lr` onto the stack (step 1). `main` computes for a while and then calls `subA`. `subA` immediately pushes the contents of `lr` onto the stack (step 2). The return address that `subA` will use when it returns control to `main` is now on the top of the stack.
 
@@ -172,4 +174,4 @@ To sum up a stack based subroutine calling protocol:
 5. Regaining Control from a subroutine (done by the caller):  
    a. Pop from the stack (in reverse order) any registers `r0-r3` that were previously pushed (step 1a).    
   
-![prolog epilog series](".images/ch14-prologEpilog.gif")
+![prolog epilog series](./images/ch14-prologEpilog.gif)
