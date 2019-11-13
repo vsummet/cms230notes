@@ -176,3 +176,5 @@ To sum up a stack based subroutine calling protocol:
 5. Regaining Control from a subroutine (done by the caller):
 
   a. Pop from the stack (in reverse order) any registers `r0-r3` that were previously pushed (step 1a).
+  
+![prolog epiloge series](.images/ch14-prologEpilog.gif)
