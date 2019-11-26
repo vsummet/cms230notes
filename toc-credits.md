@@ -1,4 +1,4 @@
-[Assembly Notes]() | [C Notes]()
+#[Assembly Notes](https://github.com/vsummet/cms230notes/blob/master/toc-credits.md#assembly-table-of-contents) | [C Notes]()
 
 
 
