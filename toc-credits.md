@@ -36,14 +36,14 @@ Like the original work, they are licensed under [Creative Commons Attribution, N
 * [Chapter 1](./c-programming/c-chap01.md) - Introducing C
 * [Chapter 2](./c-programming/c-chap02.md) - Linux and the Terminal Environment
 * [Chapter 3](./c-programming/c-chap03.md) - Compiling and Running Programs
-* [Chapter 4] (./c-programming/c-chap04-memory.md) - An Aside: Memory Structure
+* [Chapter 4](./c-programming/c-chap04-memory.md) - An Aside: Memory Structure
 
 ## Module 2: Data Structures and Pointers
 * [Chapter 5](./c-programming/c-chap05-arrays-and-strings.md) Arrays and Strings
 * [Chapter 6](./c-programming/c-chap05-struct.md) Structs
 * [Chapter 7](./c-programming/c-chap06-pointers.md) Pointers
 * [Chapter 8](./c-programming/c-chap07-pointers_and_arrays.md) Pointers and Arrays
-* [Chapter 9] (./c-programming/c-chap08-pointers_strings.md) Pointers and Strings
+* [Chapter 9](./c-programming/c-chap08-pointers_strings.md) Pointers and Strings
 * [Chapter 10](./c-programming/c-chap09-pointers_and_structs.md) Pointers and Structs
 * [Chapter 11](./c-programming/c-chap10-arrays-of-pointers.md) Arrays of Pointers
 
