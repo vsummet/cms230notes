@@ -1,4 +1,4 @@
-#[Assembly Notes](https://github.com/vsummet/cms230notes/blob/master/toc-credits.md#assembly-table-of-contents) | [C Notes]()
+# [Assembly Notes](https://github.com/vsummet/cms230notes/blob/master/toc-credits.md#assembly-table-of-contents) | [C Notes](https://github.com/vsummet/cms230notes/blob/master/toc-credits.md#c-table-of-contents)
 
 
 
@@ -23,7 +23,7 @@
 * [Chapter 13](./assembly/as-chap13-loops.md) - Loops
 * [Chapter 14](./assembly/as-chap14-subroutines.md) - The Stack and Subroutines
 
-# Credits
+## Credits
 
 These notes are based upon Dr. Bradley Kjell's [interative tutorial and notes](https://chortle.ccsu.edu/AssemblyTutorial/index.html) on MIPS assembly.
 
@@ -51,3 +51,6 @@ Like the original work, they are licensed under [Creative Commons Attribution, N
 * [Chapter 12](./c-programming/c-chap11-cmd-line-args.md) Command Line Arguments
 * [Chapter 13](./c-programming/c-chap12-fileio.md)	File I/O
 * [Chapter 14](./c-programming/c-chap13-bitwise.md) Bitwise Operations
+
+## Credits
+Many of these notes on C come from Dr. Dan S. Myers original notes for CMS230 at Rollins
