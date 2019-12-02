@@ -65,7 +65,7 @@ By software convention (not by hardware) registers have been assigned different 
 * `$r0` — This register contains the return value from the subroutine.
 
 ## A Simple Program
-Below is a simple first program.  In this program, `main` calls a simple function `alwaysthree` which simply returns 3.
+Below is a simple first program.  In this program, `main` calls a simple function `returnThree` which simply returns 3.
 
 ```
 // Calling a function using bl
@@ -115,7 +115,7 @@ Control returns to `main`, which computes for a while longer. It returns to the 
 ## Subroutines Calling Subroutines
 Now let us look at an example where subroutines call other subroutines. A subroutine that might call another subroutine must push the return address it gets onto the stack. When it returns to its caller, it pops the stack to get the return address.
 
-![subroutines calling subroutines](./images/ch14-pushPopCall-arm.gif)
+![subroutines calling subroutines](./images/ch14-pushPopCall.gif)
 
 In the picture, `main` is called by the OS. As soon as `main` gets control it pushes `lr` onto the stack (step 1). `main` computes for a while and then calls `subA`. `subA` immediately pushes the contents of `lr` onto the stack (step 2). The return address that `subA` will use when it returns control to `main` is now on the top of the stack.
 
