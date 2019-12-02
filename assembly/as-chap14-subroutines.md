@@ -102,7 +102,7 @@ To return to the caller a subroutine must have the correct return address in `lr
 
 In the picture, the operating system calls `main`. The return address to the operating system is in `lr`. As soon as it gets control, `main` pushes the return address onto the stack (step 1). The return address that `main` should use when it returns to the operating system is now on the top of the stack.
 
-![stack based calling](./images/ch14-mainCallingA-arm.gif)
+![stack based calling](./images/ch14-mainCallingA-arm.png)
 
 The `push` and `pop` instructions in the picture are psuedo-instructions which handle several things for us.  Specifically, they not only copy data to the stack, but they also manipulated the stack pointer, stored in `r13`, for us so that it remains as a reference to the top of the stack.
 
