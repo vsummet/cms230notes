@@ -98,19 +98,21 @@ main:
 You probably have some questions after looking at this program.  The biggest is probably, "Where's the return statement?"  That's an astute question, as no such instruction exists in assembly langauge.  Instead, we have to turn our attention to the "push-pop sandwich" that surrounds each subroutine.
 
 ## Stack-based Subroutine Calls
-To return to the caller a subroutine must have the correct return address in `lr` when the `bl` instruction is performed. But this address does not have to remain in `lr` all the time the subroutine is running. It works fine to save the value in `lr` stored somewhere temporarily. The value can be restored, later on, when it is time to return to the caller.
+To return to the caller a subroutine must have the correct return address in `pc` (the program counter containing the address of the next instruction) when the subroutine finishes.  We also know that the `bl` instruction places that return address into the `lr` when it is performed. But this address does not have to remain in `lr` all the time the subroutine is running. It works fine to save the value in `lr` somewhere temporarily. The value can be restored, later on, when it is time to return to the caller.
 
 In the picture, the operating system calls `main`. The return address to the operating system is in `lr`. As soon as it gets control, `main` pushes the return address onto the stack (step 1). The return address that `main` should use when it returns to the operating system is now on the top of the stack.
 
 ![stack based calling](./images/ch14-mainCallingA-arm.png)
 
-The `push` and `pop` instructions in the picture are psuedo-instructions which handle several things for us.  Specifically, they not only copy data to the stack, but they also manipulated the stack pointer, stored in `r13`, for us so that it remains as a reference to the top of the stack.
+The `push` and `pop` instructions in the picture are psuedo-instructions which handle several things for us.  Specifically, they not only copy data to the stack, but they also manipulate the stack pointer, stored in `r13`, for us so that it remains as a reference to the top of the stack.
 
 After pushing the return address, `main` computes for a bit, and then calls `subC` using a `bl` instruction (step 2). This puts the return address to main in `lr`. Luckily, it does not matter that `lr` has been changed because the return address that main will use to return to the operating system is safely stored on the stack.
 
 `subC` receives control immediately pushes the return address for main onto the stack and computes for a while. When `subC` returns to main it uses a `pop` instruction (step 3) to place the stored return address into the PC.  This means that the instruction at the return address will be the next instruction to execute.
 
 Control returns to `main`, which computes for a while longer. It returns to the OS by popping the stack into `pc`.  This last address of instruction indicates to the OS that our program has finished (step 4).
+
+The `ip` value which is also pushed onto the stack is a dummy variable to keep the stack 8-byte aligned.  You can safely ignore this concept for this course.  Just always use `push {ip, lr}` or `pop {ip, pc}` to adhere to this ARM requirement.
 
 ## Subroutines Calling Subroutines
 Now let us look at an example where subroutines call other subroutines. A subroutine that might call another subroutine must push the return address it gets onto the stack. When it returns to its caller, it pops the stack to get the return address.
@@ -140,6 +142,8 @@ Question: is it safe to store `r4-r12` AND `lr` on the stack?
 Answer: Yes, but we must be careful to synchronize the calls to push and pop so that the correct values go into the correct registers.
 
 ## Pushing and Popping Registers
+Register management is one of the hardest things about writing subroutines in assembly language.  The calling conventions state that subroutines can't just modify `r4-r12`.  But it is sometimes really hard to write a subroutine using only `r0-r4`, particularly if a subroutine needs to call other subroutines.  But, there's an easy way to get around this problem.
+
 Here is a rule: if a subroutine is expected to alter any of registers `r4-r12`, it must first push their values onto the stack. Just before returning to the caller it must pop these values from the stack back into the registers they came from.
 
 We can do this easily by adding to the "push-pop" sandwich which already surrounds our subroutine calls.
