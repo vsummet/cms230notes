@@ -117,7 +117,7 @@ Now let us look at an example where subroutines call other subroutines. A subrou
 
 ![subroutines calling subroutines](./images/ch14-pushPopCall.gif)
 
-In the picture, `main` is called by the OS. As soon as `main` gets control it pushes `lr` onto the stack (step 1). `main` computes for a while and then calls `subA`. `subA` immediately pushes the contents of `lr` onto the stack (step 2). The return address that `subA` will use when it returns control to `main` is now on the top of the stack.
+In the picture, `main` is called by the OS. As soon as `main` gets control it pushes `lr` onto the stack (step 1). `main` computes for a while and then calls `subA`. `subA` immediately pushes the contents of `lr` onto the stack (step 2). The return address that `subA` will use when it returns control to `main` is now on the top of the stack.  (Note that in this picture the storing of the `ip` value on the stack has been omitted for simplicity's sake.)
 
 Next `subA` calls `subB` which pushes the contents of `lr` onto the stack (step 3). The return address that `subB` should use when it returns to its caller is now on the top of the stack.
 
