@@ -58,7 +58,7 @@ Most processors endlessly repeat three basic steps. Each **machine cycle** resul
 
 A **machine instruction** is a pattern of bits that corresponds to a fundamental operation of the processor such as adding two 32-bit integers together or testing if a value is zero. The details of the machine cycle differ between processor families. The machine cycle of most processor chips looks like the following:
 
-<img align="right" alt="levels of computer science" src="./images/ch01-machinecycle.gif">
+<img align="right" alt="levels of computer science" src="./images/ch12-machine-cycle.gif">
 
 1. **Fetch the Instruction**: The instruction (pattern of bits) is fetched from memory. The **program counter (PC)** is part of the processor. It contains the address of the instruction to fetch in memory.  After the instruction is fetched from memory, the program counter is incremented and now points to the next instruction to be fetched.
 2. **Decode the Instruction**: The processor must now make sense of the instruction it just fetched.
