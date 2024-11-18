@@ -23,7 +23,7 @@ For example, say that the 32-bit pattern `0x12345678` is stored at address `0x00
 
 Important: Within a byte the order of the bits is the same for all computers (no matter how the bytes themselves are arranged).
 
-Many modern processors (including the ARM) are **bi-endian**.  That is, they can support data in both little- and big-Endian specifications.  However, ARM by default is little-Endian, and instructions are always stored in little-Endian format.
+Many modern processors (including the ARM) are **big-endian**.  That is, they can support data in both little- and big-Endian specifications.  However, ARM by default is little-Endian, and instructions are always stored in little-Endian format.
 
 
 ### Question
@@ -131,7 +131,7 @@ main:
 
     // r0 <- x
     ldr r0, =x
-    ldr r1, [ar0]
+    ldr r1, [r0]
 
     // add 5 to x's value
     add r2, r1, #5
