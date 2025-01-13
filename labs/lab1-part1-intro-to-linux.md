@@ -32,7 +32,7 @@ To begin, log-in to your github.com account (see the syllabus for instructions o
 
 For coding assignments using github, you'll first have to "accept" the assignment.  This creates a repo (collection of code) and a workspace for you.  You can then edit those files and write code using an online IDE called Codespaces.  We'll play around with writing code later.  For now, just click the folllowing link and accept the assignment.
 
-### XXX Assignment link here
+https://classroom.github.com/a/njQW1d2y(https://classroom.github.com/a/njQW1d2y)
 
 Since this is your first time using our classroom space, you may need to join the classroom to access to your github account.  You will also need to associate your github account with your name by choosing a name from this semester's roster so I know who you are (y'all choose some crazy user names sometimes...).  You should only need to do these steps once this semester.
 
@@ -127,19 +127,17 @@ Command | Observations
 
 At this point, you should have an empty `lab1` directory.  If you don't, ask for help to get it cleaned up.
 
-### Part II - Mimir
+### Part II - Codespaces
+In this part of the lab, you'll be learning how to use the Codespaces IDE and learning how to use the git workflow (stage, commit, push) to submit coding assignments for this class.  You'll also write your first program in C.  This exercise is designed to be like C homework assignments in miniature.  This is the procedure you'll follow for all the C homework assignments this semester.  This exercise will show you how to: 
 
-At this point, you'll do a short exercise using Mimir.  This exercise is designed to be like C homework assignments in miniature.  This is the procedure you'll follow for all the C homework assignments this semester.  This exercise will show you how to: 
-
-   - create and edit a source code file on Mimir
-   - compile and run your program on Mimir, debug, repeat...
-   - submit your work which triggers a set of testcases on Mimir
-   - interpret the output of the testcases
-   - locate and interpret instructor feedback in Mimir (after the lab is completed)
+   - create and edit a source code file on Codespaces
+   - compile and run your program on Codespaces, debug, repeat...
+   - submit your work
+   - locate and interpret instructor feedback (after the lab is completed)
 
 
-1. Begin by opening the IDE in Mimir if you haven't already.  At the prompt, use `cd`, `pwd`, and/or `ls` to determine your location and navigate to the `lab1` directory.
-2. Create a new file: `touch lab1.c`  If you open the appropriate folders on the left-hand file browser tree, you should see `lab1.c` in your `~/cms230f19/lab1` folder.  (You may have to right click and choose refresh on the file viewer tree before it appears.)  You can then click on this file to open it in a pane for editing.  You should now have two tabs open: one with your empty `lab1.c` file and one with your terminal.
+1. Instead of working in the Terminal, look at the left hand panel for the File Explorer.  Begin by opening the IDE in Mimir if you haven't already.  At the prompt, use `cd`, `pwd`, and/or `ls` to determine your location and navigate to the `lab1` directory.
+2. Create a new file: `touch lab1.c`  If you open the appropriate folders on the left-hand file browser tree, you should see `lab1.c` in your `~/cms230f19/lab1` folder.  (You may have to right click and choose refresh on the file viewer tree before it appears.)  You can then click on this file to open it in a pane for editing.  You should now have two work areas open: one tab with your empty `lab1.c` file and one below with your terminal.
 3. Your goal is to write a function named `sum_to` which takes an `int` as an argument and returns an `int`.  This code should sum up all the even numbers between 0 and the argument (not including the value of the argument itself).  So a call to `sum_to(10)` would add up 2, 4, 6, and 8 and return the value 20.  `sum_to(9)` would return the same value of 20 using the same logic.  Add the following code to your `lab1.c` file.  (If you're reading the code you're pasting, you might realize this code is logically and syntactically incorrect.  Leave it alone for now.)
 
 ```
@@ -160,7 +158,7 @@ int main(void) {
 
 ```
 
-3. Save your source code and change to your terminal window. Compile your source code by typing: 
+3. Moe to your terminal window. Compile your source code by typing: 
 
 `gcc -Wall -Werror -o lab1 lab1.c`
 
