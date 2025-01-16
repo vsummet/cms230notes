@@ -42,8 +42,14 @@ Recall that a C program's view of memory is, conceptually, a **big array of byte
 A canonical 32-bit address space
 
 -----------------------------  Byte index 0
-|    Code and static data   |
-|                           |
+|    Reserved for           |
+|    operating system       |
+-----------------------------
+|    Code: The program's    |
+|    instructions           |
+-----------------------------
+|    Data in the form of    |
+|    global variables       |
 ----------------------------- 
 |           Heap            |
 |  (dynamically-allocated)  |
@@ -55,9 +61,9 @@ A canonical 32-bit address space
 |                           | Java, malloc and free in C).
 |     Unallocated space     |         
 |                           |
-|             ^             | Stack grows and shrinks as the program calls and returns
+|             ^             | Stack stores local variables and parameter variables.
+|             |             | It grows and shrinks as the program calls and returns 
 |             |             | from functions.
-|             |             |
 -----------------------------
 |           Stack           |
 |                           |
