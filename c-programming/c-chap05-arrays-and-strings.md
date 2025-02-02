@@ -1,6 +1,6 @@
 # Arrays and Strings in C
 
-Arrays in C act to store related data under a single variable name with an index, also known as a ''subscript''.  As in Java, arrays must contain the same type of data.  That is, you can have an array of It is easiest to think of an array as simply a list or ordered grouping for variables of the same type.  As such, arrays often help a programmer organize collections of data efficiently and intuitively.
+Arrays in C act to store related data under a single variable name with an index, also known as a ''subscript''.  As in Java, arrays must contain the same type of data.  It is easiest to think of an array as simply a list or ordered grouping for variables of the same type.  As such, arrays often help a programmer organize collections of data efficiently and intuitively.
 
 Later we will consider the fundamental concept in C: "pointers."  Pointers extend the nature of the array (array can be termed as a constant pointer). For now, we will consider just their declaration and their use.
 
