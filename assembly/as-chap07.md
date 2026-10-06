@@ -107,9 +107,9 @@ To convert a hexadecimal representation of an integer to base 10, write the inte
 
 31A<sub>16</sub> = 3 × sixteen<sup>2</sup> + 1 × sixteen<sup>1</sup> + A × sixteen<sup>0</sup>
 
-                   = 3 × 16<sup>2<sup> + 1 × 16<sup>1<sup> +  10 × 16<sup>0</sup>
+31A<sub>16</sub> = 3 × 16<sup>2<sup> + 1 × 16<sup>1<sup> +  10 × 16<sup>0</sup>
 
-                   = 3 × 256 + 1 × 16 +  10 × 1  =  79410<sub>10<sub>
+31A<sub>16</sub> = 3 × 256 + 1 × 16 +  10 × 1  =  79410<sub>10<sub>
                    
 You don't have to remember powers of 16 to do this conversion. All you need is powers of 2. For example, 16<sup>2</sup>  =  2<sup>4</sup> × 2<sup>4</sup>  =  2<sup>8</sup>  =  256.
 
