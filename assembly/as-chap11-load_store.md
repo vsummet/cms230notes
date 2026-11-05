@@ -51,7 +51,7 @@ Look at the following program skeleton:
 ```
 // Using variables in ARM
 
-.global main
+.global _start
 
 /*** Global vars and static data ***/
 .data
@@ -60,10 +60,10 @@ x: .word 0
 /*** Code goes in the text section ***/
 .text
 
-main:
-    push {lr}
+_start:
+
     ...
-    pop {lr}
+
 ```
 Notice that we've added another directive section, `.data`.  This section is used for variables and static data.  In that section, we have the code:
 ```
@@ -76,7 +76,7 @@ So the (roughly) equivalent instruction in C would be:
 int x = 0;
 ```
 
-We will seee other types of variable including ASCII strings later.
+We will see other types of variable including ASCII strings later.
 
 ## 11.5 - Loading Values from Memory
 The ARM instruction that loads a word into a register is the `ldr` instruction. The store word instruction is `str`. Each must specify a register and a memory address. For this class, an ARM instruction is 32 bits, and an ARM memory address is 32 bits. How can a load or store instruction specify an address that is the same size as itself?
@@ -116,18 +116,16 @@ This instruction stores the binary pattern currently in `r0` to the memory locat
 Here's a complete example using the concept of loading a variable's value from memory, modifying the value, and then updating the variable with the new value.
 
 ```
-.global main
+.global _start
 
 /*** Data section ***/
 .data
-
 x: .word 3
 
 /*** Code section ***/
 .text
 
-main:
-    push {ip, lr}
+_start:
 
     // r0 <- x
     ldr r0, =x
@@ -139,8 +137,6 @@ main:
     //update x's value in memory
     str r2, [r0]
 
-    // Return
-    pop {ip, pc}
 ```
 
 This program is (roughly) the equivalent of this C program:
@@ -154,7 +150,7 @@ int main() {
 A few things to note about this program:
 
 * If we update a variable (ie, assign a new value to the variable), we must store the value back to memory. 
-* Since ARM is a load-store architecture, we cannot use register indirect addressing mode as an operand to instructions such as `mov` or `add`.
+* Since ARM is a load-store architecture, we cannot use register indirect addressing mode as an operand to instructions such as `mov` or `add`.  This means that instructions like `add r1, r1 [r0]` are not possible.
 * In the above example, we load x's address once and store it into `r0`.  As long as we are careful not to modify or overwrite `r0`, we can reuse x's address multiple times, for both `ldr` and `str` instructions.
 
 
