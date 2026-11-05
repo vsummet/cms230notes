@@ -43,7 +43,7 @@ if(i < x) {
   i++;
 }
 ```
-We know how to do this!  We have to load lot's of addresses and values from memory, but after that, it's just addition.  In assembly:
+We know how to do this!  We have to load lots of addresses and values from memory, but after that, it's just addition.  In assembly:
 ```
   //load values for x and y which don't change  
   ldr r3, =x
