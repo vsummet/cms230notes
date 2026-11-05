@@ -18,21 +18,21 @@ In the middle of the machine cycle the PC is incremented by four so that it poin
 When a `b` (branch) instruction executes (in the last step of the machine cycle), it puts a new address into the PC. Now the fetch at the top of the next machine cycle fetches the instruction at that new address. Instead of executing the instruction that follows the branch instruction in memory, the processor "branches" (or jumps) to an instruction somewhere else in memory.
 
 ## 12.2 - Symbolic Addresses
-How does the processor know what address to load into the PC when a branch instruction executes?  Remember the concept of **labels* which are just symbolic names for addresses.  For example, we've seen the label `main` in our programs:
+How does the processor know what address to load into the PC when a branch instruction executes?  Remember the concept of **labels* which are just symbolic names for addresses.  For example, we've seen the label `_start` in our programs:
 
 ```
-main: 
-  push{ip, lr}
+_start: 
+
   ...
-  pop{ip, pc}
-```
-`main` is used as just an alias to a specific address in our address space.  So the ARM assembly instruction:
-```
-b main
-```
-would cause the address of the first instruction in the function `main` to be loaded into the PC.  On the next machine cycle, the processor would fetch that instruction and the flow of execution would proceed from there.
 
-## 12.3 - Neverending Loops
+```
+`_start` is used as just an alias to a specific address in our address space.  So the ARM assembly instruction:
+```
+b _start
+```
+would cause the address of the first instruction at the label `_start` to be loaded into the PC.  On the next machine cycle, the processor would fetch that instruction and the flow of execution would proceed from there.
+
+## 12.3 - Infinite Loops
 
 Consider the following portion of an ARM program:
 
@@ -52,19 +52,19 @@ loopstart:
   b loopstart
 ```
 
-In this program, the instruction `b loopstart` causes the flow of instruction to change.  The address of the instruction `ldr r2, =x` is loaded into the PC and begins the execution.  In fact, you're probably thinking that this looks a lot like a loop.  It is!  But it's a *never-ending* loop.  The above assembly program is (roughly) equivalent to the following C program:
+In this program, the instruction `b loopstart` causes the flow of instruction to change.  The address of the instruction `ldr r2, =x` is loaded into the PC and begins the execution.  In fact, you're probably thinking that this looks a lot like a loop.  It is!  But it's a *infinite* loop.  The above assembly program is (roughly) equivalent to the following C program:
 
 ```
 while(true) {
   x = x + 1;
 }
 ```
-We have written an infinite loop!  We load x's value from memory, increment that value by 1, and return it to memory over and over and over and over...
+We have written an infinite loop!  We load x's value from memory (two `ldr` instructions), increment that value by 1 (an `add` instruction, and update it in memory (an `str` instruction) over and over and over and over...
 
 So we see that just a simple branch instruction isn't sufficienbt to allow us to write loops and if-then-else control statements.  To do that, we need **conditional branching** instructions.
 
 ## 12.4 - ARM Status Register
-In order to learn about conditional branching instructions, we have to first discuss the **Application Program Status Register** or **APSR**.  This register stores condition flags that track the results of comparison operations.  The bits in the register are turned on (set to 1) and off (set to 0) to indicate different properties of instructions or their results as they execute.  
+In order to learn about conditional branching instructions, we have to first discuss the **Current Program Status Register** or **CPSR**.  This register stores condition flags that track the results of comparison operations.  The bits in the register are turned on (set to 1) and off (set to 0) to indicate different properties of instructions or their results as they execute.  
 
 In this class, we are concerned with 5 specific bits in this register.  For ease of use, we assign letters to these bits which help us remember their purpose.  The 5 bits are:
 
@@ -76,19 +76,19 @@ In this class, we are concerned with 5 specific bits in this register.  For ease
 ## 12.5 - Conditional Branching Instructions
 A conditional branch instruction branches to a new address only if a certain condition is true. Usually the condition is about the values in two registers. 
 
-We use the `cmp` instruction to compare the values in two registers.  The `cmp` instruction then sets bits in the APSR based on the comparison of the two values from the registers.  However, it is important to note that the `cmp` instruction does not change the values in the two registers it compares.
+We use the `cmp` (compare) instruction to compare the values in two registers.  The `cmp` instruction then sets bits in the CPSR based on the comparison of the two values from the registers.  However, it is important to note that the `cmp` instruction does not change the values in the two registers it compares.
 
 The `cmp` instruction can then be followed by a conditional branching instruction.  There are 6 conditional branching instructions, but we'll begin with the easiest: `beq` or branch on equal.  
 
 The following snippet demonstrates how to use the `cmp` followed by a `beq` instruction:
 ```
-cmp r1, r2
-beq  label   
+cmp r1, r2 
+beq  label  
 ```
-The bit patterns in two registers `r1` and `r2` are compared. Based on the comparison, one or more of the 4 bits discussed above in the ASPR are updated.  The `beq` instruction then checks the ASPR to see the values were the same.  If they were, the PC is changed to the branch address corresponding with `label`.
+The bit patterns in two registers `r1` and `r2` are compared. Based on the comparison, one or more of the 4 bits discussed above in the CSPR are updated.  The `beq` instruction then checks the CSPR to see the values were the same.  If they were, the PC is changed to the branch address corresponding with `label`.
 
 ## 12.6 - Programming Using Labels
-Now that we have conditional branches, we can discuss a simple strategy for implementing if statements using `cmp` and a conditonal branching instruction. When translating from a high level language, use the `cmp` instruction to compare the the values on each side of a relational operator.  Then branch on the **opposite condition**.
+Now that we have conditional branches, we can discuss a simple strategy for implementing `if` statements using `cmp` and a conditonal branching instruction. You can program if statements in many ways, but this is the simplest: when translating from a high level language, use the `cmp` instruction to compare the the values on each side of a relational operator.  Then branch on the **opposite condition**.
 
 For example, suppose we want to translate the high level if statement `if(x != 4)` into assembly.
 
@@ -108,7 +108,7 @@ Last, we branch on the opposite condition.  In other words, the high level langu
 beq label
 ```
 
-Why do we branch on the opposite condition?  This is because ARM accomplishes the comparison by calculating the difference between the two values being compared.  In other words, it subtracts. If r0 is greater than 4, the negative bit (N bit) in the APSR be set to 0.  If r0 is less than 4, the result will be negative and the N bit will be set to 1.  If r0 is 4, the result will be zero and the zero bit (Z bit) in the APSR will be set to 1.  Then our `beq` statement will execute.  
+Why do we branch on the opposite condition?  This is because ARM accomplishes the comparison by calculating the difference between the two values being compared.  In other words, it subtracts. If r0 is greater than 4, the negative bit (N bit) in the CPSR be set to 0.  If r0 is less than 4, the result will be negative and the N bit will be set to 1.  If r0 is 4, the result will be zero and the zero bit (Z bit) in the CPSR will be set to 1.  Then our `beq` statement will execute.  
 
 
 ## 12.7 - A Complete Example
@@ -128,7 +128,7 @@ We need to add a label to our program which enables us to "skip" the body of the
 
 
 ```
-.global main
+.global _start
 
 
 /*** Data section ***/
@@ -136,13 +136,10 @@ We need to add a label to our program which enables us to "skip" the body of the
 
 x: .word -15
 
-
 /*** Text section ***/
 .text
 
-main:
-    push {ip, lr}
-
+_start:
     ldr r0, =x
     ldr r0, [r0]
 
@@ -160,15 +157,14 @@ main:
 
     // Body of if, excecutes if x == 0
     add r0, r0, #1
-
 done:
-    pop {ip, pc}
+    
 ```
 
 
 
 ## 12.8 - More Branching Instructions
-There are more conditional branching instructions, but using the general problem strategy above will help you translate code to asssembly in a systematic way.  Below are other conditional branching instructions and what bits in the APSR they are based on.  In practice, you don't need to work with the individual APSR bits.  The mnemonics of the assembly instructions mask this complexity and provide an easier way to think about our logic.
+There are more conditional branching instructions, but using the general strategy above will help you translate code to asssembly in a systematic way.  Below are other conditional branching instructions and what bits in the CPSR they are based on.  In practice, you don't need to work with the individual CPSR bits.  The mnemonics of the assembly instructions mask this complexity and provide an easier way to think about our logic.
 
 | Instruction | Meaning | APSR bits |
 |-------------|---------|-----------|
@@ -200,8 +196,7 @@ We have to use 2 branching instructions to implement this program.  If the `if` 
 In this manner, we skip over portions of code we do not want to execute.
 
 ```
-.global main
-
+.global _start
 
 /*** Data section ***/
 .data
@@ -214,9 +209,7 @@ c: .word 0
 /*** Text section ***/
 .text
 
-main:
-    push {ip, lr}
-
+_start:
     // r0 <- a
     ldr r2, =a
     ldr r0, [r2]
@@ -249,8 +242,6 @@ main:
   done:
     // return c;
     ldr r0, [r4]
-
-    pop {ip, pc}
 ```
 
 ## 12.10 - Complex High-Level Language Structures
@@ -288,8 +279,8 @@ In other words, if either `a < b` or `b > c` is false, we shouldn't execute `stm
 ## 12.10 - Key Points
 There are some important things to remember while working with branching structures in ARM assembly:
 * `cmp` DOES NOT change the values in registers.  The result of the comparison subtraction is not stored.
-* Other instructions can change bits in the APSR.  `cmp` should always be followed immediately by a branching instruction
-* A common mistake is reversing the order of values in a compare instructions.  `cmp r1, r0` and `cmp r0, r1` will usually cause very different bits to be set in the APSR.
+* Other instructions can change bits in the CPSR.  `cmp` should always be followed immediately by a branching instruction
+* A common mistake is reversing the order of values in a compare instructions.  `cmp r1, r0` and `cmp r0, r1` will usually cause very different bits to be set in the CPSR.
 
 
 
