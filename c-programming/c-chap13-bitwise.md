@@ -4,7 +4,6 @@ The "bitwise operators" in C are operators that are designed to manipulate a bin
 
 In this class, we'll be focussing on the following bitwise operators:
 * `>>` - right shift (arithmetic or sign-extending)
-* `>>>` - right sign (logical)
 * `<<` - left shift
 * `&` - bitwise and
 * `|` - bitwise or
@@ -32,7 +31,7 @@ printf("int value: %d \t hex rep: %x \n", num, num);
 Unfortunately, there is no print specifier which allows us to easily print binary representations.  You'll need to convert from hex to binary yourself or write your own function if you want that capability.
 
 ## 13.2 - Shift Operators
-The operators `>>`, `>>>`, and `<<` shift, that is "push", a bit pattern right or left.  The operators need the bit pattern to be manipulated and the number of places to shift the value.  Thus, the usage is:
+The operators `>>` and `<<` shift, that is "push", a bit pattern right or left.  The operators need the bit pattern to be manipulated and the number of places to shift the value.  Thus, the usage is:
 
 ```
 bit_pattern_var shift_operator num_places
@@ -58,15 +57,10 @@ For example, consider the pattern `0b01000101` stored in a variable called `x`. 
 
 This operator is relatively easy to remember, since the operator itself points the direction the bits move: `<<` points left which is how the bits shift.  If the operator points right, we have some slight differences to iron out.
 
-### 13.2.2 - Right Shift (Logical)
-The logical right shift, `>>>` operates just like the left shift describe above except that it shifts the bit pattern to the right and adds 0's to the left.
+### 13.2.2 - Right Shift (sign-extending or arithmatic)
+The  `>>` operator shifts right, but it performs a **sign-extending shift**.  Remember that for integers in 2's complement format (which all modern computers use), negative numbers will have a 1 in the left-most bit position.  If we were to shift the number right, we could change the value from a negative to a positive.  There are good reasons for wanting a negative number to remain negative, even if it is shifted.  Consider the following example (again, done in 8 bits for simplicity, but the same concept applies to 32 bit integers as well).
 
-If we again use the bit pattern `0b01000101` and evaluate the expression `x >>> 3`, we end up with the pattern `00001000`.
-
-### 13.2.3 - Right Shift (sign-extending or arithmatic)
-The  `>>` operator shifts right as well, but it performs a **sign-extending shift**.  Remember that for integers in 2's complement format (which all modern computers use), negative numbers will have a 1 in the left-most bit position.  If we were to shift the number right, we could change the sign from a negative to a positive.  There are good reasons for wanting a negative number to remain negative, even if it is shifted.  Consider the following example (again, done in 8 bits for simplicity, but the same concept applies to 32 bit integers as well).
-
-Assume `x` is the bit pattern `11111011`.  This represents the value -5 in 2's complement format (for 8 bits).  If we shift the pattern 1 place to the right and shift in 0's, we would have the bit pattern `01111101` (this would be a logical shift, as described in 13.2.2).  This value is not a negative number!  Now it represents the integer value 125.
+Assume `x` is the bit pattern `11111011`.  This represents the value -5 in 2's complement format (for 8 bits).  If we shift the pattern 1 place to the right and shift in 0's, we would have the bit pattern `01111101` (which is called a **logical shift**).  This value is not a negative number!  Now it represents the integer value 125.
 
 However, a sign-extending shift would shift in a 1 if the leftmost bit was a 1 and 0 if it was a 0.  That is, it maintains the most signficant bit in the pattern.  The resulting bit pattern `11111101` is the equivalent of -3.
 
@@ -77,8 +71,7 @@ printf("x: %d, x >> 1: %d\n", x, (x >> 1));    //prints x: -5, x >> 1: -3
 printf("x: %d, x >>> 1: %d\n", x, (x >>> 1));  //prints x: -5, x >>> 1: 125
 ```
 
-If the most significant bit is a 0, then 0's are added and the shift acts like the logical shift described previously.
-
+If the most significant bit is a 0, then 0's are added.
 
 ## 13.3 - Logical Bitwise Operators
 The bitwise logical operators, `&`, `|`, and `~` operate much like their counterparts, `&&`, `||`, and `!`.  However, they once again operate a lower, bit level on the pattern.
